@@ -117,4 +117,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roleuser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adminuser;
+
+    public function getRoleuser(): ?string
+    {
+        return $this->roleuser;
+    }
+
+    public function setRoleuser(string $roleuser): self
+    {
+        $this->roleuser = $roleuser;
+
+        return $this;
+    }
+
+    public function getAdminuser(): ?string
+    {
+        return $this->adminuser;
+    }
+
+    public function setAdminuser(string $adminuser): self
+    {
+        $this->adminuser = $adminuser;
+
+        return $this;
+    }
 }

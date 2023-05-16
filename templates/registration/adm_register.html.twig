@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Admin Register</h1>
+
+    {{ form_start(admin_registrationForm) }}
+        {{ form_row(admin_registrationForm.user_name) }}
+        {{ form_row(admin_registrationForm.email) }}
+        {{ form_row(admin_registrationForm.adminuser) }}
+        {{ form_row(admin_registrationForm.password) }}
+        {{ form_row(admin_registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(admin_registrationForm) }}
+{% endblock %}
+

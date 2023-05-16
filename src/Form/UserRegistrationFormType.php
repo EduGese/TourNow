@@ -15,24 +15,17 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
-class RegistrationFormType extends AbstractType
+class UserRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('user_name', null, [
-            'label' => 'Nombre de usuario',
-        ])
+            ->add('user_name', null, [
+                'label' => 'Nombre de usuario',
+            ])
         
             ->add('email')
-            // ->add('roles', ChoiceType::class, [
-            //     'choices' => [
-            //         'Usuario' => 'ROLE_USER',
-            //         'Administrador' => 'ROLE_ADMIN',
-            //     ],
-            //     // 'expanded' => true,
-            //     'multiple' => true,
-            // ])
+           
             ->add('roleuser', HiddenType::class, [
                 'data' => 'ROLE_USER',
                 'attr' => ['class' => 'roles'],
