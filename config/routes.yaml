@@ -12,9 +12,15 @@ login:
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
-register:
-    path: /register
-    controller: App\Controller\RegistrationController::register
+# register:
+#     path: /register
+#     controller: App\Controller\RegistrationController::register
+user_register:
+    path: /user_register
+    controller: App\Controller\UserRegistrationController::register
+adm_register:
+    path: /adm_register
+    controller: App\Controller\AdminRegistrationController::register
 user_dashboard:
     path: /profile/user_dashboard
     controller: App\Controller\UserController::userDashboard

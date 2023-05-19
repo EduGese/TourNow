@@ -117,4 +117,112 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roleuser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adminuser;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $user_lastname = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dni = null;
+
+    public function getRoleuser(): ?string
+    {
+        return $this->roleuser;
+    }
+
+    public function setRoleuser(string $roleuser): self
+    {
+        $this->roleuser = $roleuser;
+
+        return $this;
+    }
+
+    public function getAdminuser(): ?string
+    {
+        return $this->adminuser;
+    }
+
+    public function setAdminuser(string $adminuser): self
+    {
+        $this->adminuser = $adminuser;
+
+        return $this;
+    }
+
+    public function getUserLastname(): ?string
+    {
+        return $this->user_lastname;
+    }
+
+    public function setUserLastname(?string $user_lastname): self
+    {
+        $this->user_lastname = $user_lastname;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(?string $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->company_name;
+    }
+
+    public function setCompanyName(?string $company_name): self
+    {
+        $this->company_name = $company_name;
+
+        return $this;
+    }
+
+    public function getCompanyWebsite(): ?string
+    {
+        return $this->company_website;
+    }
+
+    public function setCompanyWebsite(?string $company_website): self
+    {
+        $this->company_website = $company_website;
+
+        return $this;
+    }
+
+    public function getDni(): ?string
+    {
+        return $this->dni;
+    }
+
+    public function setDni(?string $dni): self
+    {
+        $this->dni = $dni;
+
+        return $this;
+    }
 }
