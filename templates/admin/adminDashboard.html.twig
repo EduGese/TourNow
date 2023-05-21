@@ -72,7 +72,7 @@
 		<table>
 			<tr>
 				<th>Nombre de la actividad</th>
-				{# <th>Fecha</th> #}
+				<th>Fecha y hora</th>
 				<th>Descripción</th>
 				<th>Tickets disponibles</th>
 				<th>Localización inicio</th>
@@ -84,7 +84,7 @@
 			{% for activity in app.user.getActivities() %}
 				<tr>
 					<td>{{ activity.getActivityName() }}</td>
-					{# <td>{{ activity.getFecha()|date('d/m/Y') }}</td> #}
+					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
 					<td>{{ activity.getDescription() }}</td>
 					<td>{{ activity.getTickets() }}</td>
 					<td>{{ activity.getStartUbication() }}</td>
@@ -92,7 +92,7 @@
 					<td>{{ activity.getPrice() }}</td>
 					<td>{{ activity.getImage() }}</td>
 					
-					<!-- Imprimir otros campos de actividad -->
+					
 				</tr>
 			{% endfor %}
 		</table>

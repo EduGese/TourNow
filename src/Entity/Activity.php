@@ -42,6 +42,9 @@ class Activity
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $image = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date = null;
+
     public function getIdActivity(): ?int
     {
         return $this->id_activity;
@@ -151,6 +154,18 @@ class Activity
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
