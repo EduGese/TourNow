@@ -1,6 +1,21 @@
 {# templates/homepage.html.twig #}
 
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 4px;
+        }
+        th {
+            background-color: gray;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 
@@ -18,6 +33,30 @@
 		<li>Tabla con lista de actividades (se podran filtrar)</li>
 		<li>Crear actividad nueva (Crear un boton aqui, que redireccione a un formulario)</li>
 	</ul>
+
+	<div>
+		<table>
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido/s</th>
+				<th>Email</th>
+				<th>Telefono</th>
+				<th>Nombre de compañía/organizacion</th>
+				<th>Website</th>
+				<th>DNI</th>
+			</tr>
+			<tr>
+				<td>{{ app.user.username }}</td>
+				<td>{{ app.user.getUserLastname }}</td>
+				<td>{{ app.user.email }}</td>
+				<td>{{ app.user.tel }}</td>
+				<td>{{ app.user.companyname }}</td>
+				<td>{{ app.user.companywebsite }}</td>
+				<td>{{ app.user.dni }}</td>
+			</tr>
+		</table>
+
+	</div>
 
 
 {% endblock %}
