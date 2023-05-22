@@ -1,89 +1,109 @@
-{# templates/homepage.html.twig #}
-
 {% extends 'base.html.twig' %}
 {# {% use 'src\Entity\Activity.php' %} #}
 {% block stylesheets %}
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			
-		}
-		th,
-		td {
-			border: 1px solid black;
-			padding: 10px;
-			
-		}
-		td {
-			text-align: center;
-		}
-		th {
-			background-color: gray;
-		}
-		div {
-			width: 80%;
-			margin: auto;
-		}
-	</style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+
+        }
+        td {
+            text-align: center;
+        }
+        th {
+            background-color: gray;
+        }
+        div {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
+    <script>//ESTE SCRIPT MANEJA LA ORDENACION DE LAS ACTIVIDADES
+        function sortTable(columnIndex) {
+            const table = document.querySelector("#miTabla");
+            const rows = Array.from(table.rows);
+            const isAscending = table.classList.toggle("ascend", !table.classList.contains("ascend"));
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[columnIndex].textContent.trim();
+                const cellB = rowB.cells[columnIndex].textContent.trim();
+                return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            });
+
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            rows.forEach((row) => {
+                table.appendChild(row);
+            });
+        }
+    </script>
 
 
-	<h3>Menu administradores</h3>
-	<p>En este menu será visible:</p>
+    <h3>Menu administradores</h3>
+    <p>En este menu será visible:</p>
 
-	<ul>
-		<li>Opciones del perfil (editar datos personales)</li>
-		<ol>
-			<li>Admin name</li>
-			<li>Email</li>
-			<li>Password</li>
-		</ol>
-		<li>Tabla con lista de actividades (se podran filtrar)</li>
-		<li>Crear actividad nueva (Crear un boton aqui, que redireccione a un formulario)</li>
-	</ul>
+    <ul>
+        <li>Opciones del perfil (editar datos personales)  HECHO</li>
+        <ol>
+            <li>Admin name</li>
+            <li>Email</li>
+            <li>Password</li>
+        </ol>
+        <li>Tabla con lista de actividades (se podran filtrar) HECHO</li>
+        <li>Crear actividad nueva (Crear un boton aqui, que redireccione a un formulario)</li>
+    </ul>
 
-	<div>
-		<h3>Tus datos personales</h3>
-		<table>
-			<tr>
-				<th>Nombre</th>
-				<th>Apellido/s</th>
-				<th>Email</th>
-				<th>Telefono</th>
-				<th>Nombre de compañía/organizacion</th>
-				<th>Website</th>
-				<th>DNI</th>
-			</tr>
-			<tr>
-				<td>{{ app.user.username }}</td>
-				<td>{{ app.user.getUserLastname }}</td>
-				<td>{{ app.user.email }}</td>
-				<td>{{ app.user.tel }}</td>
-				<td>{{ app.user.companyname }}</td>
-				<td>{{ app.user.companywebsite }}</td>
-				<td>{{ app.user.dni }}</td>
-			</tr>
-		</table>
+    <div>
+        <h3>Tus datos personales</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido/s</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Nombre de compañía/organizacion</th>
+                <th>Website</th>
+                <th>DNI</th>
+            </tr>
+            <tr >
+                <td>{{ app.user.username }}</td>
+                <td>{{ app.user.getUserLastname }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.tel }}</td>
+                <td>{{ app.user.companyname }}</td>
+                <td>{{ app.user.companywebsite }}</td>
+                <td>{{ app.user.dni }}</td>
+            </tr>
+        </table>
 
-	</div>
-	<div>
-		<h3>Tus actividades creadas</h3>
-		<table>
-			<tr>
-				<th>Nombre de la actividad</th>
-				<th>Fecha y hora</th>
-				<th>Descripción</th>
-				<th>Tickets disponibles</th>
-				<th>Localización inicio</th>
-				<th>Localización fin</th>
-				<th>Precio/persona</th>
-				<th>Img</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			{% for activity in app.user.getActivities() %}
+    </div>
+    <div>
+        <h3>Tus actividades creadas</h3>
+        <table >
+            <tr>
+                <th><button onclick="sortTable(0)">Nombre de la actividad</button></th>
+                <th><button onclick="sortTable(1)">Fecha y hora</button></th>
+                <th><button onclick="sortTable(2)">Descripción</button></th>
+                <th><button onclick="sortTable(3)">Tickets disponibles</button></th>
+                <th><button onclick="sortTable(4)">Localización inicio</button></th>
+                <th><button onclick="sortTable(5)">Localización fin</button></th>
+                <th><button onclick="sortTable(6)">Precio/persona</button></th>
+                <th><button onclick="sortTable(7)">Img</button></th>
+                <!-- Otros campos de actividad -->
+            </tr>
+            <tbody id="miTabla">
+            {% for activity in app.user.getActivities() %}
 				<tr>
 					<td>{{ activity.getActivityName() }}</td>
 					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
@@ -93,12 +113,12 @@
 					<td>{{ activity.getEndUbication() }}</td>
 					<td>{{ activity.getPrice() }}</td>
 					<td>{{ activity.getImage() }}</td>
-					
-					
 				</tr>
 			{% endfor %}
-		</table>
-	</div>
+            </tbody>
+        </table>
+		<button>Crear nueva actividad</button>
+    </div>
 
 
 {% endblock %}
