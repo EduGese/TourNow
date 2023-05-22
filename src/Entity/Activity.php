@@ -45,6 +45,9 @@ class Activity
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $city = null;
+
     public function getIdActivity(): ?int
     {
         return $this->id_activity;
@@ -166,6 +169,18 @@ class Activity
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
