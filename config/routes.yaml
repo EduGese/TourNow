@@ -27,6 +27,9 @@ user_dashboard:
 admin_dashboard:
     path: /admin/admin_dashboard
     controller: App\Controller\AdminController::adminDashboard
+delete_activity:
+    path: /admin/delete_activity/{id}
+    controller: App\Controller\ActivityController::deleteActivity
 
 
 

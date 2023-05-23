@@ -24,19 +24,25 @@ use App\Entity\Activity;
 
 class ActivityController extends AbstractController
 {
-   
-
-    public function deleteActivity(ManagerRegistry $doctrine, UserInterface $user, Request $request): response{
-        
-        $idActivity = $request->attributes->get('id');
-        $activity_repo = $doctrine->getManager()->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity);
-        $activity_manager = $doctrine->getManager();
-        $activity_manager->remove($activity);
-        $activity_manager->flush();
-
-        return $this->redirect(
-            $this->generateUrl('admin_dashboard')
-        );
+    #[Route('/activity', name: 'app_activity')]
+    public function index(): Response
+    {
+        return $this->render('activity/index.html.twig', [
+            'controller_name' => 'ActivityController',
+        ]);
     }
+
+    // public function activityListByUser(ManagerRegistry $doctrine, UserInterface $user): response{
+    // //    $user = new User();
+    //     $activity_repo = $doctrine->getManager()->getRepository(Activity::class);
+    //     $qb =  $activity_repo->createQueryBuilder('a')
+    //                         ->Where("a.id_user = :id_user")
+    //                         ->setParameter('id_user', $user->getId())
+    //                         ->orderBy('a.price', 'ASC')
+    //                         ->getQuery();
+    //     $resulSet = $qb->execute();
+    //     return $this->render('admin/adminActivitiesAll.html.twig',[
+    //         'activities' => $resulSet
+    //     ]);
+    // }
 }
