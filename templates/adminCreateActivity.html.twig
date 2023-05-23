@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{# FORMULARIO DE REGISTRO DE CREACION DE ACTIVIDAD Creado desde---->   Form/CreateActivityFormType.php
+
+
+
+Esta incompleto:
+    -deberiamos implementar el mapa para poder elegir el inicio y fin de la actividad
+ (1)-Hay que investigar como subir una imagen a bbdd y luego poder mostrarla-->alternativa:guardar la imagen en la aplicacion, 
+    y guardar la ruta de la imagen en la base de datos(actualmente es un campo tipo BLOB)
+ (2)-La eleccion del ciudad deberia de ser de tipo Select:options:Madrid, Barcelona, Sevilla
+
+
+ #}
+{# Pretendia que esta vista se extendiera de adminDashboard.html.twig para que el formulario apareciera a 
+continuacion de la lista de actividades, pero al hacerlo solo extiende de base.html.twig..No se por que #}
+{% block body %}
+
+	<div>
+		{{ form_start(form) }}
+
+		{{ form_row(form.activity_name) }}
+		{{ form_row(form.description) }}
+		{{ form_row(form.tickets) }}
+		{{ form_row(form.start_ubication) }}
+		{{ form_row(form.end_ubication) }}
+		{{ form_row(form.price) }}
+		{#(1)#}{{ form_row(form.image) }} 
+		{{ form_row(form.date) }}
+		{#(2)#}{{ form_row(form.city) }}
+
+		<button type="submit">Guardar</button>
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

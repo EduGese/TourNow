@@ -12,6 +12,6 @@ class AdminController extends AbstractController
     
     public function adminDashboard(): Response
     {
-        return $this->render('admin/adminDashboard.html.twig');
+        return $this->render('adminDashboard.html.twig');
     }
 }

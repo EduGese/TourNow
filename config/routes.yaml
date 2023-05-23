@@ -30,6 +30,9 @@ admin_dashboard:
 delete_activity:
     path: /admin/delete_activity/{id}
     controller: App\Controller\ActivityController::deleteActivity
+create_activity:
+    path: /admin/create_activity
+    controller: App\Controller\ActivityController::createActivity
 
 
 

@@ -26,6 +26,7 @@
     </style>
 {% endblock %}
 
+
 {% block body %}
     <script>
         function sortTable(columnIndex) {
@@ -54,13 +55,13 @@
     <p>En este menu será visible:</p>
 
     <ul>
-        <li>Opciones del perfil (editar datos personales)</li>
+        <li>Opciones del perfil (editar datos personales)  HECHO</li>
         <ol>
             <li>Admin name</li>
             <li>Email</li>
             <li>Password</li>
         </ol>
-        <li>Tabla con lista de actividades (se podran filtrar)</li>
+        <li>Tabla con lista de actividades (se podran filtrar) HECHO</li>
         <li>Crear actividad nueva (Crear un boton aqui, que redireccione a un formulario)</li>
     </ul>
 
@@ -100,25 +101,28 @@
                 <th><button onclick="sortTable(5)">Localización fin</button></th>
                 <th><button onclick="sortTable(6)">Precio/persona</button></th>
                 <th><button onclick="sortTable(7)">Img</button></th>
+				<th><button onclick="sortTable(8)">Ciudad</button></th>
                 <!-- Otros campos de actividad -->
             </tr>
             <tbody id="miTabla">
-            {% for activity in activities %}
-                <tr>
-                    <td>{{ activity.activityName }}</td>
-                    <td>{{ activity.date|date('Y-m-d H:i:s') }}</td>
-                    <td>{{ activity.description }}</td>
-                    <td>{{ activity.tickets }}</td>
-                    <td>{{ activity.startUbication }}</td>
-                    <td>{{ activity.endUbication }}</td>
-                    <td>{{ activity.price }}</td>
-                    <td>{{ activity.image }}</td>
-
-
-                </tr>
-            {% endfor %}
+            {% for activity in app.user.getActivities() %}
+				<tr>
+					<td>{{ activity.getActivityName() }}</td>
+					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+					<td>{{ activity.getDescription() }}</td>
+					<td>{{ activity.getTickets() }}</td>
+					<td>{{ activity.getStartUbication() }}</td>
+					<td>{{ activity.getEndUbication() }}</td>
+					<td>{{ activity.getPrice() }}</td>
+					<td>{{ activity.getImage() }}</td>
+					<td>{{ activity.getCity() }}</td>
+                    <td><a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a></td>
+                    
+				</tr>
+			{% endfor %}
             </tbody>
         </table>
+		<a href="{{path('create_activity')}}">Crear nueva actividad</a>
     </div>
 
 
