@@ -2,8 +2,9 @@
 
 {# FORMULARIO DE REGISTRO DE USUARIO CLIENTE Creado desde---->   Form/UserRegistrationFormType.php #}
 {% block body %}
-    <h1>User Register</h1>
-
+<h1 class="logo col-lg-3 "><span class="clr">T</span>our<span class="clr">N</span>ow</h1>
+<div class=" form form-group col-lg-5 mr-auto ml-auto ">
+  <h1 class="titulo">REGÍSTRATE COMO <span class="tipo">USUARIO</span></h1>
     {{ form_start(user_registrationForm) }}
         {{ form_row(user_registrationForm.user_name) }}
         {{ form_row(user_registrationForm.user_lastname) }}
@@ -13,6 +14,9 @@
         {{ form_row(user_registrationForm.password) }}
         {{ form_row(user_registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="boton">Registrarse</button>
     {{ form_end(user_registrationForm) }}
+</div>
+  
+  
 {% endblock %}
