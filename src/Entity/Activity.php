@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ActivityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ActivityRepository::class)]
 class Activity
@@ -48,22 +50,20 @@ class Activity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $city = null;
 
+    //////////////////////////
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'customerActivities')]
+    private $customerUsers;
+
+    public function __construct()
+    {
+        $this->customerUsers = new ArrayCollection();
+    }
+    //////////////////////////////////////
+
     public function getIdActivity(): ?int
     {
         return $this->id_activity;
     }
-
-    // public function getIdActivity(): ?int
-    // {
-    //     return $this->id_activity;
-    // }
-
-    // public function setIdActivity(int $id_activity): self
-    // {
-    //     $this->id_activity = $id_activity;
-
-    //     return $this;
-    // }
 
     public function getActivityName(): ?string
     {
@@ -184,4 +184,33 @@ class Activity
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getCustomerUsers(): Collection
+    {
+        return $this->customerUsers;
+    }
+
+    public function addCustomerUser(User $user): self
+    {
+        if (!$this->customerUsers->contains($user)) {
+            $this->customerUsers->add($user);
+            $user->addCustomerActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->customerUsers->removeElement($user)) {
+            $user->removeCustomerActivity($this);
+        }
+
+        return $this;
+    }
+
+
 }
