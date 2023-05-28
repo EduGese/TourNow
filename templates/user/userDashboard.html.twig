@@ -1,9 +1,54 @@
 {# templates/homepage.html.twig #}
 
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+
+        }
+        td {
+            text-align: center;
+        }
+        th {
+            background-color: gray;
+        }
+        div {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
+ <script>
+        function sortTable(columnIndex) {
+            const table = document.querySelector("#miTabla");
+            const rows = Array.from(table.rows);
+            const isAscending = table.classList.toggle("ascend", !table.classList.contains("ascend"));
 
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[columnIndex].textContent.trim();
+                const cellB = rowB.cells[columnIndex].textContent.trim();
+                return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            });
+
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            rows.forEach((row) => {
+                table.appendChild(row);
+            });
+        }
+    </script>
 
 	<h3>Menu usuarios</h3>
 	<p>En este menu será visible una tabla con la lista de actividades
@@ -17,6 +62,63 @@
 		<li>Precio</li>
 		<li>....</li>
 	</ul>
+
+	<div>
+        <h3>Tus datos personales</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido/s</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                
+            </tr>
+            <tr >
+                <td>{{ app.user.username }}</td>
+                <td>{{ app.user.getUserLastname }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.tel }}</td>
+                
+            </tr>
+        </table>
+
+    </div>
+    <div>
+        <h3>Actividades a las que unirse</h3>
+        <table >
+            <tr>
+                <th><button onclick="sortTable(0)">Nombre de la actividad</button></th>
+                <th><button onclick="sortTable(1)">Fecha y hora</button></th>
+                <th><button onclick="sortTable(2)">Descripción</button></th>
+                <th><button onclick="sortTable(3)">Tickets disponibles</button></th>
+                <th><button onclick="sortTable(4)">Localización inicio</button></th>
+                <th><button onclick="sortTable(5)">Localización fin</button></th>
+                <th><button onclick="sortTable(6)">Precio/persona</button></th>
+                <th><button onclick="sortTable(7)">Img</button></th>
+				<th><button onclick="sortTable(8)">Ciudad</button></th>
+                <!-- Otros campos de actividad -->
+            </tr>
+            <tbody id="miTabla">
+            {% for activity in activities %}
+				<tr>
+					<td>{{ activity.getActivityName() }}</td>
+					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+					<td>{{ activity.getDescription() }}</td>
+					<td>{{ activity.getTickets() }}</td>
+					<td>{{ activity.getStartUbication() }}</td>
+					<td>{{ activity.getEndUbication() }}</td>
+					<td>{{ activity.getPrice() }}</td>
+					<td>{{ activity.getImage() }}</td>
+					<td>{{ activity.getCity() }}</td>
+					<td><a href="">Unirse</a></td>
+    
+                    
+				</tr>
+			{% endfor %}
+            </tbody>
+        </table>
+		
+    </div>
 
 
 {% endblock %}
