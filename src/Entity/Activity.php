@@ -54,6 +54,12 @@ class Activity
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'customerActivities')]
     private $customerUsers;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_website = null;
+
     public function __construct()
     {
         $this->customerUsers = new ArrayCollection();
@@ -208,6 +214,30 @@ class Activity
         if ($this->customerUsers->removeElement($user)) {
             $user->removeCustomerActivity($this);
         }
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->company_name;
+    }
+
+    public function setCompanyName(?string $company_name): self
+    {
+        $this->company_name = $company_name;
+
+        return $this;
+    }
+
+    public function getCompanyWebsite(): ?string
+    {
+        return $this->company_website;
+    }
+
+    public function setCompanyWebsite(?string $company_website): self
+    {
+        $this->company_website = $company_website;
 
         return $this;
     }

@@ -21,7 +21,9 @@ class CreateActivityFormType extends AbstractType
             ->add('price')
             ->add('image')
             ->add('date')
-            ->add('city');
+            ->add('city')
+            ->add('company_name')
+            ->add('company_website');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

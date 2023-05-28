@@ -63,6 +63,7 @@
 		<li>....</li>
 	</ul>
 
+
 	<div>
         <h3>Tus datos personales</h3>
         <table>
@@ -83,7 +84,57 @@
         </table>
 
     </div>
-    <div>
+
+	<div>
+        <h3>Tus actividades</h3>
+        <table >
+            <tr>
+                <th><button onclick="sortTable(0)">Nombre de la actividad</button></th>
+                <th><button onclick="sortTable(1)">Fecha y hora</button></th>
+                <th><button onclick="sortTable(2)">Descripción</button></th>
+                <th><button onclick="sortTable(3)">Tickets disponibles</button></th>
+                <th><button onclick="sortTable(4)">Localización inicio</button></th>
+                <th><button onclick="sortTable(5)">Localización fin</button></th>
+                <th><button onclick="sortTable(6)">Precio/persona</button></th>
+                <th><button onclick="sortTable(7)">Img</button></th>
+				<th><button onclick="sortTable(8)">Ciudad</button></th>
+				<th><button onclick="sortTable(9)">Compañía</button></th>
+				<th><button onclick="sortTable(10)">Paginaweb</button></th>
+                <!-- Otros campos de actividad -->
+            </tr>
+            <tbody id="miTabla">
+            {% for activity in userActivities %}
+				<tr>
+					<td>{{ activity.getActivityName() }}</td>
+					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+					<td>{{ activity.getDescription() }}</td>
+					<td>{{ activity.getTickets() }}</td>
+					<td>{{ activity.getStartUbication() }}</td>
+					<td>{{ activity.getEndUbication() }}</td>
+					<td>{{ activity.getPrice() }}</td>
+					<td>{{ activity.getImage() }}</td>
+					<td>{{ activity.getCity() }}</td>
+					<td>{{ activity.getCompanyName() }}</td>
+					<td><a href="">{{ activity.getCompanyWebsite() }}</a</td>
+
+					
+    
+                    
+				</tr>
+			{% endfor %}
+            </tbody>
+        </table>
+		
+    </div>
+	
+
+
+
+
+
+
+
+    {# <div>
         <h3>Actividades a las que unirse</h3>
         <table >
             <tr>
@@ -96,10 +147,12 @@
                 <th><button onclick="sortTable(6)">Precio/persona</button></th>
                 <th><button onclick="sortTable(7)">Img</button></th>
 				<th><button onclick="sortTable(8)">Ciudad</button></th>
+				<th><button onclick="sortTable(9)">Compañía</button></th>
+				<th><button onclick="sortTable(10)">Paginaweb</button></th>
                 <!-- Otros campos de actividad -->
             </tr>
             <tbody id="miTabla">
-            {% for activity in activities %}
+            {% for activity in allActivities %}
 				<tr>
 					<td>{{ activity.getActivityName() }}</td>
 					<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
@@ -110,6 +163,9 @@
 					<td>{{ activity.getPrice() }}</td>
 					<td>{{ activity.getImage() }}</td>
 					<td>{{ activity.getCity() }}</td>
+					<td>{{ activity.getCompanyName() }}</td>
+					<td><a href="">{{ activity.getCompanyWebsite() }}</a</td>
+
 					<td><a href="">Unirse</a></td>
     
                     
@@ -118,7 +174,7 @@
             </tbody>
         </table>
 		
-    </div>
+    </div> #}
 
 
 {% endblock %}
