@@ -49,10 +49,10 @@ class AdminRegistrationFormType extends AbstractType
                 ],
             ])
            
-            ->add('adminuser', HiddenType::class, [
-                'data' => 'ROLE_ADMIN',
-                'attr' => ['class' => 'roles'],
-            ])
+            // ->add('adminuser', HiddenType::class, [
+            //     'data' => 'ROLE_ADMIN',
+            //     'attr' => ['class' => 'roles'],
+            // ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

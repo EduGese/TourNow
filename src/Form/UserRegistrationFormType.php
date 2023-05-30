@@ -39,11 +39,21 @@ class UserRegistrationFormType extends AbstractType
                     'required' => true,
                 ],
             ])
+            // ->add('roles', ChoiceType::class, [
+            //     'choices' => [
+            //         'User' => 'ROLE_USER',
+            //         'Admin' => 'ROLE_ADMIN',
+            //         // Agrega otras opciones de roles según sea necesario
+            //     ],
+            //     'multiple' => true,
+            //     'expanded' => true,
+            //     'label' => 'Roles',
+            // ])
            
-            ->add('roleuser', HiddenType::class, [
-                'data' => 'ROLE_USER',
-                'attr' => ['class' => 'roles'],
-            ])
+            // ->add('roleuser', HiddenType::class, [
+            //     'data' => 'ROLE_USER',
+            //     'attr' => ['class' => 'roles'],
+            // ])
             
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

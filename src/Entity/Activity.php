@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ActivityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ActivityRepository::class)]
 class Activity
@@ -39,8 +41,8 @@ class Activity
     #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id_user', nullable: false)]
     private ?User $id_user = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $image = null;
+    #[ORM\Column(length: 255,  nullable: true)]
+    private ?string $image = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
@@ -48,22 +50,32 @@ class Activity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $city = null;
 
+    //////////////////////////
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'customerActivities')]
+    private $customerUsers;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $start_coord = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $end_coord = null;
+
+    public function __construct()
+    {
+        $this->customerUsers = new ArrayCollection();
+    }
+    //////////////////////////////////////
+
     public function getIdActivity(): ?int
     {
         return $this->id_activity;
     }
-
-    // public function getIdActivity(): ?int
-    // {
-    //     return $this->id_activity;
-    // }
-
-    // public function setIdActivity(int $id_activity): self
-    // {
-    //     $this->id_activity = $id_activity;
-
-    //     return $this;
-    // }
 
     public function getActivityName(): ?string
     {
@@ -184,4 +196,81 @@ class Activity
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getCustomerUsers(): Collection
+    {
+        return $this->customerUsers;
+    }
+
+    public function addCustomerUser(User $user): self
+    {
+        if (!$this->customerUsers->contains($user)) {
+            $this->customerUsers->add($user);
+            $user->addCustomerActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->customerUsers->removeElement($user)) {
+            $user->removeCustomerActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->company_name;
+    }
+
+    public function setCompanyName(?string $company_name): self
+    {
+        $this->company_name = $company_name;
+
+        return $this;
+    }
+
+    public function getCompanyWebsite(): ?string
+    {
+        return $this->company_website;
+    }
+
+    public function setCompanyWebsite(?string $company_website): self
+    {
+        $this->company_website = $company_website;
+
+        return $this;
+    }
+
+    public function getStartCoord(): ?string
+    {
+        return $this->start_coord;
+    }
+
+    public function setStartCoord(?string $start_coord): self
+    {
+        $this->start_coord = $start_coord;
+
+        return $this;
+    }
+
+    public function getEndCoord(): ?string
+    {
+        return $this->end_coord;
+    }
+
+    public function setEndCoord(?string $end_coord): self
+    {
+        $this->end_coord = $end_coord;
+
+        return $this;
+    }
+
+
 }

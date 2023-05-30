@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Ya existe una cuenta con este email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -33,10 +33,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $user_name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $user_lastname = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dni = null;
+
+    #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Activity::class)]
+    private Collection $activities;
+
+    #[ORM\ManyToMany(targetEntity: Activity::class, inversedBy: 'users')]
+    #[ORM\JoinTable(name: 'user_activity')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id_user')]
+    #[ORM\InverseJoinColumn(name: 'activity_id', referencedColumnName: 'id_activity')]
+
+    private Collection $customerActivities;
+
     public function __construct()
     {
         $this->roles = [];
         $this->activities = new ArrayCollection();
+        $this->customerActivities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,57 +144,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserName(string $user_name): self
     {
         $this->user_name = $user_name;
-
-        return $this;
-    }
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $roleuser;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adminuser;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $user_lastname = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $tel = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $company_name = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $company_website = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $dni = null;
-
-    #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Activity::class)]
-    private Collection $activities;
-
-    public function getRoleuser(): ?string
-    {
-        return $this->roleuser;
-    }
-
-    public function setRoleuser(string $roleuser): self
-    {
-        $this->roleuser = $roleuser;
-
-        return $this;
-    }
-
-    public function getAdminuser(): ?string
-    {
-        return $this->adminuser;
-    }
-
-    public function setAdminuser(string $adminuser): self
-    {
-        $this->adminuser = $adminuser;
 
         return $this;
     }
@@ -257,6 +233,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($activity->getIdUser() === $this) {
                 $activity->setIdUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Activity>
+     */
+    public function getCustomerActivities(): Collection
+    {
+        return $this->customerActivities;
+    }
+
+    public function addCustomerActivity(Activity $activity): self
+    {
+        if (!$this->customerActivities->contains($activity)) {
+            $this->customerActivities->add($activity);
+            $activity->addCustomerUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomerActivity(Activity $activity): self
+    {
+        if ($this->customerActivities->removeElement($activity)) {
+            $activity->removeUser($this);
         }
 
         return $this;
