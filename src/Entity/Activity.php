@@ -41,8 +41,8 @@ class Activity
     #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id_user', nullable: false)]
     private ?User $id_user = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $image = null;
+    #[ORM\Column(length: 255,  nullable: true)]
+    private ?string $image = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
@@ -59,6 +59,12 @@ class Activity
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company_website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $start_coord = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $end_coord = null;
 
     public function __construct()
     {
@@ -238,6 +244,30 @@ class Activity
     public function setCompanyWebsite(?string $company_website): self
     {
         $this->company_website = $company_website;
+
+        return $this;
+    }
+
+    public function getStartCoord(): ?string
+    {
+        return $this->start_coord;
+    }
+
+    public function setStartCoord(?string $start_coord): self
+    {
+        $this->start_coord = $start_coord;
+
+        return $this;
+    }
+
+    public function getEndCoord(): ?string
+    {
+        return $this->end_coord;
+    }
+
+    public function setEndCoord(?string $end_coord): self
+    {
+        $this->end_coord = $end_coord;
 
         return $this;
     }

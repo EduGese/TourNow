@@ -60,6 +60,24 @@ class ActivityController extends AbstractController
             // Establecer el ID del usuario actualmente autenticado
             $user = $security->getUser();
             $activity->setIdUser($user);
+
+            // Procesar la imagen
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid().'.'.$imageFile->getClientOriginalExtension();
+
+                // Mover el archivo a la carpeta src/Img
+                $imageFile->move(
+                    $this->getParameter('kernel.project_dir').'/public/images',
+                    $newFilename
+                );
+
+                // Guardar la ruta en la entidad Activity
+                $activity->setImage('images/'.$newFilename);
+            }
+
+
+
             // Guardar la actividad en la base de datos
             $this->entityManager->persist($activity);
             $this->entityManager->flush();
