@@ -2,42 +2,44 @@
 
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
 
-		}
-		th,
-		td {
-			border: 1px solid black;
-			padding: 10px;
+        }
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
 
-		}
-		td {
-			text-align: center;
-		}
-		th {
-			background-color: gray;
-		}
-		div {
-			width: 80%;
-			margin: auto;
-		}
-		img {
-			width: 100%;
-			margin: auto;
-		}
-		.act_cr {
-			margin: auto;
-			width: 60%;
-		}
-	</style>
+        }
+        td {
+            text-align: center;
+        }
+        th {
+            background-color: gray;
+        }
+        div {
+            width: 80%;
+            margin: auto;
+        }
+        img {
+            width: 100%;
+            margin: auto;
+        }
+        .act_cr {
+            margin: auto;
+            width: 60%;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-	<script>
-		function sortTable(columnIndex) {
+
+{# 
+    <script>
+        function sortTable(columnIndex) {
 const table = document.querySelector("#miTabla");
 const rows = Array.from(table.rows);
 const isAscending = table.classList.toggle("ascend", ! table.classList.contains("ascend"));
@@ -56,166 +58,171 @@ rows.forEach((row) => {
 table.appendChild(row);
 });
 }
-	</script>
-	<div class="act_cr">
-		<h2>Menu usuarios</h2>
-		<h3>Tus datos personales</h3>
-		<table>
-			<tr>
-				<th>Nombre</th>
-				<th>Apellido/s</th>
-				<th>Email</th>
-				<th>Telefono</th>
-
-			</tr>
-			<tr>
-				<td>{{ app.user.username }}</td>
-				<td>{{ app.user.getUserLastname }}</td>
-				<td>{{ app.user.email }}</td>
-				<td>{{ app.user.tel }}</td>
-
-			</tr>
-		</table>
-	</div>
+    </script> #}
 
 
-	<div class="act_cr">
-		<h2>Tus actividades</h2>
-		<table>
-			<tr>
-				<th>
-					<button onclick="sortTable(0)">Nombre de la actividad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(1)">Fecha y hora</button>
-				</th>
-				<th>
-					<button onclick="sortTable(2)">Descripción</button>
-				</th>
-				<th>
-					<button onclick="sortTable(3)">Tickets disponibles</button>
-				</th>
-				<th>
-					<button onclick="sortTable(4)">Localización inicio</button>
-				</th>
-				<th>
-					<button onclick="sortTable(5)">Localización fin</button>
-				</th>
-				<th>
-					<button onclick="sortTable(6)">Precio/persona</button>
-				</th>
-				<th>
-					<button onclick="sortTable(7)">Img</button>
-				</th>
-				<th>
-					<button onclick="sortTable(8)">Ciudad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(9)">Compañía</button>
-				</th>
-				<th>
-					<button onclick="sortTable(10)">Paginaweb</button>
-				</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			<tbody id="miTabla">
-				{% for activity in userActivities %}
-					<tr>
-						<td>{{ activity.getActivityName() }}</td>
-						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-						<td>{{ activity.getDescription() }}</td>
-						<td>{{ activity.getTickets() }}</td>
-						<td>{{ activity.getStartUbication() }}</td>
-						<td>{{ activity.getEndUbication() }}</td>
-						<td>{{ activity.getPrice() }}</td>
-						<td>
-							{% if activity.getImage() is not null %}
-								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-							{% endif %}
-						</td>
-						<td>{{ activity.getCity() }}</td>
-						<td>{{ activity.getCompanyName() }}</td>
-						<td>
-							<a href="">{{ activity.getCompanyWebsite() }}</a</td>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+    <div class="act_cr">
+        <h2>Menu usuarios</h2>
+        <h3>Tus datos personales</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido/s</th>
+                <th>Email</th>
+                <th>Telefono</th>
 
-	</div>
+            </tr>
+            <tr>
+                <td>{{ app.user.username }}</td>
+                <td>{{ app.user.getUserLastname }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.tel }}</td>
+
+            </tr>
+        </table>
+    </div>
 
 
-	<div>
-		<h3>Actividades a las que unirse</h3>
-		<table>
-			<tr>
-				<th>
-					<button onclick="sortTable(0)">Nombre de la actividad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(1)">Fecha y hora</button>
-				</th>
-				<th>
-					<button onclick="sortTable(2)">Descripción</button>
-				</th>
-				<th>
-					<button onclick="sortTable(3)">Tickets disponibles</button>
-				</th>
-				<th>
-					<button onclick="sortTable(4)">Localización inicio</button>
-				</th>
-				<th>
-					<button onclick="sortTable(5)">Localización fin</button>
-				</th>
-				<th>
-					<button onclick="sortTable(6)">Precio/persona</button>
-				</th>
-				<th>
-					<button onclick="sortTable(7)">Img</button>
-				</th>
-				<th>
-					<button onclick="sortTable(8)">Ciudad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(9)">Compañía</button>
-				</th>
-				<th>
-					<button onclick="sortTable(10)">Paginaweb</button>
-				</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			<tbody id="miTabla">
-				{% for activity in allActivities %}
-					<tr>
-						<td>{{ activity.getActivityName() }}</td>
-						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-						<td>{{ activity.getDescription() }}</td>
-						<td>{{ activity.getTickets() }}</td>
-						<td>{{ activity.getStartUbication() }}</td>
-						<td>{{ activity.getEndUbication() }}</td>
-						<td>{{ activity.getPrice() }}</td>
-						<td>
-							{% if activity.getImage() is not null %}
-								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-							{% endif %}
-						</td>
-						<td>{{ activity.getCity() }}</td>
-						<td>{{ activity.getCompanyName() }}</td>
-						<td>
-							<a href="">{{ activity.getCompanyWebsite() }}</a</td>
-						</td>
-						<td>
-							<a href="">Unirse</a>
-						</td>
+    <div class="act_cr">
+        <h2>Tus actividades</h2>
+        <table>
+            <tr>
+                <th>
+                    <button onclick="sortTable(0)">Nombre de la actividad</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(1)">Fecha y hora</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(2)">Descripción</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(3)">Tickets disponibles</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(4)">Localización inicio</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(5)">Localización fin</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(6)">Precio/persona</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(7)">Img</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(8)">Ciudad</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(9)">Compañía</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(10)">Paginaweb</button>
+                </th>
+                <!-- Otros campos de actividad -->
+            </tr>
+            <tbody class="miTabla">
+                {% for activity in userActivities %}
+                    <tr>
+                        <td>{{ activity.getActivityName() }}</td>
+                        <td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+                        <td>{{ activity.getDescription() }}</td>
+                        <td>{{ activity.getTickets() }}</td>
+                        <td>{{ activity.getStartUbication() }}</td>
+                        <td>{{ activity.getEndUbication() }}</td>
+                        <td>{{ activity.getPrice() }}</td>
+                        <td>
+                            {% if activity.getImage() is not null %}
+                                <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
+                            {% endif %}
+                        </td>
+                        <td>{{ activity.getCity() }}</td>
+                        <td>{{ activity.getCompanyName() }}</td>
+                        <td>
+                            <a href="">{{ activity.getCompanyWebsite() }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
 
 
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+    <div>
+        <h3>Actividades a las que unirse</h3>
+        <table>
+            <tr>
+                <th>
+                    <button onclick="sortTable(0)">Nombre de la actividad</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(1)">Fecha y hora</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(2)">Descripción</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(3)">Tickets disponibles</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(4)">Localización inicio</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(5)">Localización fin</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(6)">Precio/persona</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(7)">Img</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(8)">Ciudad</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(9)">Compañía</button>
+                </th>
+                <th>
+                    <button onclick="sortTable(10)">Paginaweb</button>
+                </th>
+                <!-- Otros campos de actividad -->
+            </tr>
+            <tbody class="miTabla">
+                {% for activity in allActivities %}
+                    <tr>
+                        <td>{{ activity.getActivityName() }}</td>
+                        <td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+                        <td>{{ activity.getDescription() }}</td>
+                        <td>{{ activity.getTickets() }}</td>
+                        <td>{{ activity.getStartUbication() }}</td>
+                        <td>{{ activity.getEndUbication() }}</td>
+                        <td>{{ activity.getPrice() }}</td>
+                        <td>
+                            {% if activity.getImage() is not null %}
+                                <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
+                            {% endif %}
+                        </td>
+                        <td>{{ activity.getCity() }}</td>
+                        <td>{{ activity.getCompanyName() }}</td>
+                        <td>
+                            <a href="">{{ activity.getCompanyWebsite() }}</a>
+                        </td>
+                        <td>
+                            <a href="">Unirse</a>
+                        </td>
 
-	</div>
 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% block javascripts %}
+    <script src="{{ asset('/scripts/table_filter.js') }}"></script>
+    {% endblock %}
 
 {% endblock %}

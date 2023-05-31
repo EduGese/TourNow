@@ -28,14 +28,9 @@ class CreateActivityFormType extends AbstractType
                 'label' => 'Descripción',
                 'required' => true,
             ])
-            ->add('tickets', ChoiceType::class, [
+            ->add('tickets', NumberType::class, [
                 'label' => 'Entradas',
                 'required' => true,
-                'choices' => [
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3,
-                ],
             ])
             ->add('start_ubication', TextType::class, [
                 'label' => 'Ubicacion inicial',
