@@ -210,12 +210,17 @@ table.appendChild(row);
                             <a href="">{{ activity.getCompanyWebsite() }}</a>
                         </td>
                         <td>
-                            <a href="">Unirse</a>
+                            <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
+
+
+
                         </td>
 
 
                     </tr>
+					
                 {% endfor %}
+				
             </tbody>
         </table>
 

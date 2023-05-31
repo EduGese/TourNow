@@ -39,4 +39,15 @@ class UserController extends AbstractController
             'userActivities' =>  $userActivities,
         ]);
     }
+    public function showActivity(Request $request, ManagerRegistry $doctrine): Response
+{
+    $idActivity = $request->attributes->get('id');
+    $activity_repo = $doctrine->getRepository(Activity::class);
+    $activity = $activity_repo->find($idActivity);
+
+    return $this->render('user/showActivity.html.twig', [
+        'activity' => $activity
+    ]);
+}
+
 }

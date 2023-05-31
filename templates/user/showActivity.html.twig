@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <style>
+        .activity-card {
+            display: flex;
+            flex-direction: row;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .activity-cover {
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        .activity-cover img {
+            width: 100%;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-details h2 {
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table td, table th {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        table td strong {
+            display: inline-block;
+            width: 150px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        form label {
+            display: inline-block;
+            width: 150px;
+            vertical-align: middle;
+        }
+
+        form select {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        form button[type="submit"] {
+            background-color: #53a93f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="activity-card">
+        {% if activity.getImage() is not null %}
+            <div class="activity-cover">
+                <img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
+            </div>
+        {% endif %}
+
+        <div class="activity-details">
+            <h2>{{ activity.activityName }}</h2>
+
+            <table>
+                <tr>
+                    <td><strong>Fecha:</strong></td>
+                    <td>{{ activity.date|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Descripción:</strong></td>
+                    <td>{{ activity.description }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tickets disponibles:</strong></td>
+                    <td>{{ activity.tickets }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Localización inicio:</strong></td>
+                    <td>{{ activity.startUbication }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Localización fin:</strong></td>
+                    <td>{{ activity.endUbication }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Precio/persona:</strong></td>
+                    <td>{{ activity.price }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Ciudad:</strong></td>
+                    <td>{{ activity.city }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Compañía:</strong></td>
+                    <td>{{ activity.companyName }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Página web:</strong></td>
+                    <td><a href="{{ activity.companyWebsite }}">{{ activity.companyWebsite }}</a></td>
+                </tr>
+            </table>
+
+            <form method="POST">
+                <label for="tickets">Número de tickets:</label>
+                <select id="tickets" name="tickets">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <button type="submit">Comprar tickets</button>
+            </form>
+        </div>
+    </div>
+
+  
+
+{% endblock %}
