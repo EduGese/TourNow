@@ -29,8 +29,8 @@ class UserRegistrationController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $roles = array_merge([$form->get('roleuser')->getData()]);
-            $user->setRoles($roles);
+            // $roles = array_merge([$form->get('roleuser')->getData()]);
+            $user->setRoles(['ROLE_USER']);
 
 
             $entityManager->persist($user);

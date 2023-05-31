@@ -29,8 +29,8 @@ class AdminRegistrationController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $roles = array_merge([$form->get('adminuser')->getData()]);
-            $user->setRoles($roles);
+            // $roles = array_merge([$form->get('adminuser')->getData()]);
+            $user->setRoles(['ROLE_ADMIN']);
 
 
             $entityManager->persist($user);
