@@ -1,136 +1,208 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}Welcome!
+		{% endblock %}
+	</title>
+	<link
+	rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+	{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+	<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+	{% block stylesheets %}
+		{{ encore_entry_link_tags('app') }}
+		<link href="{{ asset('css/login.css') }}" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+	{% endblock %}
+</head>
 
 {% block body %}
-  <style>
-        .activity-card {
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
 
-        .activity-cover {
-            width: 300px;
-            margin-right: 20px;
-        }
+{% if (app.user) %}
+			{{'Estas logeado como '}}{{ app.user.email}}
+		{% endif %}
+		<nav>
+			<a href="/{{app.user ? 'logout' : 'login'}}">{{app.user ? 'Logout' : 'Login'}}</a><br><br>
+			<a href="{{path('home')}}">Home</a>
+			<a href="{{path('user_dashboard')}}">User dashboard</a>
+            {# <a href="{{ path('admin_dashboard') }}">{{ app.user.roles|length > 1 ? 'adminDashboard' : ''}}</a> #}
 
-        .activity-cover img {
-            width: 100%;
-        }
+		</nav>
+	<style>
+		.activity-card {
+			display: flex;
+			flex-direction: row;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			padding: 20px;
+			margin-bottom: 20px;
+		}
 
-        .activity-details {
-            flex: 1;
-        }
+		.activity-cover {
+			width: 300px;
+			margin-right: 20px;
+		}
 
-        .activity-details h2 {
-            font-size: 28px;
-            margin-top: 0;
-        }
+		.activity-cover img {
+			width: 100%;
+		}
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
+		.activity-details {
+			flex: 1;
+		}
 
-        table td, table th {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+		.activity-details h2 {
+			font-size: 28px;
+			margin-top: 0;
+		}
 
-        table td strong {
-            display: inline-block;
-            width: 150px;
-        }
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			margin-top: 20px;
+		}
 
-        form {
-            margin-top: 20px;
-        }
+		table td,
+		table th {
+			border: 1px solid #ccc;
+			padding: 10px;
+		}
 
-        form label {
-            display: inline-block;
-            width: 150px;
-            vertical-align: middle;
-        }
+		table td strong {
+			display: inline-block;
+			width: 150px;
+		}
 
-        form select {
-            vertical-align: middle;
-            margin-right: 10px;
-        }
+		form {
+			margin-top: 20px;
+		}
 
-        form button[type="submit"] {
-            background-color: #53a93f;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-    </style>
+		form label {
+			display: inline-block;
+			width: 150px;
+			vertical-align: middle;
+		}
 
-    <div class="activity-card">
-        {% if activity.getImage() is not null %}
-            <div class="activity-cover">
-                <img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
-            </div>
-        {% endif %}
+		form select {
+			vertical-align: middle;
+			margin-right: 10px;
+		}
 
-        <div class="activity-details">
-            <h2>{{ activity.activityName }}</h2>
+		form button[type="submit"] {
+			background-color: #53a93f;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			font-size: 14px;
+			cursor: pointer;
+		}
+	</style>
 
-            <table>
-                <tr>
-                    <td><strong>Fecha:</strong></td>
-                    <td>{{ activity.date|date('Y-m-d H:i:s') }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Descripción:</strong></td>
-                    <td>{{ activity.description }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Tickets disponibles:</strong></td>
-                    <td>{{ activity.tickets }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Localización inicio:</strong></td>
-                    <td>{{ activity.startUbication }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Localización fin:</strong></td>
-                    <td>{{ activity.endUbication }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Precio/persona:</strong></td>
-                    <td>{{ activity.price }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Ciudad:</strong></td>
-                    <td>{{ activity.city }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Compañía:</strong></td>
-                    <td>{{ activity.companyName }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Página web:</strong></td>
-                    <td><a href="{{ activity.companyWebsite }}">{{ activity.companyWebsite }}</a></td>
-                </tr>
-            </table>
+	<div class="activity-card">
+		{% if activity.getImage() is not null %}
+			<div class="activity-cover">
+				<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
+			</div>
+		{% endif %}
 
-            <form method="POST">
-                <label for="tickets">Número de tickets:</label>
-                <select id="tickets" name="tickets">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <button type="submit">Comprar tickets</button>
-            </form>
-        </div>
-    </div>
+		<div class="activity-details">
+			<h2>{{ activity.activityName }}</h2>
 
-  
+			<table>
+				<tr>
+					<td>
+						<strong>Fecha:</strong>
+					</td>
+					<td>{{ activity.date|date('Y-m-d H:i:s') }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Descripción:</strong>
+					</td>
+					<td>{{ activity.description }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Tickets disponibles:</strong>
+					</td>
+					<td>{{ activity.tickets }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Localización inicio:</strong>
+					</td>
+					<td>{{ activity.startUbication }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Localización fin:</strong>
+					</td>
+					<td>{{ activity.endUbication }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Precio/persona:</strong>
+					</td>
+					<td>{{ activity.price }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Ciudad:</strong>
+					</td>
+					<td>{{ activity.city }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Compañía:</strong>
+					</td>
+					<td>{{ activity.companyName }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Coordenadas inicio:</strong>
+					</td>
+					<td id="co_start">{{ activity.getStartCoord() }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Coordenadas fin:</strong>
+					</td>
+					<td id="co_end">{{ activity.getEndCoord() }}</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Página web:</strong>
+					</td>
+					<td>
+						<a href="{{ activity.companyWebsite }}">{{ activity.companyWebsite }}</a>
+					</td>
+				</tr>
+			</table>
 
+			<form method="POST">
+				<label for="tickets">Número de tickets:</label>
+				<select id="tickets" name="tickets">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
+				<button type="submit">Comprar tickets</button>
+			</form>
+		</div>
+		<div id="map" style="height: 500px; width: 50%"></div>
+	</div>
+
+
+{% endblock %}
+{% block javascripts %}
+
+	{# REVISAR EL CODIGO PARA QUE SE ME IMPLEMENTE EL MAPA #}
+	{# {{ parent() }} #}
+	{# 
+	  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+	  </script>
+	   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
 {% endblock %}
