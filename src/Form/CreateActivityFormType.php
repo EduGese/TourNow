@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class CreateActivityFormType extends AbstractType
 {
@@ -91,11 +92,11 @@ class CreateActivityFormType extends AbstractType
                     'Sevilla' => 'Sevilla',
                 ],
             ])
-            ->add('company_name', TextType::class, [
+            ->add('company_name', HiddenType::class, [
                 'label' => 'Nombre de tu empresa u organización',
                 'required' => true,
             ])
-            ->add('company_website', TextType::class, [
+            ->add('company_website', HiddenType::class, [
                 'label' => 'Página web',
                 'required' => true,
                 'constraints' => [
