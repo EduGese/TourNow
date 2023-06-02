@@ -14,4 +14,8 @@ class AdminController extends AbstractController
     {
         return $this->render('adminDashboard.html.twig');
     }
+    public function showAdminActivities(): Response
+    {
+        return $this->render('adminActivityList.html.twig');
+    }
 }

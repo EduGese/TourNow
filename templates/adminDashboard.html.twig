@@ -36,28 +36,6 @@
 
 
 {% block body %}
-
-{# // 		function sortTable(columnIndex) {
-// const table = document.querySelector("#miTabla");
-// const rows = Array.from(table.rows);
-// const isAscending = table.classList.toggle("ascend", ! table.classList.contains("ascend"));
-
-// rows.sort((rowA, rowB) => {
-// const cellA = rowA.cells[columnIndex].textContent.trim();
-// const cellB = rowB.cells[columnIndex].textContent.trim();
-// return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-// });
-
-// while (table.rows.length > 1) {
-// table.deleteRow(1);
-// }
-
-// rows.forEach((row) => {
-// table.appendChild(row);
-// });
-// }
-// 	 #}
-
 	<div class="act_cr">
 		<h2>Menu administradores</h2>
 		<h3>Tus datos personales</h3>
@@ -81,69 +59,11 @@
 				<td>{{ app.user.dni }}</td>
 			</tr>
 		</table>
-
+		<a href="{{path('show_admin_activities')}}">Ver tus actividades creadas</a>
 	</div>
-	<div class="act_cr">
-		<h3>Tus actividades creadas</h3>
-		<table>
-			<tr>
-				<th>
-					<button onclick="sortTable(0)">Nombre de la actividad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(1)">Fecha y hora</button>
-				</th>
-				<th>
-					<button onclick="sortTable(2)">Descripción</button>
-				</th>
-				<th>
-					<button onclick="sortTable(3)">Tickets disponibles</button>
-				</th>
-				<th>
-					<button onclick="sortTable(4)">Localización inicio</button>
-				</th>
-				<th>
-					<button onclick="sortTable(5)">Localización fin</button>
-				</th>
-				<th>
-					<button onclick="sortTable(6)">Precio/persona</button>
-				</th>
-				<th>
-					<button onclick="sortTable(7)">Img</button>
-				</th>
-				<th>
-					<button onclick="sortTable(8)">Ciudad</button>
-				</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			<tbody class="miTabla">
-				{% for activity in app.user.getActivities() %}
-					<tr>
-						<td>{{ activity.getActivityName() }}</td>
-						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-						<td>{{ activity.getDescription() }}</td>
-						<td>{{ activity.getTickets() }}</td>
-						<td>{{ activity.getStartUbication() }}</td>
-						<td>{{ activity.getEndUbication() }}</td>
-						<td>{{ activity.getPrice() }}</td>
-						<td>
-							{% if activity.getImage() is not null %}
-								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-							{% endif %}
-						</td>
-						<td>{{ activity.getCity() }}</td>
-						<td>
-							<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
-						</td>
 
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<a href="{{path('create_activity')}}">Crear nueva actividad</a>
-	</div>
 	{% block javascripts %}
-	<script src="{{ asset('/scripts/table_filter.js') }}"></script>
+		<script src="{{ asset('/scripts/table_filter.js') }}"></script>
 	{% endblock %}
 
 

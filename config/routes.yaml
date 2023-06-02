@@ -30,6 +30,9 @@ show_activity:
 admin_dashboard:
     path: /admin/admin_dashboard
     controller: App\Controller\AdminController::adminDashboard
+show_admin_activities:
+    path: /admin/show_admin_activities
+    controller: App\Controller\AdminController::showAdminActivities
 delete_activity:
     path: /admin/delete_activity/{id}
     controller: App\Controller\ActivityController::deleteActivity

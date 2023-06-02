@@ -47,7 +47,7 @@ class ActivityController extends AbstractController
         $activity_manager->flush();
 
         return $this->redirect(
-            $this->generateUrl('admin_dashboard')
+            $this->generateUrl('show_admin_activities')
         );
     }
     public function createActivity( Request $request, Security $security): response{
