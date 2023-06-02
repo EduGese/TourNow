@@ -31,15 +31,9 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 		{{ form_row(form.end_ubication) }}
 		{{ form_row(form.start_coord) }}
 		{{ form_row(form.end_coord) }}
-		{# <label for="coordenadas_inicio">coordenadas_inicio</label>
-		<input type="text" id="coordenadas_inicio" name="coordenadas_inicio"><br><br>
-		<label for="coordenadas_fin">coordenadas_fin</label>
-		<input type="text" id="coordenadas_fin" name="coordenadas_fin"><br><br> #}
 		{{ form_row(form.price) }}
-		{#(1)#}
 		{{ form_row(form.image) }}
 		{{ form_row(form.date) }}
-		{#(2)#}
 		{{ form_row(form.city) }}
 		{{ form_row(form.company_name, {'value': app.user.companyname}) }}
 
@@ -53,19 +47,6 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	</div>
 	<div class="mapa" id="mapa">
 		<div id="map" style="height: 500px; width: 100%;"></div>
-		{# <form>
-			<label for="direccion">Dirección:</label>
-			<input type="text" id="direccion" name="direccion"><br><br>
-			<button type="button" onclick="buscarDireccion()">Buscar</button>
-		</form>
-		<div>
-			<label for="origen">Origen:</label>
-        <input type="text" id="origen" name="origen"></input><br><br>
-		
-		<label for="destino">Destino:</label>
-		<input type="text" id="destino" name="destino"></input><br><br>
-		</div>#}
 		<button type="button" id="clear">borrar seleccion</button> 
 	</div>{% block javascripts %}
-{# {{ parent() }} #}
 <script src="{{ asset('/scripts/mapa.js') }}"></script>{% endblock %}{% endblock %}
