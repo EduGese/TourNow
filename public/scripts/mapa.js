@@ -10,6 +10,8 @@ var startMarker = null;
 var endMarker = null;
 var routeControl = null;
 
+
+
 function obtenerDireccion(coordenadas, callback) {
   var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + coordenadas[0] + '&lon=' + coordenadas[1];
   fetch(url)
@@ -97,3 +99,40 @@ var clearButton = document.getElementById('clear');
 
     // document.getElementById('crearRutaBtn').disabled = true;
   });
+
+  /////////////////////
+
+function buscarDireccion(e) {
+  console.log('fun');
+  // var direccionn = document.getElementById(inputId).value;
+  // var url = 'https://nominatim.openstreetmap.org/search?q=' + direccionn + '&format=json';
+  // fetch(url)
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     var markerCoordinates = [data[0].lat, data[0].lon];
+  //     var marker = L.marker(markerCoordinates).addTo(mymap);
+  //     mymap.setView(markerCoordinates, 13);
+
+  //     if (inputId === 'origen') {
+
+        
+  //       if (startMarker !== null) {
+  //         mymap.removeLayer(startMarker);
+  //       }
+  //       startMarker = marker;
+  //     } else if (inputId === 'destino') {
+  //       if (endMarker !== null) {
+  //         mymap.removeLayer(endMarker);
+  //       }
+  //       endMarker = marker;
+  //     }
+      
+  //     document.getElementById('coordinates').innerHTML = "Coordenadas: " + markerCoordinates[0] + ", " + markerCoordinates[1];
+  //   });
+};
+document.getElementById('origenn').addEventListener('click', buscarDireccion);
+
+/////////////////////
+  
