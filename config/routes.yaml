@@ -24,6 +24,9 @@ adm_register:
 user_dashboard:
     path: /profile/user_dashboard
     controller: App\Controller\UserController::userDashboard
+show_activity:
+    path: /profile/show_activity/{id}
+    controller: App\Controller\UserController::showActivity
 admin_dashboard:
     path: /admin/admin_dashboard
     controller: App\Controller\AdminController::adminDashboard

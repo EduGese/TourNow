@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{# {% use 'src\Entity\Activity.php' %} #}
+
 {% block stylesheets %}
 	<style>
 		table {
@@ -36,27 +36,27 @@
 
 
 {% block body %}
-	<script>
-		function sortTable(columnIndex) {
-const table = document.querySelector("#miTabla");
-const rows = Array.from(table.rows);
-const isAscending = table.classList.toggle("ascend", ! table.classList.contains("ascend"));
 
-rows.sort((rowA, rowB) => {
-const cellA = rowA.cells[columnIndex].textContent.trim();
-const cellB = rowB.cells[columnIndex].textContent.trim();
-return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-});
+{# // 		function sortTable(columnIndex) {
+// const table = document.querySelector("#miTabla");
+// const rows = Array.from(table.rows);
+// const isAscending = table.classList.toggle("ascend", ! table.classList.contains("ascend"));
 
-while (table.rows.length > 1) {
-table.deleteRow(1);
-}
+// rows.sort((rowA, rowB) => {
+// const cellA = rowA.cells[columnIndex].textContent.trim();
+// const cellB = rowB.cells[columnIndex].textContent.trim();
+// return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+// });
 
-rows.forEach((row) => {
-table.appendChild(row);
-});
-}
-	</script>
+// while (table.rows.length > 1) {
+// table.deleteRow(1);
+// }
+
+// rows.forEach((row) => {
+// table.appendChild(row);
+// });
+// }
+// 	 #}
 
 	<div class="act_cr">
 		<h2>Menu administradores</h2>
@@ -116,7 +116,7 @@ table.appendChild(row);
 				</th>
 				<!-- Otros campos de actividad -->
 			</tr>
-			<tbody id="miTabla">
+			<tbody class="miTabla">
 				{% for activity in app.user.getActivities() %}
 					<tr>
 						<td>{{ activity.getActivityName() }}</td>
@@ -142,6 +142,9 @@ table.appendChild(row);
 		</table>
 		<a href="{{path('create_activity')}}">Crear nueva actividad</a>
 	</div>
+	{% block javascripts %}
+	<script src="{{ asset('/scripts/table_filter.js') }}"></script>
+	{% endblock %}
 
 
 {% endblock %}
