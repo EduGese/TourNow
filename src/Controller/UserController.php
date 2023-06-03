@@ -18,25 +18,29 @@ use Symfony\Component\Security\Core\Security;
 class UserController extends AbstractController
 {
     
-    public function userDashboard( ManagerRegistry $doctrine, Security $security): Response
+    public function userDashboard(): Response
+    {
+        
+        return $this->render('user/userDashboard.html.twig');
+    }
+
+    public function userActivities( Security $security): Response
+    {
+         
+        $userActivities = $security->getUser()->getCustomerActivities();
+      
+        return $this->render('user/userActivityList.html.twig',[
+            'userActivities' =>  $userActivities,
+        ]);
+    }
+
+    public function allActivities( ManagerRegistry $doctrine): Response
     {
         $activity_repo = $doctrine->getManager()->getRepository(Activity::class);
         $allActivities = $activity_repo->findAll();
 
-         
-        $userActivities = $security->getUser()->getCustomerActivities();
-        // $userActivities = $activity_repo->findBy($userId);
-        // var_dump($userId);
-        // return new Response();
-
-        
-
-
-
-
-        return $this->render('user/userDashboard.html.twig',[
+        return $this->render('user/allActivitiesList.html.twig',[
             'allActivities' => $allActivities,
-            'userActivities' =>  $userActivities,
         ]);
     }
     public function showActivity(Request $request, ManagerRegistry $doctrine): Response
@@ -46,6 +50,17 @@ class UserController extends AbstractController
     $activity = $activity_repo->find($idActivity);
 
     return $this->render('user/showActivity.html.twig', [
+        'activity' => $activity
+    ]);
+}
+
+public function showJoinedActivity(Request $request, ManagerRegistry $doctrine): Response
+{
+    $idActivity = $request->attributes->get('id');
+    $activity_repo = $doctrine->getRepository(Activity::class);
+    $activity = $activity_repo->find($idActivity);
+
+    return $this->render('user/showJoinedActivity.html.twig', [
         'activity' => $activity
     ]);
 }

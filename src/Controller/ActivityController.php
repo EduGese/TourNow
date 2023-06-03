@@ -83,7 +83,7 @@ class ActivityController extends AbstractController
             $this->entityManager->flush();
     
             // Redirigir a alguna página de éxito o realizar otras acciones
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('show_admin_activities');
         }
     
         return $this->render('adminCreateActivity.html.twig', [

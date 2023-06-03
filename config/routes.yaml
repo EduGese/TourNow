@@ -12,9 +12,6 @@ login:
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
-# register:
-#     path: /register
-#     controller: App\Controller\RegistrationController::register
 user_register:
     path: /user_register
     controller: App\Controller\UserRegistrationController::register
@@ -24,9 +21,18 @@ adm_register:
 user_dashboard:
     path: /profile/user_dashboard
     controller: App\Controller\UserController::userDashboard
+user_activities:
+    path: /profile/user_activities
+    controller: App\Controller\UserController::userActivities
+all_activities:
+    path: /all_activities
+    controller: App\Controller\UserController::allActivities
 show_activity:
     path: /profile/show_activity/{id}
     controller: App\Controller\UserController::showActivity
+show_joined_activity:
+    path: /profile/show_joined_activity/{id}
+    controller: App\Controller\UserController::showJoinedActivity
 admin_dashboard:
     path: /admin/admin_dashboard
     controller: App\Controller\AdminController::adminDashboard
