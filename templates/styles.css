@@ -5,8 +5,8 @@ body{
 
 /* BARRA DE NAVEGACIÓN */
 .logo{
-  max-width: 7em ;
-  min-width: 5em;
+  max-width: 2em ;
+  min-width: 1.7em;
 }
 .navbar{
   background-color: #343A40;
