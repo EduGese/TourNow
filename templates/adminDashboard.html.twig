@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
 	<style>
 		table {
 			border-collapse: collapse;
@@ -32,14 +32,14 @@
 			width: 60%;
 		}
 	</style>
-{% endblock %}
+{% endblock %} #}
 
 
 {% block body %}
 	<div class="act_cr">
 		<h2>Menu administradores</h2>
 		<h3>Tus datos de administrador</h3>
-		<table>
+		<table class="table-general">
 			<tr>
 				<th>Nombre</th>
 				<th>Apellido/s</th>
@@ -62,9 +62,9 @@
 		<a href="{{path('show_admin_activities')}}">Ver tus actividades creadas</a>
 	</div>
 
-	{% block javascripts %}
+	{# {% block javascripts %}
 		<script src="{{ asset('/scripts/table_filter.js') }}"></script>
-	{% endblock %}
+	{% endblock %} #}
 
 
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
+{# {% block stylesheets %}
     <style>
         table {
             border-collapse: collapse;
@@ -31,12 +31,12 @@
             width: 60%;
         }
     </style>
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
-    <div>
+    <div class="divAl80">
         <h3>Actividades a las que unirse</h3>
-        <table>
+        <table class="table-general">
             <tr>
                 <th>
                     <button onclick="sortTable(0)">Nombre de la actividad</button>
@@ -107,8 +107,8 @@
 
     </div>
 
-        {% block javascripts %}
+        {# {% block javascripts %}
             <script src="{{ asset('/scripts/table_filter.js') }}"></script>
-            {% endblock %}
+        {% endblock %} #}
 
 {% endblock %}
