@@ -4,6 +4,9 @@ body{
 }
 
 /* BARRA DE NAVEGACIÓN */
+.dropdown-header{
+  font-size:large;
+}
 .logo{
   max-width: 2em ;
   min-width: 1.7em;
