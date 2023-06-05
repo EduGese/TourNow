@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
+{# {% block stylesheets %}
 	<style>
 		table {
 			border-collapse: collapse;
@@ -31,7 +31,7 @@
 			width: 60%;
 		}
 	</style>
-{% endblock %}
+{% endblock %} #}
 {% block body %}
 
 	<div class="act_cr">
@@ -41,7 +41,7 @@
 
 		
 		<h2>Tus actividades</h2>
-		<table>
+		<table class="table-general">
 			<tr>
 				<th>
 					<button onclick="sortTable(0)">Nombre de la actividad</button>
