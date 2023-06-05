@@ -30,6 +30,10 @@ all_activities:
 show_activity:
     path: /profile/show_activity/{id}
     controller: App\Controller\UserController::showActivity
+join_activity:
+    path: /profile/join_activity/{idActivity}/{tickets_number}/{nameActivity}
+    controller: App\Controller\UserController::joinActivity
+    methods: [POST]
 show_joined_activity:
     path: /profile/show_joined_activity/{id}
     controller: App\Controller\UserController::showJoinedActivity

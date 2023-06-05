@@ -33,7 +33,13 @@
 	</style>
 {% endblock %}
 {% block body %}
+
 	<div class="act_cr">
+		{% for flashMessage in app.flashes('joined') %}
+			{{ flashMessage}}
+		{% endfor %}
+
+		
 		<h2>Tus actividades</h2>
 		<table>
 			<tr>
