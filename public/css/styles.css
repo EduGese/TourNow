@@ -112,7 +112,7 @@ margin-top: 0.1em;
 .dropdown-header{
   font-size:large;
 }
-.logo{
+.navbar-logo  .logo{
   max-width: 2em ;
   min-width: 1.7em;
 }
