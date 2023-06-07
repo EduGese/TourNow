@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\File;
+
 
 
 class CreateActivityFormType extends AbstractType
@@ -74,6 +76,12 @@ class CreateActivityFormType extends AbstractType
                 'label' => 'Imagen (20 mb max)',
                 'mapped' => false,
                 'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '20M',
+                        'maxSizeMessage' => 'El archivo es demasiado grande. El tamaño máximo permitido es de 20MB.',
+                    ]),
+                ],
             ])
             ->add('date', DateTimeType::class, [
                 'label' => 'Fecha',

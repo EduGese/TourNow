@@ -193,8 +193,6 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 			{% if activity.tickets > 0 %}
 				{% set userJoinedActivity = false %}
 				{% for userActivity in app.user.customerActivities %}
-				{{activity.idActivity}}
-				{{userActivity.idActivity}}
 					{% if userActivity == activity %}
 						{% set userJoinedActivity = true %}
 
