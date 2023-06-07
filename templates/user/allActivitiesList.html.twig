@@ -79,9 +79,13 @@
 				<th>
 					<button onclick="sortTable(10)">Paginaweb</button>
 				</th>
+				<th>
+					<button onclick="sortTable(11)">Estado</button>
+				</th>
 				<!-- Otros campos de actividad -->
 			</tr>
 			<tbody class="miTabla">
+			{% set localDatetime = date('now', 'Europe/Madrid') %}
 				{% for activity in allActivities %}
 					<tr>
 						<td>{{ activity.getActivityName() }}</td>
@@ -101,6 +105,17 @@
 						<td>
 							<a href="">{{ activity.getCompanyWebsite() }}</a>
 						</td>
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+
+							<td>
+								Finalizada
+							</td>
+						{% else %}
+							<td>
+								Programada
+							</td>
+
+						{% endif %}
 						<td>
 							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
 
