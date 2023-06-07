@@ -186,7 +186,7 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 					</td>
 				</tr>
 			</table>
-			
+
 			{% for flashMessage in app.flashes('joined') %}
 				{{ flashMessage}}
 			{% endfor %}
@@ -195,21 +195,24 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 				{% for userActivity in app.user.customerActivities %}
 					{% if userActivity == activity %}
 						{% set userJoinedActivity = true %}
-
 					{% endif %}
 				{% endfor %}
 				{% if userJoinedActivity %}
 					<p>Ya estás unido a esta actividad</p>
 				{% else %}
-					<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
-						<label for="tickets">Número de tickets:</label>
-						<select id="tickets" name="tickets">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-						<button type="submit">Comprar tickets</button>
-					</form>
+					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
+						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
+							<label for="tickets">Número de tickets:</label>
+							<select id="tickets" name="tickets">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+							<button type="submit">Comprar tickets</button>
+						</form>
+					{% else %}
+						<p>La actividad ha pasado</p>
+					{% endif %}
 				{% endif %}
 			{% else %}
 				<p>La actividad está completa</p>
@@ -226,7 +229,7 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 	{# REVISAR EL CODIGO PARA QUE SE ME IMPLEMENTE EL MAPA #}
 	{# {{ parent() }} #}
 	{# 
-					  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-					  </script>
-					   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
+							  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+							  </script>
+							   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
 {% endblock %}

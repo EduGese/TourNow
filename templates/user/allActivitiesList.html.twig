@@ -30,17 +30,19 @@
 			margin: auto;
 			width: 60%;
 		}
-        #mensaje{
-            color:red;
-        }
+		#mensaje {
+			color: red;
+		}
 	</style>
 {% endblock %}
 
 {% block body %}
 	<div>
-		<p id="mensaje">{% for flashMessage in app.flashes('full') %}
-			{{ flashMessage}}
-		{% endfor %}</p>
+		<p id="mensaje">
+			{% for flashMessage in app.flashes('full') %}
+				{{ flashMessage}}
+			{% endfor %}
+		</p>
 		<h3>Actividades a las que unirse</h3>
 		<table>
 			<tr>
@@ -103,10 +105,12 @@
 							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
 
 						</td>
-						<td>
-							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<td>
+								<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
 
-						</td>
+							</td>
+						{% endif %}
 
 					</tr>
 

@@ -82,6 +82,7 @@
 				<!-- Otros campos de actividad -->
 			</tr>
 			<tbody class="miTabla">
+			{% set localDatetime = date('now', 'Europe/Madrid') %}
 				{% for activity in userActivities %}
 					<tr>
 						<td>{{ activity.getActivityName() }}</td>
@@ -101,7 +102,7 @@
 						<td>
 							<a href="">{{ activity.getCompanyWebsite() }}</a>
 						</td>
-						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 
 							<td>
 								Finalizada
@@ -116,11 +117,13 @@
 							<a href="{{ path('show_joined_activity', { 'id': activity.idActivity }) }}">ver</a>
 
 						</td>
-						<td>
-							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-
-						</td>
 						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<td>
+								<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+
+							</td>
+						{% endif %}
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 
 							<td>
 								<a href="">comentar y puntuar</a>
