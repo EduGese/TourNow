@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<table>
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Score</th>
+				<th>Review</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in 0..(scores|length - 1) %}
+				{% if scores[i] == true or reviews[i] == true %}
+				<tr>
+					<td>{{ username[i] }}
+						{{ userlastname[i] }}</td>
+					<td>{{ scores[i] }}</td>
+					<td>{{ reviews[i] }}</td>
+
+				</tr>
+            {% else %}
+            <p>No existen comentarios o puntuacion para esta actividad</p>
+			{% endif %}
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}
