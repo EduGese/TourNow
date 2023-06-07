@@ -6,7 +6,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Activity;
 
-class ActivityReviewService
+class ActivityService
 {
     private $doctrine;
     private $entityManager;

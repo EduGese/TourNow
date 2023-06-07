@@ -13,7 +13,7 @@ use App\Form\CreateActivityFormType;
 use Symfony\Component\Security\Core\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
-use App\Service\ActivityReviewService;
+use App\Service\ActivityService;
 
 
 
@@ -93,44 +93,12 @@ class ActivityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    public function showActivityReviews(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager, $id, ActivityReviewService $activityReviewService): response
+    public function showActivityReviews( $id, ActivityService $activityService): response
     {
 
 
-        $activityReviews = $activityReviewService->getActivityReviews($id);
+        $activityReviews = $activityService->getActivityReviews($id);
 
         return $this->render('showActivityReviews.html.twig', $activityReviews);
-        // $idActivity = $request->attributes->get('id');
-        // $activity_repo = $doctrine->getRepository(Activity::class);
-        // $activity = $activity_repo->find($idActivity);
-
-        // $conn = $this->entityManager->getConnection();
-
-        // $sql = '
-        // SELECT ua.score, ua.review, u.user_name, u.user_lastname
-        // FROM user_activity ua
-        // INNER JOIN user u ON ua.user_id = u.id_user
-        // WHERE ua.activity_id = :idActivity';
-
-        // $resultSet = $conn->executeQuery($sql, ['idActivity' => $idActivity])->fetchAll();
-
-        // $scores = [];
-        // $reviews = [];
-        // $userName = [];
-        // $userLastname = [];
-
-        // foreach ($resultSet as $row) {
-        //     $scores[] = $row['score'];
-        //     $reviews[] = $row['review'];
-        //     $userName[] = $row['user_name'];
-        //     $userLastname[] = $row['user_lastname'];
-        // }
-
-        // return $this->render('showActivityReviews.html.twig', [
-        //     'scores' => $scores,
-        //     'reviews' => $reviews,
-        //     'username' => $userName,
-        //     'userlastname' => $userLastname
-        // ]);
     }
 }
