@@ -5,6 +5,9 @@ namespace App\Service;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Activity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ActivityService
 {
@@ -16,6 +19,22 @@ class ActivityService
         $this->doctrine = $doctrine;
         $this->entityManager = $entityManager;
     }
+    public function deleteActivity(ManagerRegistry $doctrine, UserInterface $user, $id): Activity
+{
+    // $idActivity = $request->attributes->get('id');
+    $activity_repo = $doctrine->getManager()->getRepository(Activity::class);
+    $activity = $activity_repo->find($id);
+
+    if ($activity && $activity->getIdUser() === $user) {
+        $activity_manager = $doctrine->getManager();
+        $activity_manager->remove($activity);
+        $activity_manager->flush();
+
+        return $activity;
+    }
+
+    throw new NotFoundHttpException('Activity not found or cannot be deleted.');
+}
 
     public function getActivityReviews($idActivity) {
         $activity_repo = $this->doctrine->getRepository(Activity::class);

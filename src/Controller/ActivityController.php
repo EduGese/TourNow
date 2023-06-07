@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\ActivityService;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 
 
@@ -38,19 +40,20 @@ class ActivityController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    public function deleteActivity(ManagerRegistry $doctrine, UserInterface $user, Request $request): response
-    {
-
-        $idActivity = $request->attributes->get('id');
-        $activity_repo = $doctrine->getManager()->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity);
-        $activity_manager = $doctrine->getManager();
-        $activity_manager->remove($activity);
-        $activity_manager->flush();
-
-        return $this->redirect(
-            $this->generateUrl('show_admin_activities')
-        );
+    public function deleteActivity(Request $request, ActivityService $activityService,ManagerRegistry $doctrine,UserInterface $user,$id): Response {
+        try {
+            $id = $request->attributes->get('id');
+            $activityService->deleteActivity($doctrine, $user, $id, $request);
+    
+            // Mostrar mensaje de éxito
+            $this->addFlash('success', sprintf('Successfully deleted activity with ID %d.', $id));
+    
+        } catch (NotFoundHttpException $exception) {
+            // Mostrar mensaje de error
+            $this->addFlash('error', $exception->getMessage());
+        }
+    
+        return $this->redirectToRoute('show_admin_activities');
     }
     public function createActivity(Request $request, Security $security): response
     {
