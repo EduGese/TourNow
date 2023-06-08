@@ -29,7 +29,7 @@
 	   {% block navbar %}
         {% include "navbar.html.twig" %}
     {% endblock %}
-		{% if (app.user) %}
+		{# {% if (app.user) %}
 			{{'Estas logeado como '}}{{ app.user.email}}
 		{% endif %}
 		<nav>
@@ -38,9 +38,9 @@
 			<a href="{{path('user_dashboard')}}">User dashboard</a>
 			<a href="{{ path('admin_dashboard') }}">{{ app.user == true and app.user.roles|length > 1 ? 'AdminDashboard' : '' }}</a>
 
-            {# <a href="{{ path('admin_dashboard') }}">{{ app.user.roles|length > 1 ? 'adminDashboard' : ''}}</a> #}
+            {# <a href="{{ path('admin_dashboard') }}">{{ app.user.roles|length > 1 ? 'adminDashboard' : ''}}</a> #}{#
 
-		</nav>
+		</nav> #}
 	    {% block body %}
     {% endblock %}
     {% block javascripts %}
