@@ -331,7 +331,7 @@ form button[type="submit"] {
   background-color: rgba(52, 58, 64, 0.8);  width: 100%;
   padding: 1em;
 }
-.precio{
+.card-footer .precio{
   color: #7AB800;
   font-weight: bolder;
 }
