@@ -151,7 +151,7 @@ class ActivityController extends AbstractController
         $activity_repo = $doctrine->getRepository(Activity::class);
         $activity = $activity_repo->find($idActivity);
 
-        return $this->render('activityReviewForm.html.twig', [
+         return $this->render('activityReviewForm.html.twig', [
             'activity' => $activity
         ]);
     }
