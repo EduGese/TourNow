@@ -67,12 +67,23 @@ class Activity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $end_coord = null;
 
-    #[ORM\Column(length: 255, nullable: false, options: ['default' => 'Disponible'])]
+    #[ORM\Column(length: 255, nullable: true, options: ['default' => 'Disponible'])]
     private ?string $state;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $scores = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 1, nullable: true)]
+    private ?string $average_score = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $scorelist = null;
 
     public function __construct()
     {
         $this->customerUsers = new ArrayCollection();
+        $this->scores = 0;
+        $this->average_score = '0.0';
     }
     
     //////////////////////////////////////
@@ -288,4 +299,43 @@ class Activity
 
         return $this;
     }
+
+    public function getScores(): ?int
+    {
+        return $this->scores;
+    }
+
+    public function setScores(?int $scores): static
+    {
+        $this->scores = $scores;
+
+        return $this;
+    }
+
+    public function getAverageScore(): ?string
+    {
+        return $this->average_score;
+    }
+
+    public function setAverageScore(?string $average_score): static
+    {
+        $this->average_score = $average_score;
+
+        return $this;
+    }
+
+    public function addScore(float $score): self
+{
+    if (null === $this->scorelist) {
+        $this->scorelist = [];
+    }
+
+    $this->scorelist[] = round($score, 1);
+
+    return $this;
+}
+public function getScoreList(): ?array
+{
+    return $this->scorelist;
+}
 }
