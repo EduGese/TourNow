@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+
 #[ORM\Entity(repositoryClass: ActivityRepository::class)]
 class Activity
 {
@@ -66,10 +67,14 @@ class Activity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $end_coord = null;
 
+    #[ORM\Column(length: 255, nullable: false, options: ['default' => 'Disponible'])]
+    private ?string $state;
+
     public function __construct()
     {
         $this->customerUsers = new ArrayCollection();
     }
+    
     //////////////////////////////////////
 
     public function getIdActivity(): ?int
@@ -272,5 +277,15 @@ class Activity
         return $this;
     }
 
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
 
+    public function setState(?string $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
 }
