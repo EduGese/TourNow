@@ -160,12 +160,12 @@ class ActivityController extends AbstractController
            $activity->addScore($score);
            $entityManager->flush();
         }
-        $scoreCounting = $activity->getScores();
-        $activity->setScores($scoreCounting+1);
-        $scoreList = $activity->getScoreList();
-        $totalScore = array_sum($scoreList);
-        $newAverageScore = $totalScore/$scores;///ERROR -->Division by zero
-        $activity->setAverageScore($newAverageScore);
+        // $scoreCounting = $activity->getScores();
+        // $activity->setScores($scoreCounting+1);
+        // $scoreList = $activity->getScoreList();
+        // $totalScore = array_sum($scoreList);
+        // $newAverageScore = $totalScore/$scores;///ERROR -->Division by zero
+        // $activity->setAverageScore($newAverageScore);
         
 
 
