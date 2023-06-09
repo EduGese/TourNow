@@ -85,7 +85,7 @@
 				<!-- Otros campos de actividad -->
 			</tr>
 			<tbody class="miTabla">
-			{% set localDatetime = date('now', 'Europe/Madrid') %}
+				{% set localDatetime = date('now', 'Europe/Madrid') %}
 				{% for activity in allActivities %}
 					<tr>
 						<td>{{ activity.getActivityName() }}</td>
@@ -110,9 +110,14 @@
 							<td>
 								Finalizada
 							</td>
+
+						{% elseif activity.getTickets()==0 %}
+							<td>
+								Llena
+							</td>
 						{% else %}
 							<td>
-								Programada
+								Disponible
 							</td>
 
 						{% endif %}

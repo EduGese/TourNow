@@ -199,6 +199,9 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 				{% endfor %}
 				{% if userJoinedActivity %}
 					<p>Ya estás unido a esta actividad</p>
+					{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+						{% endif %}
 				{% else %}
 					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
 						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
@@ -212,6 +215,9 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 						</form>
 					{% else %}
 						<p>La actividad ha pasado</p>
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+						{% endif %}
 					{% endif %}
 				{% endif %}
 			{% else %}
@@ -229,7 +235,7 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 	{# REVISAR EL CODIGO PARA QUE SE ME IMPLEMENTE EL MAPA #}
 	{# {{ parent() }} #}
 	{# 
-							  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-							  </script>
-							   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
+								  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+								  </script>
+								   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
 {% endblock %}

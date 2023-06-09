@@ -66,9 +66,13 @@
 				<th>
 					<button onclick="sortTable(8)">Ciudad</button>
 				</th>
+				<th>
+					<button onclick="sortTable(11)">Estado</button>
+				</th>
 				<!-- Otros campos de actividad -->
 			</tr>
 			<tbody class="miTabla">
+				{% set localDatetime = date('now', 'Europe/Madrid') %}
 				{% for activity in app.user.getActivities() %}
 					<tr>
 						<td>{{ activity.getActivityName() }}</td>
@@ -84,8 +88,29 @@
 							{% endif %}
 						</td>
 						<td>{{ activity.getCity() }}</td>
+						
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+
+							<td>
+								Finalizada
+							</td>
+
+						{% elseif activity.getTickets()==0 %}
+							<td>
+								Llena
+							</td>
+						{% else %}
+							<td>
+								Disponible
+							</td>
+
+						{% endif %}
 						<td>
 							<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
+						</td>
+						<td>
+							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
+
 						</td>
 
 					</tr>

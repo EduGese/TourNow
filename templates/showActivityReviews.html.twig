@@ -11,18 +11,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for i in 0..(scores|length - 1) %}
-				{% if scores[i] == true or reviews[i] == true %}
-				<tr>
-					<td>{{ username[i] }}
-						{{ userlastname[i] }}</td>
-					<td>{{ scores[i] }}</td>
-					<td>{{ reviews[i] }}</td>
-
-				</tr>
-            {% else %}
-            <p>No existen comentarios o puntuacion para esta actividad</p>
+			{% if scores is empty %}
+				<p>No existen comentarios o puntuación para esta actividad porque nadie participó en ella</p>
+			{% else %}
+				{% for i in 0..(scores|length - 1) %}
+					{% if scores[i] == true or reviews[i] == true %}
+						<tr>
+							<td>{{ username[i] }}
+								{{ userlastname[i] }}</td>
+							<td>{{ scores[i] }}</td>
+							<td>{{ reviews[i] }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
 			{% endif %}
-		{% endfor %}
-	</tbody>
-</table>{% endblock %}
+
+		</tbody>
+	</table>
+{% endblock %}
