@@ -1,0 +1,54 @@
+    <nav class="navbar navbar-expand-md ">
+        <a class="navbar-logo col-3" href="#"><img class="logo col-md-5 col-12" src="{{ asset('assets/1.svg') }}" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon d-flex align-items-center"><i class="fas fa-bars d-flex justify-content-center align-items-center"></i></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{path('home')}}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Quiénes somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('all_activities') }}">Actividades</a>
+            </li>
+            {% if not app.user %}
+            <li class="nav-item d-flex align-items-center">
+              <a class=" boton-detalles btn btn-primary" href="/login">Inicia sesión</a>
+            </li>
+            {% endif %}
+            {% if app.user %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Mi perfil
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{path (app.user.roles|length > 1 ? 'admin_dashboard' : 'user_dashboard')}}">Editar perfil</a>
+                {% if app.user.roles|length > 1 %}
+                <div class="dropdown-divider"></div>
+                <h3 class="dropdown-header">Panel de usuario</h3>   
+                {% endif %} 
+                <a class="dropdown-item" href="{{path('user_activities') }}">Actividades </a>
+                <a class="dropdown-item" href="#">Tus comentarios</a>
+                {%if app.user.roles|length > 1%}
+                <div class="dropdown-divider"></div>
+                <h3 class="dropdown-header">Panel de administrador</h3>    
+                <a class="dropdown-item" href="{{path('show_admin_activities')}}">Tus actividades creadas</a>
+                {% endif %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout">Cierra sesión</a>
+              {% endif %}
+              </div>
+            </li>
+            {% if app.user %}
+            <li class="nav-item">
+              <p class="nav-link nav-welcome">Bienvenido/a, {{ app.user.getUserName  }}</p>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      

@@ -6,7 +6,7 @@
 {# Pretendia que esta vista se extendiera de adminDashboard.html.twig para que el formulario apareciera a 
 continuacion de la lista de actividades, pero al hacerlo solo extiende de base.html.twig..No se por que #}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
 	<style>
 		.mapa{
 			display: inline-block;
@@ -17,7 +17,7 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 			float:right;
 		}
 	</style>
-{% endblock %}
+{% endblock %} #}
 {% block body %}
 
 
@@ -48,5 +48,11 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	<div class="mapa" id="mapa">
 		<div id="map" style="height: 500px; width: 100%;"></div>
 		<button type="button" id="clear">borrar seleccion</button> 
-	</div>{% block javascripts %}
-<script src="{{ asset('/scripts/mapa.js') }}"></script>{% endblock %}{% endblock %}
+	</div>
+	
+	{# {% block javascripts %}
+		<script src="{{ asset('/scripts/mapa.js') }}">
+		</script>	
+	
+	{% endblock %} #}
+{% endblock %}
