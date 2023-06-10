@@ -17,14 +17,14 @@
         <section class="container-activities row col-12 d-flex justify-content-center">
 			{% set localDatetime = date('now', 'Europe/Madrid') %}
             {% for activity in allActivities %}
-                    <div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4  px-0 " style="overflow: hidden;">
+                    <div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
                         {% if activity.getImage() is not null %}
                         <div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
                             <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;" >
                         </div>
                         {% endif %}
-                        <div class="card-body mx-0">
-                            <h5 class="card-title text-left">{{ activity.getActivityName() }}</h5>
+                        <div class="card-body mx-0  text-left">
+                            <h5 class="card-title">{{ activity.getActivityName() }}</h5>
                             <p class="card-text">{{ activity.getDate()|date('Y-m-d H:i') }}h</p>
                         </div>
                         <div class="card-footer mx-0 d-flex align-items-center">
