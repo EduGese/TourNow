@@ -1,43 +1,6 @@
-{# {% extends 'base.html.twig' %} #}
-
-{# IMPORTANTE-->La vista showJoinedActivity.html.twig no extiende a la vista base.html.twig porque 
-da problemas al cargar links y scripts relacionados con el mapa. Con lo cual la barra de navegación 
-esta duplicada en esta vista, SI SE HACE ALGUN CAMBIO DE LA BARRA DE NAVEGACION EN base.html.twig 
-HABRÁ QUE HACERLOS TAMBIÉN EN  showJoinedActivity.html.twig
-#}
-<head>
-	<meta charset="UTF-8">
-	<title>
-		{% block title %}Welcome!
-		{% endblock %}
-	</title>
-	<link
-	rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-	{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
-	<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
-	{% block stylesheets %}
-		{{ encore_entry_link_tags('app') }}
-		<link href="{{ asset('css/login.css') }}" type="text/css" rel="stylesheet"/>
-		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-		<link href="{{ asset('css/styles.css') }}" type="text/css" rel="stylesheet" />
-	{% endblock %}
-</head>
-
-{% block body %}
-
-{% if (app.user) %}
-			{{'Estas logeado como '}}{{ app.user.email}}
-		{% endif %}
-		<nav>
-			<a href="/{{app.user ? 'logout' : 'login'}}">{{app.user ? 'Logout' : 'Login'}}</a><br><br>
-			<a href="{{path('home')}}">Home</a>
-			<a href="{{path('user_dashboard')}}">User dashboard</a>
-            <a href="{{ path('admin_dashboard') }}">{{ app.user == true and app.user.roles|length > 1 ? 'AdminDashboard' : '' }}</a>
-
-		</nav>
+{% extends 'base.html.twig' %} 
+{% block stylesheets %}
+	{{ parent() }}
 	<style>
 		.activity-card {
 			display: flex;
@@ -107,6 +70,8 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showJoinedActivity.html.twig
 			cursor: pointer;
 		}
 	</style>
+{% endblock %}
+{% block body %}	
 
 	<div class="activity-card">
 		{% if activity.getImage() is not null %}
@@ -192,14 +157,8 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showJoinedActivity.html.twig
 		<div id="map" style="height: 500px; width: 50%"></div>
 	</div>
 
-
 {% endblock %}
 {% block javascripts %}
-
-	{# REVISAR EL CODIGO PARA QUE SE ME IMPLEMENTE EL MAPA #}
-	{# {{ parent() }} #}
-	{# 
-	  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-	  </script>
-	   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
+	<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
+	{{ parent() }} 
 {% endblock %}
