@@ -38,8 +38,10 @@
 								<div class="col  mx-0 d-flex justify-content-center align-items-center">
 								{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 									<p class="text-right estadoActividad finalizada">Finalizada</p>
+           						{% elseif activity.getTickets()==0 %}
+									<p class="text-right estadoActividad llena">Actividad llena</p>
 								{% else %}
-									<p class="text-right estadoActividad programada">Programada</p>
+									<p class="text-right estadoActividad disponible">Dispoible</p>
 								{% endif %}
                                 </div>
                             </div>

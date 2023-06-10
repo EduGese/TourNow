@@ -338,12 +338,15 @@ form button[type="submit"] {
 #mensaje {
   color: red;
 }
-.card-footer .programada{
+.card-footer .disponible{
   color: #7AB800;
 }
 .card-footer .finalizada{
  color: #B36E32;
 }
+.card-footer .llena{
+  color: #B36E32;
+ }
 .card-footer .estadoActividad{
   font-size: smaller;
   margin-right: 0;
