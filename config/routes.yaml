@@ -34,6 +34,9 @@ join_activity:
     path: /profile/join_activity/{idActivity}/{tickets_number}/{nameActivity}
     controller: App\Controller\UserController::joinActivity
     methods: [POST]
+filter_activities:
+    path: /profile/filterActivities/
+    controller: App\Controller\UserController::filterActivities
 show_joined_activity:
     path: /profile/show_joined_activity/{id}
     controller: App\Controller\UserController::showJoinedActivity

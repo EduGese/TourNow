@@ -12,6 +12,7 @@ use App\Entity\Activity;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
+use App\Form\FilterActivityFormType;
 
 
 
@@ -123,4 +124,23 @@ class UserController extends AbstractController
 
         }
     }
+    public function filterActivities(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $form = $this->createForm(FilterActivityFormType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Procesar los datos del formulario aquí
+            
+            // Redirigir o realizar otras acciones según sea necesario
+            
+            // Ejemplo de redirección a otra página
+            return $this->redirectToRoute('nombre_de_la_ruta');
+        }
+        
+        return $this->render('user/filterActivities.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+   
 }
