@@ -27,8 +27,8 @@
 				</div>
 			{% endif %}
 			<div class="card-body mx-0  text-left">
-				<h5 class="card-title">{{ activity.getActivityName() }}</h5>
-				<p class="card-text">{{ activity.getCity() }} - {{ activity.getDate()|date('Y/m/d H:i') }}h</p>
+				<h5 class="card-title text-uppercase">{{ activity.getActivityName() }}</h5>
+				<p class="card-text"><strong>{{ activity.getCity() }}</strong> - {{ activity.getDate()|date('Y/m/d H:i') }}h</p>
 			</div>
 			<div class="card-footer mx-0 d-flex align-items-center">
 				<div class="row col-12 mx-0 ">
