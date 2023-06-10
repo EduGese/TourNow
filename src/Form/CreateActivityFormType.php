@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Positive;
 
 
 
@@ -34,6 +35,11 @@ class CreateActivityFormType extends AbstractType
             ->add('tickets', NumberType::class, [
                 'label' => 'Entradas',
                 'required' => true,
+                'constraints' => [
+                    new Positive([
+                        'message' => 'El número de entradas debe ser un valor positivo.',
+                    ]),
+                ],
             ])
             ->add('start_ubication', TextType::class, [
                 'label' => 'Ubicacion inicial',
@@ -71,6 +77,11 @@ class CreateActivityFormType extends AbstractType
             ->add('price', NumberType::class, [
                 'label' => 'Precio/persona',
                 'required' => true,
+                'constraints' => [
+                    new Positive([
+                        'message' => 'El precio debe ser un valor positivo.',
+                    ]),
+                ],
             ])
             ->add('image', FileType::class, [
                 'label' => 'Imagen (20 mb max)',

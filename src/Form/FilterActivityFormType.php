@@ -21,12 +21,12 @@ class FilterActivityFormType extends AbstractType
                 ],
                 'label' => 'Ciudad',
             ])
-            ->add('date', DateTimeType::class, [
+            ->add('date', DateType::class, [
                 'label' => 'Fecha',
                 'required' => true,
-                'data' => new \DateTime(), // Establece la fecha por defecto como la actual
+                'widget' => 'single_text',
                 'attr' => [
-                    'min' => (new \DateTime())->format('Y-m-d H:i:s'),
+                    'min' => (new \DateTime())->format('Y-m-d'),
                 ],
             ]);
     }

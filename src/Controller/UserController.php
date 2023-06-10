@@ -13,6 +13,8 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 use App\Form\FilterActivityFormType;
+use Doctrine\ORM\Query\Expr;
+use DoctrineExtensions\Query\Mysql\DateDiff;
 
 
 
@@ -121,26 +123,63 @@ class UserController extends AbstractController
             return $this->render('user/userActivityList.html.twig', [
                 'userActivities' =>  $userActivities,
             ]);
-
         }
     }
-    public function filterActivities(Request $request, ManagerRegistry $doctrine): Response
+    public function filterActivities(Request $request, EntityManagerInterface $entityManager,  ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(FilterActivityFormType::class);
         $form->handleRequest($request);
-        
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Procesar los datos del formulario aquí
-            
+
             // Redirigir o realizar otras acciones según sea necesario
-            
+
             // Ejemplo de redirección a otra página
-            return $this->redirectToRoute('nombre_de_la_ruta');
+            // return $this->redirectToRoute('nombre_de_la_ruta');
+
+            // Obtener los datos del formulario
+            $data = $form->getData();
+
+            // Acceder a los valores individuales
+            $ciudad = $data['ciudad'];
+            $fecha = $data['date'];
+            // Convertir la fecha a una cadena de texto en el formato deseado
+            $fechaString = $fecha->format('Y-m-d');
+
+           // Buscar actividades en la base de datos
+        $qb = $entityManager->createQueryBuilder();
+        $qb->select('a')
+            ->from(Activity::class, 'a')
+            ->where($qb->expr()->eq('a.city', ':ciudad'))
+            ->andWhere(
+                $qb->expr()->eq(
+                    'DATE_DIFF(a.date, :fecha)',
+                    '0'
+                )
+            )
+            ->setParameter('ciudad', $ciudad)
+            ->setParameter('fecha', new \DateTime($fechaString), 'date');
+
+        $activities = $qb->getQuery()->getResult();
+
+
+
+
+
+
+
+            return $this->render('user/filterActivities.html.twig', [
+                'form' => $form->createView(),
+                'ciudad' => $ciudad,
+                'fecha' => $fechaString,
+                'activities' => $activities,
+            ]);
         }
-        
+
         return $this->render('user/filterActivities.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-   
 }
