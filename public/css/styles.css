@@ -1,0 +1,354 @@
+/* BODY */
+body{
+  font-family: 'Manrope', sans-serif;
+}
+
+
+/* PARTE LOGIN MARIAM */
+
+html,body{
+  height: 150%;   
+}
+
+.logo{
+    font-size: 4em;
+    text-shadow: 2px 2px 5px black;
+}
+.clr{
+    color: rgb(117, 174, 31);
+}
+body{
+ 
+    background: rgb(197,235,135);
+    background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
+    width: 100%; 
+    text-align: center;
+}
+
+.titulo{
+    margin-top: 0.5em;
+    margin-left: 0.2em;
+}
+.tipo{
+ font-weight: bolder;
+}
+.form{
+    padding: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 1em;
+    border:0.1px solid black;
+    width: 500px;
+    font-family: Arial, Helvetica, sans-serif;  
+    border-radius:0.4em;
+    background-color: rgba(245, 245, 245, 0.777);
+}
+.form:hover{
+    border: none;
+    box-shadow:2px 2px 5px black;
+}
+
+div{
+    margin-left:1.5em;
+    margin-right:1.5em;
+}
+input{
+    margin-bottom:1em;
+    display: block;
+    width: 100%;
+    border-radius: 0.3em;
+    border: none;
+    border-bottom: 0.1px solid black;
+    background-color: none;
+}
+input:hover{
+    border: none;
+    border: 0.1px solid green ;
+}
+input:focus{
+    box-shadow:inset 1px 1px 3px green;
+    border: 0.1px solid green ;
+}
+label{
+margin-top: 0.1em;
+}
+
+.boton{
+    background-color: #7AB800;
+    border-radius: 0.4em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    color: black;
+    border:0.1px solid green;
+   
+}
+
+.botonl{
+    display: block;
+    margin-top: 1.5em;
+    margin-left: 9.9em
+    
+}
+.pregunta{
+   margin-top: 1em;
+   text-align: center;
+}
+.enlaces{
+    text-align: center;
+    line-height: 0.5;
+}
+
+.boton:hover{
+    
+    border:0.1px solid #7AB800;  
+    background-color: rgba(172, 255, 47, 0);
+}
+
+
+
+/* BARRA DE NAVEGACIÓN */
+.navbar .boton-detalles:hover{
+  background-color: #7AB800;
+  border: none;
+  border-radius: 2em;
+  font-weight: bolder;
+}
+.navbar .boton-detalles{
+  background-color: #343A40;
+  color:#C5EB87;
+  font-weight: bolder;
+  border: none;
+  border-radius: 2em;
+  padding: 0.5em 1.2em;
+}
+.dropdown-header{
+  font-size:large;
+}
+.navbar-logo  .logo{
+  max-width: 1.7em ;
+  /* min-width: 1.7em; */
+}
+.navbar{
+  background-color: #343A40;
+}
+.navbar-nav .nav-item .nav-link {
+  position: relative;
+  text-decoration: none;
+  color:  #E5E5EC;
+  font-weight: bold;
+  margin: 0.5em 1em;
+}
+.navbar-nav .nav-item .nav-link:not(.nav-welcome)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #C5EB87;
+  border-radius: 0.2em;
+  transition: width 0.3s ease;
+}
+.navbar-nav .nav-item .nav-link:not(.nav-welcome):hover::after {
+  width: 100%;
+}
+.dropdown-toggle::after {
+border: 0 !important;
+}
+.navbar-nav .nav-item .nav-welcome{
+color: #C5EB87;
+}
+.navbar-toggler-icon {
+  visibility: visible;
+  color: #E5E5EC;
+}
+
+
+/* BODY - ALLACTIVITIESLIST y USERACTIVITYLIST Y userDashboard Y ADMINDASHBOARD */
+.table-general {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+.table-general th,
+.table-general td {
+  border: 1px solid black;
+  padding: 10px;
+
+}
+.table-general td {
+  text-align: center;
+}
+.table-general th {
+  background-color: gray;
+}
+.divAl80 {
+  width: 80%;
+  margin: auto;
+}
+img {
+  width: 100%;
+  margin: auto;
+}
+.act_cr {
+  margin: auto;
+  width: 60%;
+}
+
+
+/* BODY - SHOWACTIVITY Y SHOWJOINEDACTIVITY */
+
+
+.activity-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.activity-cover {
+  width: 300px;
+  margin-right: 20px;
+}
+
+.activity-cover img {
+  width: 100%;
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-details h2 {
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.table-showActivity {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.table-showActivity td,
+.table-showActivity th {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.table-showActivity td strong {
+  display: inline-block;
+  width: 150px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form label {
+  display: inline-block;
+  width: 150px;
+  vertical-align: middle;
+}
+
+form select {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+form button[type="submit"] {
+  background-color: #53a93f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* BODY - ADMINCREATEACTIVITY */
+.mapa{
+  display: inline-block;
+  margin: auto;
+  width: 50%;
+}
+#mapa{
+  float:right;
+}
+
+/* FOOTER */
+.footer {
+  background-color: black;
+  padding: 20px;
+  margin-top: auto;
+  height: 50px;
+}
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.social-icons li:last-child {
+  margin-right: 0;
+}
+.social-icons a {
+  color: #333;
+  font-size: 20px;
+}
+
+/*ALLACTIVITIES*/
+.img-activity{
+  width: 100%;
+  overflow: hidden;
+}
+.card-footer .boton-detalles{
+  background-color: #7AB800;
+  border: none;
+  font-weight: bolder;
+}
+.card-footer .boton-detalles:hover{
+  background-color: #343A40;
+}
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-allActivities {
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  color:#E5E5EC;
+  background-color: rgba(52, 58, 64, 0.8);  width: 100%;
+  padding: 1em;
+}
+.card-footer .precio{
+  color: #7AB800;
+  font-weight: bolder;
+}
+#mensaje {
+  color: red;
+}
+.card-footer .col .estadoActividad.disponible {
+  color: #7AB800;
+}
+
+.card-footer .finalizada{
+ color: #B36E32;
+}
+.card-footer .llena{
+  color: #B36E32;
+ }
+.card-footer .estadoActividad{
+  font-size: smaller;
+  margin-right: 0;
+}

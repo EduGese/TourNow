@@ -1,7 +1,7 @@
 {# templates/homepage.html.twig #}
 
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
+{# {% block stylesheets %}
     <style>
         table {
             border-collapse: collapse;
@@ -33,7 +33,7 @@
             width: 60%;
         }
     </style>
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
 
@@ -43,7 +43,7 @@
     <div class="act_cr">
         <h2>Menu usuarios</h2>
         <h3>Tus datos personales</h3>
-        <table>
+        <table class="table-general">
             <tr>
                 <th>Nombre</th>
                 <th>Apellido/s</th>
@@ -62,8 +62,8 @@
         <a href="{{ path('user_activities') }}">Tus actividades</a><br><br>
         <a href="{{ path('all_activities') }}">Todas las actividades</a>
     </div>
-        {% block javascripts %}
+        {# {% block javascripts %}
             <script src="{{ asset('/scripts/table_filter.js') }}"></script>
-            {% endblock %}
+            {% endblock %} #}
 
 {% endblock %}
