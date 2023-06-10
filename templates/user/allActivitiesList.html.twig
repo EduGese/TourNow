@@ -1,152 +1,60 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-        {% if app.flashes('full')  %}
-		<p id="mensaje">
-            {% for flashMessage in app.flashes('full') %}
-				{{ flashMessage}}
-			{% endfor %}
-		</p>
-        {% endif %}
-            {% set activityCount = allActivities|length %}
-        <header class="header-container m-0">
-            <img src="{{ asset('images/costa.jpg') }}" alt="Mi imagen" style="height: 30em; object-fit:cover;" >
-            <h3 class="titulo-allActivities">
-            {{activityCount}} actividades disponibles, <br> ¡y creciendo!
-            </h3>
-        </header>
-        <section class="container-activities row col-12 d-flex justify-content-center">
-			{% set localDatetime = date('now', 'Europe/Madrid') %}
-            {% for activity in allActivities %}
-                    <div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
-                        {% if activity.getImage() is not null %}
-                        <div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
-                            <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;" >
-                        </div>
-                        {% endif %}
-                        <div class="card-body mx-0  text-left">
-                            <h5 class="card-title">{{ activity.getActivityName() }}</h5>
-                            <p class="card-text">{{ activity.getDate()|date('Y-m-d H:i') }}h</p>
-                        </div>
-                        <div class="card-footer mx-0 d-flex align-items-center">
-                            <div class="row col-12 mx-0 ">
-                                <div class="col mx-0 d-flex justify-content-center align-items-center">
-                                    <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
-                                </div>
-                                <div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
-                                    <p class="text-right precio">{{activity.getPrice()}}€</p>
-                                </div>
-								<div class="col  mx-0 d-flex justify-content-center align-items-center">
-								{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-									<p class="text-right estadoActividad finalizada">Finalizada</p>
-           						{% elseif activity.getTickets()==0 %}
-									<p class="text-center estadoActividad llena">Actividad llena</p>
-								{% else %}
-									<p class="text-right estadoActividad disponible">Disponible</p>
-								{% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            {% endfor %}
-        </section>
-		{# <h3>Actividades a las que unirse</h3> 
-		<table>
-			<tr>
-				<th>
-					<button onclick="sortTable(0)">Nombre de la actividad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(1)">Fecha y hora</button>
-				</th>
-				<th>
-					<button onclick="sortTable(2)">Descripción</button>
-				</th>
-				<th>
-					<button onclick="sortTable(3)">Tickets disponibles</button>
-				</th>
-				<th>
-					<button onclick="sortTable(4)">Localización inicio</button>
-				</th>
-				<th>
-					<button onclick="sortTable(5)">Localización fin</button>
-				</th>
-				<th>
-					<button onclick="sortTable(6)">Precio/persona</button>
-				</th>
-				<th>
-					<button onclick="sortTable(7)">Img</button>
-				</th>
-				<th>
-					<button onclick="sortTable(8)">Ciudad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(9)">Compañía</button>
-				</th>
-				<th>
-					<button onclick="sortTable(10)">Paginaweb</button>
-				</th>
-				<th>
-					<button onclick="sortTable(11)">Estado</button>
-				</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			<tbody class="miTabla">
-			{% set localDatetime = date('now', 'Europe/Madrid') %}
-				{% for activity in allActivities %}
-					<tr>
-						<td>{{ activity.getActivityName() }}</td>
-						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-						<td>{{ activity.getDescription() }}</td>
-						<td>{{ activity.getTickets() }}</td>
-						<td>{{ activity.getStartUbication() }}</td>
-						<td>{{ activity.getEndUbication() }}</td>
-						<td>{{ activity.getPrice() }}</td>
-						<td>
-							{% if activity.getImage() is not null %}
-								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-							{% endif %}
-						</td>
-						<td>{{ activity.getCity() }}</td>
-						<td>{{ activity.getCompanyName() }}</td>
-						<td>
-							<a href="">{{ activity.getCompanyWebsite() }}</a>
-						</td>
-						
-                        {% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-
-							<td>
-								Finalizada
-							</td>
-
+{% if app.flashes('full')  %}
+	<p id="mensaje">
+		{% for flashMessage in app.flashes('full') %}
+			{{ flashMessage}}
+		{% endfor %}
+	</p>
+{% endif %}
+{% set activityCount = allActivities|length %}
+<header class="header-container m-0">
+	<img src="{{ asset('images/costa.jpg') }}" alt="Mi imagen" style="height: 30em; object-fit:cover;">
+	<h3 class="titulo-allActivities">
+		{{activityCount}}
+		actividades disponibles,
+		<br>
+		¡y creciendo!
+	</h3>
+</header>
+<br>
+<div class="boton-filtro">
+	<a href="{{ path('filter_activities') }}" class=" boton-detalles btn btn-primary">Filtrar actividades</a>
+</div>
+<br>
+<section class="container-activities row col-12 d-flex justify-content-center">
+	{% set localDatetime = date('now', 'Europe/Madrid') %}
+	{% for activity in allActivities %}
+		<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
+			{% if activity.getImage() is not null %}
+				<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
+					<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;">
+				</div>
+			{% endif %}
+			<div class="card-body mx-0  text-left">
+				<h5 class="card-title text-uppercase">{{ activity.getActivityName() }}</h5>
+				<p class="card-text"><strong>{{ activity.getCity() }}</strong> - {{ activity.getDate()|date('Y/m/d H:i') }}h</p>
+			</div>
+			<div class="card-footer mx-0 d-flex align-items-center">
+				<div class="row col-12 mx-0 ">
+					<div class="col mx-0 d-flex justify-content-center align-items-center">
+						<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
+					</div>
+					<div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
+						<p class="text-right precio">{{activity.getPrice()}}€</p>
+					</div>
+					<div class="col  mx-0 d-flex justify-content-center align-items-center">
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+							<p class="text-right estadoActividad finalizada">Finalizada</p>
 						{% elseif activity.getTickets()==0 %}
-							<td>
-								Llena
-							</td>
+							<p class="text-center estadoActividad llena">Actividad llena</p>
 						{% else %}
-							<td>
-								Disponible
-							</td>
-
+							<p class="text-right estadoActividad disponible">Disponible</p>
 						{% endif %}
-						<td>
-							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
-
-						</td>
-						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-							<td>
-								<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-
-							</td>
-						{% endif %}
-					</tr>
-
-				{% endfor %}
-
-			</tbody>
-		</table> #}
-
-        {# {% block javascripts %}
-            <script src="{{ asset('/scripts/table_filter.js') }}"></script>
-            {% endblock %} #}
-
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</section>
 {% endblock %}
