@@ -52,6 +52,9 @@ delete_activity:
 create_activity:
     path: /admin/create_activity
     controller: App\Controller\ActivityController::createActivity
+edit_activity:
+    path: /admin/edit_activity/{id}
+    controller: App\Controller\ActivityController::editActivity
 show_activity_reviews:
     path: /show_activity_reviews/{id}
     controller: App\Controller\ActivityController::showActivityReviews

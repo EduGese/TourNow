@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+	<div class="mapa">
+		{{ form_start(form) }}
+
+		{{ form_row(form.activity_name) }}
+		{{ form_row(form.description) }}
+		{{ form_row(form.tickets) }}
+		{{ form_row(form.start_ubication) }}
+		{{ form_row(form.end_ubication) }}
+		{{ form_row(form.start_coord) }}
+		{{ form_row(form.end_coord) }}
+		{{ form_row(form.price) }}
+		{{ form_row(form.image) }}
+		{{ form_row(form.date) }}
+		{{ form_row(form.city) }}
+		{{ form_row(form.company_name, {'value': app.user.companyname}) }}
+
+		{{ form_row(form.company_website, {'value': app.user.companywebsite}) }}
+
+		<button type="submit">Guardar</button>
+		{{ form_end(form) }}
+
+		
+
+	</div>
+	<div class="mapa" id="mapa">
+		<div id="map" style="height: 500px; width: 100%;"></div>
+		<button type="button" id="clear">borrar seleccion</button> 
+	</div>
+	
+	{# {% block javascripts %}
+		<script src="{{ asset('/scripts/mapa.js') }}">
+		</script>	
+	
+	{% endblock %} #}
+{% endblock %}
+

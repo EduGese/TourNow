@@ -88,7 +88,7 @@
 							{% endif %}
 						</td>
 						<td>{{ activity.getCity() }}</td>
-						
+
 						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 
 							<td>
@@ -105,9 +105,14 @@
 							</td>
 
 						{% endif %}
-						<td>
+						{# <td>
 							<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
-						</td>
+						</td> #}
+						{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
+							<td>
+								<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}">Editar</a>
+							</td>
+						{% endif %}
 						<td>
 							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
 

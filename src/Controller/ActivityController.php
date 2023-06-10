@@ -99,6 +99,35 @@ class ActivityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    public function editActivity(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+
+        // Obtén la actividad desde la base de datos
+        $activity = $entityManager->getRepository(Activity::class)->find($id);
+        // Crea el formulario de edición utilizando el formulario de creación reutilizado
+        $form = $this->createForm(CreateActivityFormType::class, $activity);
+        $form->handleRequest($request);
+
+        // Maneja la solicitud de edición
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Valida los datos del formulario y aplica los cambios a la actividad
+
+            // Guarda los cambios en la base de datos
+            $entityManager->flush();
+
+            // Redirige a la página de detalles de la actividad u otra acción necesaria
+            return $this->render('user/showActivity.html.twig', [
+                'activity' => $activity,
+                'id' => $activity->getIdActivity()
+            ]);
+        }
+
+        return $this->render('edit_activity.html.twig', [
+            'form' => $form->createView(),
+            'activity' => $activity,
+        ]);
+    }
+
     public function showActivityReviews($id, ActivityService $activityService): response
     {
 
@@ -125,20 +154,20 @@ class ActivityController extends AbstractController
     {
 
         $idActivity = $request->attributes->get('id'); //idactivity
-        $scores = $request->attributes->get('scores');//Cantidad de puntuaciones de la actividad
-        $average_score = $request->attributes->get('average_score');//Media de puntuacion de la actividad
-        
-        $score = $request->request->get('score');//Puntuacion que da el usuario, se recibe desde el formulario
-        $review = $request->request->get('review');//Review que da el usuario, se recibe desde el formulario
-        
-        
+        $scores = $request->attributes->get('scores'); //Cantidad de puntuaciones de la actividad
+        $average_score = $request->attributes->get('average_score'); //Media de puntuacion de la actividad
+
+        $score = $request->request->get('score'); //Puntuacion que da el usuario, se recibe desde el formulario
+        $review = $request->request->get('review'); //Review que da el usuario, se recibe desde el formulario
+
+
 
         $user = $security->getUser();
         $user_repo = $doctrine->getRepository(User::class);
         $user_id = $user_repo->find($user)->getId(); //id del usuario 
 
         $activity_repo = $doctrine->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity);//Actividad que estamos manejando
+        $activity = $activity_repo->find($idActivity); //Actividad que estamos manejando
 
         // Insertar o actualizar en la tabla user_activity
         $conn = $entityManager->getConnection();
@@ -154,11 +183,11 @@ class ActivityController extends AbstractController
         $conn->executeStatement($query, $params);
         ///////Logica para añadir puntuacion media a tabla activity
 
-        if ($scores==0) {
-           $activity->setScores(1);
-           $activity->setAverageScore($score);
-           $activity->addScore($score);
-           $entityManager->flush();
+        if ($scores == 0) {
+            $activity->setScores(1);
+            $activity->setAverageScore($score);
+            $activity->addScore($score);
+            $entityManager->flush();
         }
         // $scoreCounting = $activity->getScores();
         // $activity->setScores($scoreCounting+1);
@@ -166,17 +195,17 @@ class ActivityController extends AbstractController
         // $totalScore = array_sum($scoreList);
         // $newAverageScore = $totalScore/$scores;///ERROR -->Division by zero
         // $activity->setAverageScore($newAverageScore);
-        
 
 
 
 
-///Esto sobra:
+
+        ///Esto sobra:
         $idActivity = $request->attributes->get('id');
         $activity_repo = $doctrine->getRepository(Activity::class);
         $activity = $activity_repo->find($idActivity);
-///
-         return $this->render('activityReviewForm.html.twig', [
+        ///
+        return $this->render('activityReviewForm.html.twig', [
             'activity' => $activity,
             'scores' => $scores,
             'average_score' => $average_score
