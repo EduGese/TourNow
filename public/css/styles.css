@@ -1,14 +1,15 @@
 /* BODY */
 body{
   font-family: 'Manrope', sans-serif;
+  height: 150%;  
+  background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
+  width: 100%; 
+  text-align: center;
 }
 
 
 /* PARTE LOGIN MARIAM */
 
-html,body{
-  height: 150%;   
-}
 
 .logo{
     font-size: 4em;
@@ -17,13 +18,7 @@ html,body{
 .clr{
     color: rgb(117, 174, 31);
 }
-body{
- 
-    background: rgb(197,235,135);
-    background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
-    width: 100%; 
-    text-align: center;
-}
+
 
 .titulo{
     margin-top: 0.5em;
@@ -48,7 +43,7 @@ body{
     box-shadow:2px 2px 5px black;
 }
 
-s
+
 input{
     margin-bottom:1em;
     display: block;
