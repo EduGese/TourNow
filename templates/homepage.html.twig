@@ -4,19 +4,76 @@
 
 {% block body %}
 
-
-    
+<body class="incuerpo">
     {# <h3>Accede a tu cuenta de usuario o administrador</h3>
-     <a href="{{path('login')}}">Login</a>
-     <br><br><br> #}
+         <a href="{{path('login')}}">Login</a>
+         <br><br><br> #}
+<div id="carouselExampleIndicators" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner prueba">
+        <div class="carousel-item prueba active c-item">
+            <img class="d-block w-100 c-img" src={{asset("images/6474bb8830ba9.JPG")}} alt="First slide">
+                <div class="carousel-caption  d-none d-md-block ">
+                <h1 class="t_tour">Tours por España</h1>
+             <button class="btn btn-primary b_tour"><a  class="car-btn" href="{{path('login')}}">Ver Actividad</a></button>
+            </div>
+        </div>
+        <div class="carousel-item c-item">
+            <img class="d-block w-100 c-img" src={{asset("images/6474c37dd9317.JPG")}} alt="Second slide">
+            <div class="carousel-caption top-0  d-none d-md-block c-caption">
+                <h1 class="t_tour">Tours por España</h1>
+         <button class="btn btn-primary b_tour"><a   class="car-btn" href="{{path('login')}}">Ver Actividad</a></button>
+            </div>
+        </div>
+        <div class="carousel-item c-item">
+            <img class="d-block w-100 c-img" src={{asset("images/6474988e3c0f3.JPG")}} alt="Third slide">
+                <div class="carousel-caption top-0  d-none d-md-block">
+                <h1 class="t_tour">Tours por España</h1>
+            <button class="btn btn-primary b_tour"><a  class="car-btn" href="{{path('login')}}">Ver Actividad</a></button>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<section class="desc">
+<div class="col-lg-12 col-md-12 col-sm-12 div">
+ <div class="iconos col-lg-3  ml-5 mr-5">
+    <img class=" w-100 icon" src={{asset("assets/destination.png")}} alt="icono">
+ <h4 class="texto"> Nos encargamos de la organización logística para que tú solo disfrutes del viaje.</h4>
+ </div>
+  <div class="iconos col-lg-3 ml-5 mr-5">
+    <img class=" icon" src={{asset("assets/friendship.png")}} alt="icono">
+ <h4 class="texto"> Conoce a personas increíbles y crea recuerdos inolvidables en cada destino que visites.</h4>
+ </div>
+  <div class="iconos col-lg-3 ml-5 mr-5">
+    <img class="d-block icon" src={{asset("assets/tour-guide.png")}} alt="icono">
+ <h4 class="texto">Sumérgete en la historia, la naturaleza y la cultura local con nuestras actividades y visitas guiadas.</h4>
+ </div>
+</div>
+</section>
 
+<section class="desc">
+<div class="col-lg-12 col-md-12 col-sm-12 div ">
+ <h1 class="reg d-flex justify-content-center">¿Aún no tienes cuenta con nosotros?</h1><br><br>
+    <h3 class="rg">Regístrate</h3><a class="e-reg" href="{{path('user_register')}}">Registrarse como Usuario</a><br><br>
+    <h3 class="rg">¿Nuevo admin?</h3><a  class="e-reg"href="{{path('adm_register')}}">Registrarse como Administrador</a>
+  
+</div>
+</section>
+    
 
-
-     
-     Aun no tienes cuenta con nosotros?Registrate!<br><br>
-     Como usuario--><a href="{{path('user_register')}}">Usuarios</a><br><br>
-     Como admin--><a href="{{path('adm_register')}}">Administradores</a>
-   
+</body>
 
 
 

@@ -1,14 +1,15 @@
 /* BODY */
 body{
   font-family: 'Manrope', sans-serif;
+  height: 150%;  
+  background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
+  width: 100%; 
+  text-align: center;
 }
 
 
 /* PARTE LOGIN MARIAM */
 
-html,body{
-  height: 150%;   
-}
 
 .logo{
     font-size: 4em;
@@ -17,13 +18,7 @@ html,body{
 .clr{
     color: rgb(117, 174, 31);
 }
-body{
- 
-    background: rgb(197,235,135);
-    background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
-    width: 100%; 
-    text-align: center;
-}
+
 
 .titulo{
     margin-top: 0.5em;
@@ -48,10 +43,7 @@ body{
     box-shadow:2px 2px 5px black;
 }
 
-div{
-    margin-left:1.5em;
-    margin-right:1.5em;
-}
+
 input{
     margin-bottom:1em;
     display: block;
@@ -352,3 +344,104 @@ form button[type="submit"] {
   font-size: smaller;
   margin-right: 0;
 }
+
+/* Carroussel */
+.carro{
+  padding: 0;
+  width: 100%;
+}
+.c-item{
+height:38.5em;
+}
+.c-img{
+height: 100%;
+object-fit: cover;
+filter: brightness(0.6);
+}
+.carousel-caption {
+  bottom: 5em;
+  margin-top:2em;
+}
+.carousel-caption p{
+  font-size: 2em;
+  text-transform: uppercase; 
+}
+.carousel-caption h1 {
+margin-top: 2em;
+margin-bottom: 2em;
+font-weight: bold;
+font-size: 4em;
+color: white;
+text-shadow: 2px 2px 3px rgb(61, 10, 10);
+text-transform: uppercase; 
+}
+.carousel-caption button{
+padding: 1em;
+background-color: #53a93f;
+padding-left: 3em;
+padding-right: 3em;
+font-size: 1.2em;
+font-family: Arial, Helvetica, sans-serif;
+box-shadow:  1px 1px 2px#333;
+border: 0;
+color: #333;
+font-weight: bold;
+text-transform: uppercase;
+}
+.car-btn{
+  color: #333;
+  border: none;
+}
+.car-btn:hover{
+  color: wheat;
+}
+
+.carousel-caption button:hover{
+box-shadow: 2px 2px 9px #fff;
+background-color: #53a93f;
+}
+.carousel-caption button:focus{
+  box-shadow: 2px 2px 9px #fff;
+  background-color: #53a93f;
+  }
+  .desc{
+    box-shadow: 0px 7px 8px -1px rgba(0,0,0,0.75);
+  }
+.div{
+  background-color: rgb(224, 223, 223);
+  padding:3em;
+  box-shadow: 0px 7px 8px -1px rgba(0,0,0,0.75);
+  margin-top: 1em;
+
+}
+.iconos{
+  display: inline-block;
+}
+.iconos:hover{
+  box-shadow: 0px 7px 8px -1px rgba(0,0,0,0.75);
+}
+.icon{
+  width: 70%;
+}
+.texto{
+  margin-top: 1em;
+}
+.reg{
+  font-weight: bold;
+  font-size: 5em;
+}
+.rg{
+  font-size: 3em;
+}
+.e-reg{
+font-size: 1.5em;
+color: #53a93f;
+font-weight: 400;
+margin-top: -1em;
+}
+.e-reg:hover{
+  font-size: 1.5em;
+  color: #53a93f;
+  font-weight: 400;
+  }
+
