@@ -126,7 +126,7 @@
 						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 
 							<td>
-								<a href="">comentar y puntuar</a>
+								<a href="{{ path('print_activity_reviewForm', { 'id': activity.idActivity }) }}">comentar y puntuar</a>
 							</td>
 
 						{% endif %}

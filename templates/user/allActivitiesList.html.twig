@@ -5,7 +5,7 @@
             {% for flashMessage in app.flashes('full') %}
 				{{ flashMessage}}
 			{% endfor %}
-        </p>
+		</p>
         {% endif %}
             {% set activityCount = allActivities|length %}
         <header class="header-container m-0">
@@ -47,69 +47,95 @@
                     </div>
             {% endfor %}
         </section>
+		{# <h3>Actividades a las que unirse</h3> 
+		<table>
+			<tr>
+				<th>
+					<button onclick="sortTable(0)">Nombre de la actividad</button>
+				</th>
+				<th>
+					<button onclick="sortTable(1)">Fecha y hora</button>
+				</th>
+				<th>
+					<button onclick="sortTable(2)">Descripción</button>
+				</th>
+				<th>
+					<button onclick="sortTable(3)">Tickets disponibles</button>
+				</th>
+				<th>
+					<button onclick="sortTable(4)">Localización inicio</button>
+				</th>
+				<th>
+					<button onclick="sortTable(5)">Localización fin</button>
+				</th>
+				<th>
+					<button onclick="sortTable(6)">Precio/persona</button>
+				</th>
+				<th>
+					<button onclick="sortTable(7)">Img</button>
+				</th>
+				<th>
+					<button onclick="sortTable(8)">Ciudad</button>
+				</th>
+				<th>
+					<button onclick="sortTable(9)">Compañía</button>
+				</th>
+				<th>
+					<button onclick="sortTable(10)">Paginaweb</button>
+				</th>
+				<th>
+					<button onclick="sortTable(11)">Estado</button>
+				</th>
+				<!-- Otros campos de actividad -->
+			</tr>
+			<tbody class="miTabla">
+			{% set localDatetime = date('now', 'Europe/Madrid') %}
+				{% for activity in allActivities %}
+					<tr>
+						<td>{{ activity.getActivityName() }}</td>
+						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
+						<td>{{ activity.getDescription() }}</td>
+						<td>{{ activity.getTickets() }}</td>
+						<td>{{ activity.getStartUbication() }}</td>
+						<td>{{ activity.getEndUbication() }}</td>
+						<td>{{ activity.getPrice() }}</td>
+						<td>
+							{% if activity.getImage() is not null %}
+								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
+							{% endif %}
+						</td>
+						<td>{{ activity.getCity() }}</td>
+						<td>{{ activity.getCompanyName() }}</td>
+						<td>
+							<a href="">{{ activity.getCompanyWebsite() }}</a>
+						</td>
+						
+                        {% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 
-        {# <table class="table-general">
-            <tr>
-                <th>
-                    <button onclick="sortTable(0)">Nombre de la actividad</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(1)">Fecha y hora</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(2)">Descripción</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(3)">Tickets disponibles</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(4)">Localización inicio</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(5)">Localización fin</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(6)">Precio/persona</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(7)">Img</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(8)">Ciudad</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(9)">Compañía</button>
-                </th>
-                <th>
-                    <button onclick="sortTable(10)">Paginaweb</button>
-                </th>
-                <!-- Otros campos de actividad -->
-            </tr>
-            <tbody class="miTabla">
-                {% for activity in allActivities %}
-                    <tr>
-                        <td>{{ activity.getActivityName() }}</td>
-                        <td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-                        <td>{{ activity.getDescription() }}</td>
-                        <td>{{ activity.getTickets() }}</td>
-                        <td>{{ activity.getStartUbication() }}</td>
-                        <td>{{ activity.getEndUbication() }}</td>
-                        <td>{{ activity.getPrice() }}</td>
-                        <td>
-                            {% if activity.getImage() is not null %}
-                                <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-                            {% endif %}
-                        </td>
-                        <td>{{ activity.getCity() }}</td>
-                        <td>{{ activity.getCompanyName() }}</td>
-                        <td>
-                            <a href="">{{ activity.getCompanyWebsite() }}</a>
-                        </td>
-                        <td>
-                            <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
+							<td>
+								Finalizada
+							</td>
+
+						{% elseif activity.getTickets()==0 %}
+							<td>
+								Llena
+							</td>
+						{% else %}
+							<td>
+								Disponible
+							</td>
+
+						{% endif %}
+						<td>
+							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
 
 						</td>
+						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<td>
+								<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
 
+							</td>
+						{% endif %}
 					</tr>
 
 				{% endfor %}
