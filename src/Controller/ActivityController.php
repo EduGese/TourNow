@@ -131,7 +131,7 @@ class ActivityController extends AbstractController
 
             //flash message
 
-            $this->addFlash('edit', '¡Actividad editada con éxito!');
+            $this->addFlash('edit', '¡Actividad editada con éxito!, se han mandado email a los usuarios para advertirles ');
 
             //envio de mails//
 
