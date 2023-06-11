@@ -15,7 +15,7 @@ class FilterActivityFormType extends AbstractType
         $builder
             ->add('ciudad', ChoiceType::class, [
                 'choices' => [
-                    'Elige ciudad' => 'Elige ciudad',
+                    'Elige ciudad' => 'Elige ciudad',//Esto no se puede cambiar
                     'Madrid' => 'Madrid',
                     'Sevilla' => 'Sevilla',
                     'Barcelona' => 'Barcelona',
