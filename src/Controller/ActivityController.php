@@ -16,6 +16,13 @@ use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\ActivityService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Exception;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Psr\Log\LoggerInterface;
 
 
 
@@ -36,11 +43,16 @@ class ActivityController extends AbstractController
 {
     private $entityManager;
     private $doctrine;
+    private $mailer;
+    private $logger;
 
-    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager, MailerInterface $mailer, LoggerInterface $logger)
     {
         $this->entityManager = $entityManager;
         $this->doctrine = $doctrine;
+        $this->logger = $logger;
+
+        $this->mailer = $mailer;
     }
 
     public function deleteActivity(Request $request, ActivityService $activityService, ManagerRegistry $doctrine, UserInterface $user, $id): Response
@@ -99,7 +111,7 @@ class ActivityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    public function editActivity(Request $request, EntityManagerInterface $entityManager, $id): Response
+    public function editActivity(Request $request, EntityManagerInterface $entityManager, $id, Security $security, ManagerRegistry $doctrine): Response
     {
 
         // Obtén la actividad desde la base de datos
@@ -115,12 +127,64 @@ class ActivityController extends AbstractController
             // Guarda los cambios en la base de datos
             $entityManager->flush();
 
-            // Redirige a la página de detalles de la actividad u otra acción necesaria
+
+
+            //flash message
+
+            $this->addFlash('edit', '¡Actividad editada con éxito!');
+
+            //envio de mails//
+
+
+            //Obtener mails de usuarios registrados en la actividad
+            $activityId = $activity->getIdActivity();
+            $conn = $entityManager->getConnection();
+
+
+            $query = "SELECT u.email FROM user_activity ua
+            INNER JOIN user u ON ua.user_id = u.id_user
+            WHERE ua.activity_id = :activity_id";
+
+            $params = [
+                'activity_id' => $activityId, // ID de la actividad deseada
+            ];
+            // Ejecutar la consulta
+            $statement = $conn->executeQuery($query, $params);
+
+            // Obtener los correos electrónicos
+            $emails = $statement->fetchAllAssociative();
+
+            $emailList = [];
+            foreach ($emails as $row) {
+                $emailList[] = $row['email'];
+            }
+
+            //Mandar mails
+            $user = $security->getUser();
+            $user_repo = $doctrine->getRepository(User::class);
+            $user_mail = $user_repo->find($user)->getEmail(); //mail del admin 
+
+            $email = (new Email())
+                ->from($user_mail)
+                ->priority(Email::PRIORITY_HIGH)
+                ->subject('Una actividad a la que te has unido ha cambiado')
+                ->text('Una actividad a la que te has unido ha cambiado, revisa tu cuenta');
+
+            foreach ($emailList as $recipientEmail) {
+                $email->to($recipientEmail);
+                $this->mailer->send($email);
+            }
+
+            
+
+
             return $this->render('user/showActivity.html.twig', [
                 'activity' => $activity,
-                'id' => $activity->getIdActivity()
+                'id' => $activity->getIdActivity(),
+                'emails' => $emails,
             ]);
         }
+
 
         return $this->render('edit_activity.html.twig', [
             'form' => $form->createView(),

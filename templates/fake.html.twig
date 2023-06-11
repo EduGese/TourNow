@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ activity.getIdActivity()}}
-{{ activity.getActivityName()}}
+
+	<div>
+		{% for email in emails %}
+			{{ email }}
+		{% endfor %}
+	</div>
+holaaa
 
 
 

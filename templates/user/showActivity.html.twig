@@ -21,7 +21,7 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 		{{ encore_entry_link_tags('app') }}
 		<link href="{{ asset('css/login.css') }}" type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-		<link href="{{ asset('css/styles.css') }}" type="text/css" rel="stylesheet" />
+		<link href="{{ asset('css/styles.css') }}" type="text/css" rel="stylesheet"/>
 	{% endblock %}
 </head>
 
@@ -107,6 +107,9 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 		}
 	</style>
 
+	{% for flashMessage in app.flashes('edit') %}
+				{{ flashMessage}}
+			{% endfor %}
 	<div class="activity-card">
 		{% if activity.getImage() is not null %}
 			<div class="activity-cover">
@@ -201,8 +204,8 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 				{% if userJoinedActivity %}
 					<p>Ya estás unido a esta actividad</p>
 					{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-						{% endif %}
+						<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+					{% endif %}
 				{% else %}
 					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
 						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
@@ -236,7 +239,7 @@ HABRÁ QUE HACERLOS TAMBIÉN EN  showActivity.html.twig
 	{# REVISAR EL CODIGO PARA QUE SE ME IMPLEMENTE EL MAPA #}
 	{# {{ parent() }} #}
 	{# 
-								  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-								  </script>
-								   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
+										  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+										  </script>
+										   #}<script src="{{ asset('/scripts/mapa2.js') }}"> </script>
 {% endblock %}

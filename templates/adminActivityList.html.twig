@@ -34,7 +34,9 @@
 {% endblock %} #}
 
 {% block body %}
-
+	{% for flashMessage in app.flashes('full') %}
+				{{ flashMessage}}
+			{% endfor %}
 	<div class="act_cr">
 		<h3>Tus actividades creadas</h3>
 		<table class="table-general">
