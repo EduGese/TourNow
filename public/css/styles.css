@@ -1,6 +1,7 @@
 /* BODY */
 body{
   font-family: 'Manrope', sans-serif;
+  height: 150%;  
   background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%);
   width: 100%; 
   text-align: center;
@@ -305,6 +306,14 @@ form button[type="submit"] {
   font-weight: bolder;
 }
 .card-footer .boton-detalles:hover{
+  background-color: #343A40;
+}
+.boton-filtro .boton-detalles{
+  background-color: #7AB800;
+  border: none;
+  font-weight: bolder;
+}
+.boton-filtro .boton-detalles:hover{
   background-color: #343A40;
 }
 .header-container {
