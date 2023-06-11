@@ -3,6 +3,9 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<style>
+	body{
+		background-color: white;
+	}
 		.activity-card {
 			display: flex;
 			flex-direction: row;
@@ -80,7 +83,7 @@
 	{% for flashMessage in app.flashes('edit') %}
 				{{ flashMessage}}
 			{% endfor %}
-	<div class="activity-card">
+	{# <div class="activity-card">
 		{% if activity.getImage() is not null %}
 			<div class="activity-cover">
 				<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
@@ -201,7 +204,7 @@
 
 		</div>
 		<div id="map" style="height: 500px; width: 50%"></div>
-	</div>
+	</div> #}
 
 {% endblock %}
 {% block javascripts %}
