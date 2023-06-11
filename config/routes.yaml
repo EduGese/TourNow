@@ -46,6 +46,9 @@ admin_dashboard:
 edit_admin_details:
     path: /edit_admin_details/
     controller: App\Controller\UserController::editAdminDetails
+edit_user_details:
+    path: /edit_user_details/
+    controller: App\Controller\UserController::editUserDetails
 show_admin_activities:
     path: /admin/show_admin_activities
     controller: App\Controller\AdminController::showAdminActivities
