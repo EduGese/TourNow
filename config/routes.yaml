@@ -28,7 +28,7 @@ all_activities:
     path: /all_activities
     controller: App\Controller\UserController::allActivities
 show_activity:
-    path: /profile/show_activity/{id}
+    path: /show_activity/{id}
     controller: App\Controller\UserController::showActivity
 join_activity:
     path: /profile/join_activity/{idActivity}/{tickets_number}/{nameActivity}
