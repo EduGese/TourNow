@@ -146,36 +146,63 @@ class UserController extends AbstractController
             $ciudad = $data['ciudad'];
             $fecha = $data['date'];
             // Convertir la fecha a una cadena de texto en el formato deseado
-            $fechaString = $fecha->format('Y-m-d');
 
-           // Buscar actividades en la base de datos
-        $qb = $entityManager->createQueryBuilder();
-        $qb->select('a')
-            ->from(Activity::class, 'a')
-            ->where($qb->expr()->eq('a.city', ':ciudad'))
-            ->andWhere(
-                $qb->expr()->eq(
-                    'DATE_DIFF(a.date, :fecha)',
-                    '0'
+            if ($fecha !== null) {
+                $fechaString = $fecha->format('Y-m-d');
+            }
+
+
+            // Verificar si la ciudad es "Elige ciudad" y la fecha es nula
+            if ($ciudad === 'Elige ciudad' && $fecha === null) {
+                $this->addFlash(
+                    'choiceRequest',
+                    'Debes elegir fecha y/o ciudad'
+                );
+                return $this->render('user/filterActivities.html.twig', [
+                    'form' => $form->createView(),
+
+                ]);
+            }
+            if ($fecha === null) {
+                $qb = $entityManager->createQueryBuilder();
+                $qb->select('a')
+                    ->from(Activity::class, 'a')
+                    ->andWhere($qb->expr()->eq('a.city', ':ciudad'))
+                    ->setParameter('ciudad', $ciudad);
+
+                    $activities = $qb->getQuery()->getResult();
+                    return $this->render('user/filterActivities.html.twig', [
+                        'form' => $form->createView(),
+                        'ciudad' => $ciudad,
+                        
+                        'activities' => $activities,
+                    ]);
+            }else {
+            // Buscar actividades en la base de datos
+            $qb = $entityManager->createQueryBuilder();
+            $qb->select('a')
+                ->from(Activity::class, 'a')
+                ->andWhere(
+                    $qb->expr()->eq(
+                        'DATE_DIFF(a.date, :fecha)',
+                        '0'
+                    )
                 )
-            )
-            ->setParameter('ciudad', $ciudad)
-            ->setParameter('fecha', new \DateTime($fechaString), 'date');
+                ->setParameter('fecha', new \DateTime($fechaString), 'date');
 
-        $activities = $qb->getQuery()->getResult();
-
-
-
-
-
-
-
+            if ($ciudad !== 'Elige ciudad') {
+                $qb->andWhere($qb->expr()->eq('a.city', ':ciudad'))
+                    ->setParameter('ciudad', $ciudad);
+            }
+            $activities = $qb->getQuery()->getResult();
             return $this->render('user/filterActivities.html.twig', [
                 'form' => $form->createView(),
                 'ciudad' => $ciudad,
                 'fecha' => $fechaString,
                 'activities' => $activities,
             ]);
+            }
+
         }
 
         return $this->render('user/filterActivities.html.twig', [

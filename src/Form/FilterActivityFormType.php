@@ -15,6 +15,7 @@ class FilterActivityFormType extends AbstractType
         $builder
             ->add('ciudad', ChoiceType::class, [
                 'choices' => [
+                    'Elige ciudad' => 'Elige ciudad',//Esto no se puede cambiar
                     'Madrid' => 'Madrid',
                     'Sevilla' => 'Sevilla',
                     'Barcelona' => 'Barcelona',
@@ -23,7 +24,7 @@ class FilterActivityFormType extends AbstractType
             ])
             ->add('date', DateType::class, [
                 'label' => 'Fecha',
-                'required' => true,
+                'required' => false,
                 'widget' => 'single_text',
                 'attr' => [
                     'min' => (new \DateTime())->format('Y-m-d'),

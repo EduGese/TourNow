@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 
+
 	<div>
 		<h1>Filter Activities</h1>
 
@@ -11,46 +11,55 @@
 		{{ form_end(form) }}
 	</div>
 
-    {% if activities is defined %}
-    {# Mostrar los valores de $ciudad y $fecha #}
-	<p>Ciudad:
-		{{ ciudad }}</p>
-	<p>Fecha:
-		{{ fecha }}</p>
-            {# Iterar sobre las actividades encontradas #}
-            {% set localDatetime = date('now', 'Europe/Madrid') %}
-                    {% for activity in activities %}
+	{% if activities is defined %}
 
-                        <div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4  px-0 " style="overflow: hidden;">
-                            {% if activity.getImage() is not null %}
-                                <div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
-                                    <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;">
-                                </div>
-                            {% endif %}
-                            <div class="card-body mx-0">
-                                <h5 class="card-title text-left">{{ activity.getActivityName() }}</h5>
-                                <p class="card-text">{{ activity.getDate()|date('Y-m-d H:i') }}h</p>
-                            </div>
-                            <div class="card-footer mx-0 d-flex align-items-center">
-                                <div class="row col-12 mx-0 ">
-                                    <div class="col mx-0 d-flex justify-content-center align-items-center">
-                                        <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
-                                    </div>
-                                    <div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
-                                        <p class="text-right precio">{{activity.getPrice()}}€</p>
-                                    </div>
-                                    <div class="col  mx-0 d-flex justify-content-center align-items-center">
-                                        {% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-                                            <p class="text-right estadoActividad finalizada">Finalizada</p>
-                                        {% elseif activity.getTickets()==0 %}
-                                            <p class="text-center estadoActividad llena">Actividad llena</p>
-                                        {% else %}
-                                            <p class="text-right estadoActividad disponible">Disponible</p>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-    {% endif %}
+		{# Mostrar los valores de $ciudad y $fecha #}
+		{% if ciudad is defined and ciudad != 'Elige ciudad' %}
+			<p>Ciudad:
+				{{ ciudad }}</p>
+		{% endif %}
+
+		{% if fecha is defined and fecha is not null %}
+			<p>Fecha:
+				{{ fecha }}</p>
+		{% endif %}
+		{# Iterar sobre las actividades encontradas #}
+		{% set localDatetime = date('now', 'Europe/Madrid') %}
+		{% for activity in activities %}
+
+			<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4  px-0 " style="overflow: hidden;">
+				{% if activity.getImage() is not null %}
+					<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
+						<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;">
+					</div>
+				{% endif %}
+				<div class="card-body mx-0">
+					<h5 class="card-title text-left">{{ activity.getActivityName() }}</h5>
+					<p class="card-text">{{ activity.getDate()|date('Y-m-d H:i') }}h</p>
+				</div>
+				<div class="card-footer mx-0 d-flex align-items-center">
+					<div class="row col-12 mx-0 ">
+						<div class="col mx-0 d-flex justify-content-center align-items-center">
+							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
+						</div>
+						<div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
+							<p class="text-right precio">{{activity.getPrice()}}€</p>
+						</div>
+						<div class="col  mx-0 d-flex justify-content-center align-items-center">
+							{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+								<p class="text-right estadoActividad finalizada">Finalizada</p>
+							{% elseif activity.getTickets()==0 %}
+								<p class="text-center estadoActividad llena">Actividad llena</p>
+							{% else %}
+								<p class="text-right estadoActividad disponible">Disponible</p>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+	{% for flashMesagge in app.flashes('choiceRequest')%}
+		{{flashMesagge}}
+	{% endfor %}
 {% endblock %}
