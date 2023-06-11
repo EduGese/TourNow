@@ -308,6 +308,14 @@ form button[type="submit"] {
 .card-footer .boton-detalles:hover{
   background-color: #343A40;
 }
+.boton-filtro .boton-detalles{
+  background-color: #7AB800;
+  border: none;
+  font-weight: bolder;
+}
+.boton-filtro .boton-detalles:hover{
+  background-color: #343A40;
+}
 .header-container {
   position: relative;
   display: flex;
