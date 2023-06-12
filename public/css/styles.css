@@ -452,4 +452,74 @@ margin-top: -1em;
   color: #53a93f;
   font-weight: 400;
   }
+/* Editar Perfil */
+.s-profile {
+  margin-bottom: 3em;
+  width: 100%;
+  margin-top: 3em;
+  box-shadow: 2px 2px 2px rgb(117, 57, 15);
+  background-color: rgb(235, 227, 216);
+  border-radius: 0.4em;
+  padding-top: 2em;
+}
 
+.profile,.edits {
+  display: flex;
+  justify-content: center;
+  padding: 3em;
+  
+}
+
+.p-img {
+  width: 5%;
+  display: flex;
+  align-items: flex-end;
+}
+.p-img img{
+ color: blue;
+}
+
+.p-data h3,label {
+  font-weight: bold;
+}
+
+.p-data p,input {
+  color: rgb(94, 90, 90);
+}
+
+.p-btn button {
+  border: 2px solid #834916;
+  border-radius: 0.6em;
+  padding: 0.5em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  margin-top: 0.5em;
+}
+.p-btn button a{
+  color:#834916;
+}
+.p-btn button:hover {
+  border: 2px solid #834916;
+  color: #834916;
+  background-color: #343a4044;
+}
+
+.p-title {
+  font-weight: bolder;
+  display: block;
+  font-size: 2.6em;
+  margin-left: 1em;
+  display: flex;
+ align-items: center;
+}
+.p{
+  text-align: center;
+}
+.punto {
+  background-color:#B36E32;
+  padding: 0.1em;
+  display: inline-block;
+  border-radius: 0.5em;
+  padding-left: 0.5em;
+  margin-right: 0.5em;
+}
