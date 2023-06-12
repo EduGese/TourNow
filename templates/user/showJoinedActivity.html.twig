@@ -156,6 +156,9 @@
 			<div class="row activity-img col-12">
 				{% if activity.getImage() is not null %}
 					<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
+					{% else %}
+						<img src="{{ asset('assets/TOURNOW.svg') }}" alt="Mi imagen" >
+					</div>
 				{% endif %}
 			</div>
 			<br>

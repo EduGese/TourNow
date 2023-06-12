@@ -122,6 +122,7 @@
 	.company-link:hover{
 		color: #7AB800;
 	}
+
 	</style>
 {% endblock %}
 
@@ -157,6 +158,9 @@
 			<div class="row activity-img col-12">
 				{% if activity.getImage() is not null %}
 					<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
+					{% else %}
+						<img src="{{ asset('assets/TOURNOW.svg') }}" alt="Mi imagen" >
+					</div>
 				{% endif %}
 			</div>
 			<br>
@@ -255,6 +259,10 @@
 		<hr>
 		<div class="titulo-apartados text-left" id="reserva">
 		<h4>Reserva</h4>
+		{% if app.user %}
+			{% for flashMessage in app.flashes('joined') %}
+				{{ flashMessage}}
+			{% endfor %}
 		{% if activity.tickets > 0 %}
 				{% set userJoinedActivity = false %}
 				{% for userActivity in app.user.customerActivities %}
@@ -288,7 +296,7 @@
 			{% else %}
 				<p>La actividad está completa</p>
 			{% endif %}
-
+			{% endif %}
 
 		</section>
 	</div>
