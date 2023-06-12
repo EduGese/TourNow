@@ -6,48 +6,13 @@
 	body{
 		background-color: white;
 	}
-		.activity-card {
-			display: flex;
-			flex-direction: row;
-			background-color: #fff;
-			border: 1px solid #ccc;
-			padding: 20px;
-			margin-bottom: 20px;
-		}
-
-		.activity-cover {
-			width: 300px;
-			margin-right: 20px;
-		}
-
-		.activity-cover img {
-			width: 100%;
-		}
-
-		.activity-details {
-			flex: 1;
-		}
-
-		.activity-details h2 {
-			font-size: 28px;
-			margin-top: 0;
-		}
-
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			margin-top: 20px;
-		}
-
-		table td,
-		table th {
-			border: 1px solid #ccc;
-			padding: 10px;
-		}
-
-		table td strong {
-			display: inline-block;
-			width: 150px;
+		.comentario{
+			margin-bottom: 2em;
+			background-color: white;
+			padding: 2em 1em 3em 1em;
+			border-radius: 0.4em;
+			-webkit-box-shadow: 0px 3px 15px 5px rgba(0,0,0,0.74); 
+			box-shadow: 0px 3px 15px 5px rgba(52, 58, 64,0.2);
 		}
 
 		form {
@@ -88,8 +53,7 @@
 		}
 		.container{
 			background-color: rgba(52, 58, 64, 0.05);
-			padding: 2em 5em;
-
+			padding: 2em 5em 4em 5em;
 		}
 		.activity-nombre{
 			font-weight: bolder;
@@ -113,12 +77,15 @@
 			margin-bottom:2em;
 		}
 		.container .titulo-apartados h4{
-			margin-bottom:1em;
+			margin:1em 0em;
 		}
 
 		.activity-details{
 			color: #343A40;
 		}
+		.activity-ciudad{
+			color: #B36E32;
+		} 
 		.mapa {
         display: flex;
         align-items: center;
@@ -128,13 +95,33 @@
         list-style-type: none;
         padding-left: 1em;
     }
+		.disponible {
+		color: #7AB800;
+		}
+
+		.finalizada{
+		color: #B36E32;
+		}
+		.llena{
+		color: #B36E32;
+		}
+		.activity-price{
+			font-weight:bolder;
+		color: #7AB800;
+		}
 
     .letra-pequeña::before {
         content: "*";
         margin-right: 0.5em;
 		font-weight: bold;
     }
-
+	.company-link{
+		text-decoration: none;
+		color:#343A40;
+	}
+	.company-link:hover{
+		color: #7AB800;
+	}
 	</style>
 {% endblock %}
 
@@ -158,7 +145,7 @@
 				<h2 class="activity-details  activity-price col-md-6 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
 			</div>
 			<div class="row col-12">
-				<p class="activity-details activity-opiniones col-md-6 col-12 d-flex justify-content-center">Nº de reviews: </p>
+				<p class="activity-details activity-opiniones col-md-6 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
 				{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 					<p class="activity-details estadoActividad  finalizada col-md-6 col-12 d-flex justify-content-center">Finalizada</p>
 					{% elseif activity.getTickets()==0 %}
@@ -192,6 +179,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#opiniones">Opiniones</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#reserva">Reserva</a>
 				</li>
 				</ul>
 		</nav>
@@ -236,7 +226,7 @@
 				<p id="co_start">{{ activity.getStartCoord() }}</p>
 				<p id="co_end">{{ activity.getEndCoord() }}</p>
 			</div>
-			<div class="row mapa" id="map" style="height: 500px; width: 50%"></div>
+			<div class="row mapa" id="map" style="height: 500px; width: 80%"></div>
 			<br>
 			<div class="row">
 			<p class="col-12 col-md-6"><strong>Compañía organizadora: </strong></p>
@@ -244,7 +234,7 @@
 			</div>
 			<div class="row">
 			<p class="col-12 col-md-6"><strong>Página web:</strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.companyWebsite }}</p>
+			<a href="{{activity.companyWebsite}}" class="col-12 col-md-6 text-md-right company-link">{{ activity.companyWebsite }}</a>
 			</div>
 		</div>
 		</div>
@@ -252,7 +242,7 @@
 		<div class="titulo-apartados text-left" id="informacion">
 		<h4>Información general</h4>
 		<ul>
-			<li class="letra-pequeña">Pago directo a la empresa organizadora el día de la actividad.</li>
+			<li class="letra-pequeña">Pago directo a la empresa organizadora el día de la actividad</li>
 			<li class="letra-pequeña">Cancelación disponible hasta 24 horas antes de la fecha contactando directamente con la empresa organizadora</li>
 			<li class="letra-pequeña">La empresa organizadora se reserva el derecho a cambiar los detalles de la actividad hasta 24 horas antes</p></li>
 		</ul>
@@ -260,8 +250,46 @@
 		<hr>
 		<div class="titulo-apartados text-left" id="opiniones">
 		<h4>Opiniones</h4>
-		<p></p>
+		{{ render(controller('App\\Controller\\ActivityController::showActivityReviews', { 'id': activity.idActivity })) }} 
 		</div>
+		<hr>
+		<div class="titulo-apartados text-left" id="reserva">
+		<h4>Reserva</h4>
+		{% if activity.tickets > 0 %}
+				{% set userJoinedActivity = false %}
+				{% for userActivity in app.user.customerActivities %}
+					{% if userActivity == activity %}
+						{% set userJoinedActivity = true %}
+					{% endif %}
+				{% endfor %}
+				{% if userJoinedActivity %}
+					<p>Ya estás unido a esta actividad</p>
+					{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+						<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+					{% endif %} #}
+				{% else %}
+					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
+						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
+							<label for="tickets">Número de tickets:</label>
+							<select id="tickets" name="tickets">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+							<button type="submit">Comprar tickets</button>
+						</form>
+					{% else %}
+						<p>La actividad ha pasado</p>
+						{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
+							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
+						{% endif %} #}
+					{% endif %}
+				{% endif %}
+			{% else %}
+				<p>La actividad está completa</p>
+			{% endif %}
+
+
 		</section>
 	</div>
 

@@ -1,31 +1,23 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
-	<table>
-		<thead>
-			<tr>
-				<th>User</th>
-				<th>Score</th>
-				<th>Review</th>
+<div class="comentarios col-12">
+        {% if scores is empty %}
+                <p colspan="3">No existen comentarios o puntuación para esta actividad </p>
+        {% else %}
+            {% for i in 0..(scores|length - 1) %}
+                {% if scores[i] == true or reviews[i] == true %}
+                        <div class="comentario col-21" colspan="3">
+                            <div class="d-flex">
+                                <div class="col-5 col-md-5 text-capitalize"><strong>{{ username[i] }} {{ userlastname[i] }}</strong></div>
+                                <div class="col-1"> | </div>
+                                <div class="col-5 col-md-5" >Puntuación: {{ scores[i] }}</div>
+                            </div>
+                            <hr>
+                            <div class="col-12"> {{ reviews[i] }} </div>
+                        </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
 
-			</tr>
-		</thead>
-		<tbody>
-			{% if scores is empty %}
-				<p>No existen comentarios o puntuación para esta actividad porque nadie participó en ella</p>
-			{% else %}
-				{% for i in 0..(scores|length - 1) %}
-					{% if scores[i] == true or reviews[i] == true %}
-						<tr>
-							<td>{{ username[i] }}
-								{{ userlastname[i] }}</td>
-							<td>{{ scores[i] }}</td>
-							<td>{{ reviews[i] }}</td>
-						</tr>
-					{% endif %}
-				{% endfor %}
-			{% endif %}
-
-		</tbody>
-	</table>
 {% endblock %}
