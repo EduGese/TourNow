@@ -453,3 +453,31 @@ margin-top: -1em;
   font-weight: 400;
   }
 
+/* Sobre nosotros */
+
+.try{
+  background-color: white;
+  margin-top: 3em;
+  }
+  .a-img{
+  width: 50%;
+  box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.75);
+  }
+  .aa-img{
+    width: 50%;
+    box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+  .a-img img{
+  object-fit: cover;
+  width: 100%;
+  }
+  .a-txt h1{
+  margin-top: 2em;
+  font-weight: bolder;
+  
+  }
+  .a-txt p{
+  font-size: 1.3em;
+  margin-top: 0.7em;
+  margin-bottom: 1em;
+  }
