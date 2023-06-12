@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
@@ -26,15 +27,15 @@ class CreateActivityFormType extends AbstractType
     {
         $builder
             ->add('activity_name', TextType::class, [
-                'label' => 'Nombre de la actividad',
+                'label' => 'Nombre de la actividad*',
                 'required' => true,
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Descripción',
+                'label' => 'Descripción*',
                 'required' => true,
             ])
             ->add('tickets', NumberType::class, [
-                'label' => 'Entradas',
+                'label' => 'Entradas*',
                 'required' => true,
                 'constraints' => [
                     new Positive([
@@ -76,11 +77,11 @@ class CreateActivityFormType extends AbstractType
                 
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Precio/persona',
+                'label' => 'Precio/persona*',
                 'required' => true,
                 'constraints' => [
-                    new Positive([
-                        'message' => 'El precio debe ser un valor positivo.',
+                    new PositiveOrZero([
+                        'message' => 'El precio debe ser un valor cero o positivo.',
                     ]),
                 ],
             ])
@@ -96,7 +97,7 @@ class CreateActivityFormType extends AbstractType
                 ],
             ])
             ->add('date', DateTimeType::class, [
-                'label' => 'Fecha',
+                'label' => 'Fecha*',
                 'required' => true,
                 'data' => new \DateTime(), // Establece la fecha por defecto como la actual
                 'attr' => [
@@ -104,7 +105,7 @@ class CreateActivityFormType extends AbstractType
                 ],
             ])
             ->add('city', ChoiceType::class, [
-                'label' => 'Ciudad',
+                'label' => 'Ciudad*',
                 'required' => true,
                 'choices' => [
                     'Madrid' => 'Madrid',
