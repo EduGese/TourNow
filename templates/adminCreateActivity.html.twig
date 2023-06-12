@@ -19,9 +19,16 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	</style>
 {% endblock %} #}
 {% block body %}
-
+	
 
 	<div class="mapa">
+
+	{% for flashMessage in app.flashes('fecha_erronea') %}
+		{{ flashMessage}}
+	{% endfor %}
+	{% for flashMessage in app.flashes('nombre_duplicado') %}
+		{{ flashMessage}}
+	{% endfor %}
 		{{ form_start(form) }}
 
 		{{ form_row(form.activity_name) }}
