@@ -31,12 +31,13 @@
                 <div class="dropdown-divider"></div>
                 <h3 class="dropdown-header">Panel de usuario</h3>   
                 {% endif %} 
-                <a class="dropdown-item" href="{{path('user_activities') }}">Actividades </a>
-                <a class="dropdown-item" href="#">Tus comentarios</a>
+                <a class="dropdown-item" href="{{path('user_activities') }}">Tus actividades </a>
                 {%if app.user.roles|length > 1%}
                 <div class="dropdown-divider"></div>
                 <h3 class="dropdown-header">Panel de administrador</h3>    
                 <a class="dropdown-item" href="{{path('show_admin_activities')}}">Tus actividades creadas</a>
+                <a class="dropdown-item" href="{{path('create_activity')}}">Crear nueva actividad</a>
+                
                 {% endif %}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">Cierra sesión</a>
