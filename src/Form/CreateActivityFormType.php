@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
 
@@ -58,7 +59,7 @@ class CreateActivityFormType extends AbstractType
                 ],
                 
             ])
-            ->add('start_coord', TextType::class, [
+            ->add('start_coord', Hiddentype::class, [
                 'label' => 'Coordinadas iniciales',
                 'required' => false,
                 'attr' => [
@@ -66,7 +67,7 @@ class CreateActivityFormType extends AbstractType
                 ],
                
             ])
-            ->add('end_coord', TextType::class, [
+            ->add('end_coord', Hiddentype::class, [
                 'label' => 'Coordinadas finales',
                 'required' => false,
                 'attr' => [
@@ -111,7 +112,7 @@ class CreateActivityFormType extends AbstractType
                     'Sevilla' => 'Sevilla',
                 ],
             ])
-            ->add('company_name', TextType::class, [
+            ->add('company_name', Hiddentype::class, [
                 'label' => 'Nombre de tu empresa u organización',
                 'required' => true,
                 'attr' => [
@@ -121,9 +122,9 @@ class CreateActivityFormType extends AbstractType
             ->add('company_website', TextType::class, [
                 'label' => 'Página web',
                 'required' => true,
-                'attr' => [
-                    'readonly' => true,
-                ],
+                // 'attr' => [
+                //     'readonly' => true,
+                // ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^.+\.(com|es|net)$/i',
