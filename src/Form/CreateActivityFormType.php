@@ -85,7 +85,7 @@ class CreateActivityFormType extends AbstractType
                 ],
             ])
             ->add('image', FileType::class, [
-                'label' => 'Imagen (20 mb max)',
+                'label' => 'Imagen',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
