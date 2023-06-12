@@ -268,6 +268,11 @@ class UserController extends AbstractController
             'user_edit_form' => $form->createView(),
         ]);
     }
+    public function showAbout(): Response
+    {
+
+        return $this->render('about.html.twig');
+    }
 
 
 }

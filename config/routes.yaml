@@ -71,6 +71,9 @@ add_activity_review:
     path: /add_activity_review/{id}
     controller: App\Controller\ActivityController::addActivityReview
     methods: [POST]
+showAbout:
+    path: /showAbout
+    controller: App\Controller\UserController::showAbout
 
 
 
