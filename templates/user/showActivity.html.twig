@@ -374,7 +374,7 @@
 					</td>
 				</tr>
 			</table>
-
+			{% if app.user %}
 			{% for flashMessage in app.flashes('joined') %}
 				{{ flashMessage}}
 			{% endfor %}
@@ -411,6 +411,10 @@
 			{% else %}
 				<p>La actividad está completa</p>
 			{% endif %}
+			{% endif %}
+
+
+			
 
 
 		</div>

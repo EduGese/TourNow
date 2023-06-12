@@ -62,7 +62,7 @@ class ActivityController extends AbstractController
             $activityService->deleteActivity($doctrine, $user, $id, $request);
 
             // Mostrar mensaje de éxito
-            $this->addFlash('success', sprintf('Successfully deleted activity with ID %d.', $id));
+            $this->addFlash('delete', 'Actividad eliminada con éxito, se han mandado email a los usuarios para advertirles ');
         } catch (NotFoundHttpException $exception) {
             // Mostrar mensaje de error
             $this->addFlash('error', $exception->getMessage());
@@ -104,6 +104,7 @@ class ActivityController extends AbstractController
             $this->entityManager->flush();
 
             // Redirigir a alguna página de éxito o realizar otras acciones
+            $this->addFlash('create', '¡Actividad creada con éxito!');
             return $this->redirectToRoute('show_admin_activities');
         }
 

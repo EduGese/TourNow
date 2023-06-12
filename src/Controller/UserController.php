@@ -15,6 +15,9 @@ use Symfony\Component\Security\Core\Security;
 use App\Form\FilterActivityFormType;
 use Doctrine\ORM\Query\Expr;
 use DoctrineExtensions\Query\Mysql\DateDiff;
+use App\Form\EditAdminFormType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Form\EditUserFormType;
 
 
 
@@ -209,4 +212,62 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    public function editAdminDetails(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Security $security): Response
+    {
+        $user = $security->getUser();
+        $form = $this->createForm(EditAdminFormType::class, $user);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+           // Obtener los datos del formulario
+        $userData = $form->getData();
+        
+        // Actualizar los valores del usuario
+        $user->setUserName($userData->getUserName());
+        $user->setUserLastname($userData->getUserLastname());
+        $user->setEmail($userData->getEmail());
+        $user->setTel($userData->getTel());
+        $user->setCompanyName($userData->getCompanyName());
+        $user->setCompanyWebsite($userData->getCompanyWebsite());
+        $user->setDni($userData->getDni());
+
+        // Guardar los cambios en la base de datos
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_dashboard');
+        }
+    
+        return $this->render('editAdminDetails.html.twig', [
+            'admin_edit_form' => $form->createView(),
+        ]);
+    }
+
+    public function editUserDetails(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Security $security): Response
+    {
+        $user = $security->getUser();
+        $form = $this->createForm(EditUserFormType::class, $user);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+           // Obtener los datos del formulario
+        $userData = $form->getData();
+        
+        // Actualizar los valores del usuario
+        $user->setUserName($userData->getUserName());
+        $user->setUserLastname($userData->getUserLastname());
+        $user->setEmail($userData->getEmail());
+        $user->setTel($userData->getTel());
+
+        // Guardar los cambios en la base de datos
+        $entityManager->flush();
+
+        return $this->redirectToRoute('user_dashboard');
+        }
+    
+        return $this->render('editUserDetails.html.twig', [
+            'user_edit_form' => $form->createView(),
+        ]);
+    }
+
+
 }

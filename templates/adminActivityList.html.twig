@@ -34,6 +34,12 @@
 {% endblock %} #}
 
 {% block body %}
+	{% for flashMessage in app.flashes('delete') %}
+		{{ flashMessage}}
+	{% endfor %}
+	{% for flashMessage in app.flashes('create') %}
+		{{ flashMessage}}
+	{% endfor %}
 
 	<div class="act_cr">
 		<h3>Tus actividades creadas</h3>
@@ -103,11 +109,12 @@
 							<td>
 								Disponible
 							</td>
+							<td>
+								<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
+							</td>
 
 						{% endif %}
-						<td>
-							<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
-						</td>
+
 						{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
 							<td>
 								<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}">Editar</a>

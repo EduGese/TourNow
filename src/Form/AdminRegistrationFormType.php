@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -23,29 +25,64 @@ class AdminRegistrationFormType extends AbstractType
     {
         $builder
             ->add('user_name', null, [
-                'label' => 'Nombre de usuario',
+                'label' => 'Nombre de usuario*',
+                'attr' => [
+                    'required' => true,
+                ],
             ])
             ->add('user_lastname', null, [
-                'label' => 'Apellidos',
+                'label' => 'Apellidos*',
+                'attr' => [
+                    'required' => true,
+                ],
             ])
             ->add('tel', null, [
-                'label' => 'Teléfono',
+                'label' => 'Teléfono*',
+                'attr' => [
+                    'required' => true,
+                ],
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^\d+$/',
+                        'message' => 'Ingrese un número de teléfono válido.',
+                    ]),
+                ],
             ])
             ->add('company_name', null, [
-                'label' => 'Nombre de la empresa',
+                'label' => 'Nombre de la empresa*',
+                'attr' => [
+                    'required' => true,
+                ],
             ])
             ->add('company_website', null, [
-                'label' => 'Website de la empresa',
+                'label' => 'Website de la empresa*',
+                'attr' => [
+                    'required' => true,
+                ],
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^.+\.(com|es|net)$/i',
+                        'message' => 'La página web debe terminar en .com, .es o .net',
+                    ]),
+                ],
             ])
             ->add('dni', null, [
-                'label' => 'DNI',
+                'label' => 'DNI*',
+                'attr' => [
+                    'required' => true,
+                ],
             ])
         
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'Email*',
                 'attr' => [
                     'placeholder' => 'ejemplo@mail.com',
                     'required' => true,
+                ],
+                'constraints' => [
+                    new Email([
+                        'message' => 'Ingrese una dirección de correo electrónico válida.',
+                    ]),
                 ],
             ])
            
@@ -66,8 +103,8 @@ class AdminRegistrationFormType extends AbstractType
                 'invalid_message' => 'La contraseña debe coincidir en los dos campos',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Contraseña'],
-                'second_options' => ['label' => 'Repite la contraseña'],
+                'first_options'  => ['label' => 'Contraseña*'],
+                'second_options' => ['label' => 'Repite la contraseña*'],
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
