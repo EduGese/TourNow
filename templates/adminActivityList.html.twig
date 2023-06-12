@@ -73,14 +73,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="activity-actions boton-opciones">
+                <div class="activity-actions boton-opciones my-5">
                     <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
-                    <a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}" class=" boton-detalles btn btn-primary">Editar</a>
-					{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+					{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
+                   		<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}" class=" boton-detalles btn btn-primary">Editar</a>
                    		<a href="{{ path('delete_activity', { 'id': activity.getIdActivity() }) }}" class=" boton-detalles btn btn-primary">Eliminar</a>
 					{% endif %}
-                </div>
-            </div>
+				</div>
 		{% endfor %}
 	</div>
 
