@@ -20,7 +20,7 @@ class Activity
     // #[ORM\Column]
     // private ?int $id_activity = null;
 
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $activity_name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
