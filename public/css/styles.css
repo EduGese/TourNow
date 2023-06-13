@@ -252,7 +252,7 @@ form select {
   margin-right: 10px;
 }
 
-form button[type="submit"] {
+ .form form button[type="submit"] {
   background-color: #53a93f;
   color: #fff;
   border: none;
@@ -453,7 +453,8 @@ margin-top: -1em;
   font-weight: 400;
   }
 /* Editar Perfil */
-.s-profile {
+
+.s-profile,.e-form form {
   margin-bottom: 3em;
   width: 100%;
   margin-top: 3em;
@@ -463,31 +464,22 @@ margin-top: -1em;
   padding-top: 2em;
 }
 
-.profile,.edits {
+.profile, .e-form div {
   display: flex;
   justify-content: center;
   padding: 3em;
   text-align: left;
 }
 
-.p-img {
-  width: 5%;
-  display: flex;
-  align-items: flex-end;
-}
-.p-img img{
- color: blue;
-}
-
-.p-data h3,label {
+.p-data h3, .e-form label {
   font-weight: bold;
 }
 
-.p-data p,input {
+.p-data p, .e-form input {
   color: rgb(94, 90, 90);
 }
 
-.p-btn button {
+.p-btn button , .e-form button {
   border: 2px solid #834916;
   border-radius: 0.6em;
   padding: 0.5em;
@@ -495,16 +487,16 @@ margin-top: -1em;
   padding-right: 1.4em;
   margin-top: 0.5em;
 }
-.p-btn button a{
+.p-btn button a, .e-form button{
   color:#834916;
 }
-.p-btn button:hover {
+.p-btn button:hover, .e-form button:hover {
   border: 2px solid #834916;
   color: #834916;
   background-color: #343a4044;
 }
 
-.p-title {
+.p-title ,.e-form h2 {
   font-weight: bolder;
   display: block;
   font-size: 2.6em;
@@ -523,3 +515,37 @@ margin-top: -1em;
   padding-left: 0.5em;
   margin-right: 0.5em;
 }
+/* Formulario de editar perfil */
+
+.e-form{
+  text-align: left;
+  padding: 1em;
+}
+.e-form div{
+  display: block;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  margin-left: 1em;
+}
+.e-form input{
+padding: 0.3em;
+background-color: rgba(240, 248, 255, 0);
+border-bottom: 1px solid black;
+border-radius: 0;
+width: 60%;
+margin-top: 0.3em;
+}
+.e-form input:hover{
+  border-radius: 0.3em;
+  border: 1px solid #53a93f;
+}
+.e-form input:focus{
+box-shadow: 0px 0px 0px;
+border-radius: 0;
+}
+.e-form button{
+  border: 2px solid #834916;
+  background-color: #E5E5EC;
+}
+

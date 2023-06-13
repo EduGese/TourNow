@@ -56,39 +56,14 @@
 			<p>{{ app.user.email }}</p>
 			<div class="p-btn">
 				<button class="p-button">
-					<a href="{{ path('edit_admin_details') }}">Editar Perfil</a>
+					<a href="{{ path('edit_user_details') }}">Editar Perfil</a>
 				</button>
 			</div>
 		</div>
 	</div>
 </section>
 
-<div class="act_cr">
-	<h2>Menu usuarios</h2>
-	<h3>Tus datos personales</h3>
-	<table class="table-general">
-		<tr>
-			<th>Nombre</th>
-			<th>Apellido/s</th>
-			<th>Email</th>
-			<th>Telefono</th>
 
-		</tr>
-		<tr>
-			<td>{{ app.user.username }}</td>
-			<td>{{ app.user.getUserLastname }}</td>
-			<td>{{ app.user.email }}</td>
-			<td>{{ app.user.tel }}</td>
-			<td>
-				<a href="{{ path('edit_user_details') }}">Edita tus datos</a>
-			</td>
-
-		</tr>
-	</table>
-	<a href="{{ path('user_activities') }}">Tus actividades</a><br><br>
-	<a href="{{ path('all_activities') }}">Todas las actividades</a><br><br>
-	<a href="{{ path('filter_activities') }}">Buscar actividades</a><br><br>
-</div>
 {# {% block javascripts %}
             <script src="{{ asset('/scripts/table_filter.js') }}"></script>
             {% endblock %} #}{% endblock %}
