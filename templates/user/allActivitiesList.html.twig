@@ -22,7 +22,7 @@
 		<a href="{{ path('filter_activities') }}" class=" boton-detalles btn btn-primary">Filtrar actividades</a>
 	</div>
 	<br>
-	<section class="container-activities px-0 row col-11 d-flex justify-content-center">
+	<section class="container-activities px-0 py-4 my-4 row col-11 d-flex justify-content-center">
 		{% set localDatetime = date('now', 'Europe/Madrid') %}
 		{% for activity in allActivities %}
 			<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
