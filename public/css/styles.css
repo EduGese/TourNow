@@ -78,9 +78,9 @@ margin-top: 0.1em;
 }
 
 .botonl{
-    display: block;
+    
     margin-top: 1.5em;
-    margin-left: 9.9em
+   padding: 0.5em;
     
 }
 .pregunta{
