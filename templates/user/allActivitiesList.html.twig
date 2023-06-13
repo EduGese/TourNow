@@ -22,7 +22,7 @@
 		<a href="{{ path('filter_activities') }}" class=" boton-detalles btn btn-primary">Filtrar actividades</a>
 	</div>
 	<br>
-	<section class="container-activities row col-12 d-flex justify-content-center">
+	<section class="container-activities px-0 py-4 my-4 row col-11 d-flex justify-content-center">
 		{% set localDatetime = date('now', 'Europe/Madrid') %}
 		{% for activity in allActivities %}
 			<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
@@ -42,11 +42,8 @@
 						-
 						{{ activity.getDate()|date('Y/m/d H:i') }}h</p>
 				</div>
-				<div class="card-footer mx-0 d-flex align-items-center">
+				<div class="card-footer mx-0 d-flex flex-wrap align-items-center">
 					<div class="row col-12 mx-0 ">
-						<div class="col mx-0 d-flex justify-content-center align-items-center">
-							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
-						</div>
 						<div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
 							<p class="text-right precio">{{activity.getPrice()}}€</p>
 						</div>
@@ -58,6 +55,11 @@
 							{% else %}
 								<p class="text-right estadoActividad disponible">Disponible</p>
 							{% endif %}
+						</div>
+						<div class="row col-12 mx-0 ">
+						<div class="col mx-0 d-flex justify-content-center align-items-center">
+							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver</a>
+						</div>
 						</div>
 					</div>
 				</div>
