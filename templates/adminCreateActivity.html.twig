@@ -23,13 +23,14 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 
 	<div class=" row">
 
+	
+	<div class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 	{% for flashMessage in app.flashes('fecha_erronea') %}
-		{{ flashMessage}}
+		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
 	{% endfor %}
 	{% for flashMessage in app.flashes('nombre_duplicado') %}
-		{{ flashMessage}}
+		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
 	{% endfor %}
-	<div class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 		{{ form_start(form) }}
 		<h1> Crea una Nueva Actividad</h1>
 		{{ form_row(form.activity_name) }}
