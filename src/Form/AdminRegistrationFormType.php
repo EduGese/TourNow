@@ -90,14 +90,14 @@ class AdminRegistrationFormType extends AbstractType
             //     'data' => 'ROLE_ADMIN',
             //     'attr' => ['class' => 'roles'],
             // ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
+            // ->add('agreeTerms', HiddenType::class, [
+            //     'mapped' => false,
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'You should agree to our terms.',
+            //         ]),
+            //     ],
+            // ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'La contraseña debe coincidir en los dos campos',
