@@ -301,6 +301,20 @@ form select {
 } */
 
 /*ALLACTIVITIES*/
+ .container-activities{
+    background-color: rgba(245, 222, 179, 0.597);
+    border: 3px solid #834916;
+    color: black;
+    z-index: 0;
+    border-radius: 0.2em;
+    box-shadow: 3px 3px 5px #3A3A40;
+    margin: auto;
+} 
+.container-activities .card {
+  border-radius: 0.4em;
+  -webkit-box-shadow: 0px 3px 15px 5px rgba(0,0,0,0.74); 
+  box-shadow: 0px 3px 15px 5px rgba(52, 58, 64,0.2);
+}
 .img-activity{
   width: 100%;
   overflow: hidden;
@@ -343,7 +357,7 @@ form select {
 #mensaje {
   color: red;
 }
-.card-footer .col .estadoActividad.disponible {
+.card-footer .disponible {
   color: #7AB800;
 }
 
