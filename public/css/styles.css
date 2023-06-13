@@ -207,6 +207,9 @@ img {
   padding: 20px;
   margin-bottom: 20px;
 }
+.activity-img {
+  margin: auto;
+}
 
 .activity-cover {
   width: 300px;

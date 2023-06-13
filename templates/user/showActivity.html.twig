@@ -135,7 +135,7 @@
 	{% endfor %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
 
-	<div class="container col-10 my-5">
+	<div class="container-activities container col-10 my-5 px-4 d-flex justify-content-center">
 		<header class="main-info">
 		<br>
 			<div class="row col-12 d-flex justify-content-center">
@@ -145,7 +145,7 @@
 				<h1 class="activity-details activity-nombre col-md-6 col-12 d-flex justify-content-center">{{activity.activityName}}</h1>
 				<h2 class="activity-details  activity-price col-md-6 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
 			</div>
-			<div class="row col-12">
+			<div class="row  col-12 ">
 				<p class="activity-details activity-opiniones col-md-6 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
 				{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
 					<p class="activity-details estadoActividad  finalizada col-md-6 col-12 d-flex justify-content-center">Finalizada</p>
@@ -190,7 +190,7 @@
 				</ul>
 		</nav>
 		</div>
-	<div class="container col-10 my-5">
+	<div class="container-activities container col-10 my-5">
 		<section>
 		<div class="titulo-apartados text-left" id="descripcion">
 			<h4>Descripción</h4>
