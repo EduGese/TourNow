@@ -41,7 +41,7 @@ class RegistrationFormType extends AbstractType
             //     'data' => 'ROLE_ADMIN',
             //     'attr' => ['class' => 'roles'],
             // ])
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('agreeTerms', HiddenType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
