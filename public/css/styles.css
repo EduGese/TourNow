@@ -125,8 +125,8 @@ margin-top: 0.1em;
   font-size:large;
 }
 .navbar-logo  .logo{
-  max-width: 1.7em ;
-  /* min-width: 1.7em; */
+  max-width: 2.1em ;
+   min-width: 1.7em; 
 }
 .navbar{
   background-color: #343A40;
@@ -283,7 +283,7 @@ form select {
   color: #e5edd9;
     bottom: 0;
     width: 100%;
-    margin-top: 5em;
+    margin-top: 3em;
     margin-bottom: 0;
     font-size: smaller;
 }
