@@ -36,7 +36,8 @@
 {% block body %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
 	<h1 class="my-4">Tus actividades creadas</h1>
-	<div class="container-comentarios col-10 my-5">
+	<div class="container-activities py-5 col-10 my-5">
+    <br>
 		{% for activity in app.user.getActivities() %}
                 <div class="comentario col-10 d-flex flex-wrap">
                     <div class="comentario-image col-md-4 col-12">
