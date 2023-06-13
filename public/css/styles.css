@@ -263,9 +263,9 @@ form button[type="submit"] {
 
 /* BODY - ADMINCREATEACTIVITY */
 .mapa{
-  display: inline-block;
+ 
   margin: auto;
-  width: 50%;
+  width: 100%;
 }
 #mapa{
   float:right;
@@ -453,3 +453,42 @@ margin-top: -1em;
   font-weight: 400;
   }
 
+/* Crear actividad */
+.a-form {
+  background-color: rgb(219, 183, 136);
+  margin-top: 2em;
+  border-radius: 0.5em;
+  box-shadow:4px 4px 6px  #333;
+  margin-bottom: 3em;
+}
+.a-form form div,textarea{
+  display: block;
+  text-align: left;
+  margin-left: 2em;
+}
+.a-form form input{
+  width: 75%;
+  background-color: #ffffff14;
+  border-bottom: 2px solid #343A40;
+}
+.a-form form input {
+background-color: black;
+}
+.a-form label{
+  white-space: pre;
+  margin-top: 1em;
+}
+.a-form form textarea{
+  width: 70%;
+  margin-left: 0em;
+}
+.a-form  form h1{
+  color: #343A40;
+  font-weight: bold;
+}
+#map{
+  box-shadow: 4px 4px 6px #333;
+}
+.a-btn{
+  padding: 1em;
+}
