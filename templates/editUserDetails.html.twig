@@ -2,31 +2,31 @@
 
 {% block body %}
 
-<div class=" e-form col-9 mr-auto ml-auto ">
+<div tabindex="0" class=" e-form col-9 mr-auto ml-auto ">
   
     {{ form_start(user_edit_form) }}
-     <h2>Edita tus datos</h2>
-    <div>
+     <h2 tabindex="0">Edita tus datos</h2>
+    <div tabindex="0">
         {{ form_label(user_edit_form.user_name, 'Nombre de usuario') }}
         {{ form_widget(user_edit_form.user_name) }}
     </div>
     
-    <div>
+    <div tabindex="0">
         {{ form_label(user_edit_form.user_lastname, 'Apellidos') }}
         {{ form_widget(user_edit_form.user_lastname) }}
     </div>
     
-    <div>
+    <div tabindex="0">
         {{ form_label(user_edit_form.tel, 'Teléfono') }}
         {{ form_widget(user_edit_form.tel) }}
     </div>
     
-    <div>
+    <div tabindex="0">
         {{ form_label(user_edit_form.email, 'Email') }}
         {{ form_widget(user_edit_form.email) }}
     </div>
     <div class="p-btn">		
-    <button type="submit">Guardar cambios</button>
+    <button tabindex="0" type="submit">Guardar cambios</button>
     {{ form_end(user_edit_form) }}
 </div>
 </div>

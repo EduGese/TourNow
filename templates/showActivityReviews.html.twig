@@ -2,18 +2,18 @@
 {% block body %}
 <div class="comentarios col-12">
         {% if scores is empty %}
-                <p colspan="3">No existen comentarios o puntuación para esta actividad </p>
+                <p tabindex="0" colspan="3">No existen comentarios o puntuación para esta actividad </p>
         {% else %}
             {% for i in 0..(scores|length - 1) %}
                 {% if scores[i] == true or reviews[i] == true %}
-                        <div class="comentario col-21" colspan="3">
+                        <div tabindex="0" class="comentario col-21" colspan="3">
                             <div class="d-flex">
-                                <div class="col-5 col-md-5 text-capitalize"><strong>{{ username[i] }} {{ userlastname[i] }}</strong></div>
+                                <div tabindex="0" class="col-5 col-md-5 text-capitalize"><strong>{{ username[i] }} {{ userlastname[i] }}</strong></div>
                                 <div class="col-1"> | </div>
-                                <div class="col-5 col-md-5" >Puntuación: {{ scores[i] }}</div>
+                                <div tabindex="0" class="col-5 col-md-5" >Puntuación: {{ scores[i] }}</div>
                             </div>
                             <hr>
-                            <div class="col-12"> {{ reviews[i] }} </div>
+                            <div tabindex="0" class="col-12"> {{ reviews[i] }} </div>
                         </div>
                 {% endif %}
             {% endfor %}
