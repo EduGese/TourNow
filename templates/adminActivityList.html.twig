@@ -1,23 +1,6 @@
 {% extends 'base.html.twig' %}
-{# {% block stylesheets %}
+ {% block stylesheets %}
 	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-
-		}
-		th,
-		td {
-			border: 1px solid black;
-			/* padding: 10px; */
-
-		}
-		td {
-			text-align: center;
-		}
-		th {
-			background-color: gray;
-		}
 		div {
 
 			margin: auto;
@@ -26,110 +9,78 @@
 			width: 100%;
 			margin: auto;
 		}
-		.act_cr {
-			margin: auto;
-			width: 60%;
+		.container-comentarios{
+			background-color: rgba(52, 58, 64, 0.05);
+			padding: 2em 5em 4em 5em;
 		}
+				.comentario{
+			margin-bottom: 2em;
+			background-color: white;
+			padding: 2em 1em 3em 1em;
+			border-radius: 0.4em;
+			-webkit-box-shadow: 0px 3px 15px 5px rgba(0,0,0,0.74); 
+			box-shadow: 0px 3px 15px 5px rgba(52, 58, 64,0.2);
+		} 
+		.boton-opciones .boton-detalles{
+  background-color: #7AB800;
+  border: none;
+  font-weight: bolder;
+}
+.boton-opciones .boton-detalles:hover{
+  background-color: #343A40;
+}
 	</style>
-{% endblock %} #}
+	 {{parent()}}
+{% endblock %} 
 
 {% block body %}
-	{% for flashMessage in app.flashes('delete') %}
-		{{ flashMessage}}
-	{% endfor %}
-	{% for flashMessage in app.flashes('create') %}
-		{{ flashMessage}}
-	{% endfor %}
-
-	<div class="act_cr">
-		<h3>Tus actividades creadas</h3>
-		<table class="table-general">
-			<tr>
-				<th>
-					<button onclick="sortTable(0)">Nombre de la actividad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(1)">Fecha y hora</button>
-				</th>
-				<th>
-					<button onclick="sortTable(2)">Descripción</button>
-				</th>
-				<th>
-					<button onclick="sortTable(3)">Tickets disponibles</button>
-				</th>
-				<th>
-					<button onclick="sortTable(4)">Localización inicio</button>
-				</th>
-				<th>
-					<button onclick="sortTable(5)">Localización fin</button>
-				</th>
-				<th>
-					<button onclick="sortTable(6)">Precio/persona</button>
-				</th>
-				<th>
-					<button onclick="sortTable(7)">Img</button>
-				</th>
-				<th>
-					<button onclick="sortTable(8)">Ciudad</button>
-				</th>
-				<th>
-					<button onclick="sortTable(11)">Estado</button>
-				</th>
-				<!-- Otros campos de actividad -->
-			</tr>
-			<tbody class="miTabla">
-				{% set localDatetime = date('now', 'Europe/Madrid') %}
-				{% for activity in app.user.getActivities() %}
-					<tr>
-						<td>{{ activity.getActivityName() }}</td>
-						<td>{{ activity.getDate()|date('Y-m-d H:i:s') }}</td>
-						<td>{{ activity.getDescription() }}</td>
-						<td>{{ activity.getTickets() }}</td>
-						<td>{{ activity.getStartUbication() }}</td>
-						<td>{{ activity.getEndUbication() }}</td>
-						<td>{{ activity.getPrice() }}</td>
-						<td>
-							{% if activity.getImage() is not null %}
-								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
-							{% endif %}
-						</td>
-						<td>{{ activity.getCity() }}</td>
-
-						{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-
-							<td>
-								Finalizada
-							</td>
-
-						{% elseif activity.getTickets()==0 %}
-							<td>
-								Llena
-							</td>
-						{% else %}
-							<td>
-								Disponible
-							</td>
-							<td>
-								<a href="{{ path('delete_activity',{'id':activity.getIdActivity()}) }}">Eliminar</a>
-							</td>
-
-						{% endif %}
-
-						{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
-							<td>
-								<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}">Editar</a>
-							</td>
-						{% endif %}
-						<td>
-							<a href="{{ path('show_activity', { 'id': activity.idActivity }) }}">ver</a>
-
-						</td>
-
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<a href="{{path('create_activity')}}">Crear nueva actividad</a>
+	{% set localDatetime = date('now', 'Europe/Madrid') %}
+	<h1 class="my-4">Tus actividades creadas</h1>
+	<div class="container-comentarios col-10 my-5">
+		{% for activity in app.user.getActivities() %}
+                <div class="comentario col-10 d-flex flex-wrap">
+                    <div class="comentario-image col-md-4 col-12">
+                        {% if activity.getImage() is not null %}
+                            <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
+							{% else %}
+						<img src="{{ asset('assets/TOURNOW.svg') }}" alt="Mi imagen" >
+                       {% endif %}
+                    </div>
+                    <div class="comentario-info col-md-6 col-12">
+                        <div class="comentario-row text-left text-md">
+                            <div><strong>{{ activity.getActivityName() }}</strong></div>
+                        </div>
+						<div class="comentario-row  text-left text-md-left">
+                            <div>{{ activity.getCity() }}</div>
+                        </div>
+                        <div class="comentario-row  text-left text-md-left">
+                            <div>{{ activity.getDate()|date('Y-m-d H:i:s') }}</div>
+                        </div>
+                        <div class="comentario-row  text-left text-md-left">
+                            <div>Tickets disponibles: {{ activity.getTickets() }}</div>
+                        </div>
+                        <div class="comentario-row text-left text-md-left ">
+                            <div>Precio: {{ activity.getPrice() }}€</div>
+                        </div>
+                        <div class="comentario-status text-left text-md-left">
+                            {% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+                                <strong>Estado: Finalizada</strong>
+                            {% elseif activity.getTickets() == 0 %}
+                                <strong>Estado: Llena</strong>
+                            {% else %}
+                                <strong>Estado: Disponible</strong>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-actions boton-opciones my-5">
+                    <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
+					{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
+                   		<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}" class=" boton-detalles btn btn-primary">Editar</a>
+                   		<a href="{{ path('delete_activity', { 'id': activity.getIdActivity() }) }}" class=" boton-detalles btn btn-primary">Eliminar</a>
+					{% endif %}
+				</div>
+		{% endfor %}
 	</div>
 
 {% endblock %}
