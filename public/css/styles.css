@@ -162,6 +162,9 @@ color: #C5EB87;
   visibility: visible;
   color: #E5E5EC;
 }
+.dropdown-header{
+  color:#7AB800;
+}
 
 
 /* BODY - ALLACTIVITIESLIST y USERACTIVITYLIST Y userDashboard Y ADMINDASHBOARD */

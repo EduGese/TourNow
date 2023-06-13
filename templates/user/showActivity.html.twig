@@ -139,27 +139,27 @@
 		<header class="main-info">
 		<br>
 			<div class="row col-12 d-flex justify-content-center">
-				<p class="activity-details activity-ciudad col-12  d-md-flex justify-content-md-start text-md-left">{{ activity.city }}</p>
+				<p tabindex="0"	 class="activity-details activity-ciudad col-12  d-md-flex justify-content-md-start text-md-left">{{ activity.city }}</p>
 			</div>
 			<div class="row col-12">
-				<h1 class="activity-details activity-nombre col-md-8 col-12 d-flex justify-content-center">{{activity.activityName}}</h1>
-				<h2 class="activity-details  activity-price col-md-4 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
+				<h1 tabindex="0" class="activity-details activity-nombre col-md-8 col-12 d-flex justify-content-center">{{activity.activityName}}</h1>
+				<h2 tabindex="0" class="activity-details  activity-price col-md-4 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
 			</div>
 			<div class="row  col-12 ">
-				<p class="activity-details activity-opiniones col-md-8 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
+				<p tabindex="0" class="activity-details activity-opiniones col-md-8 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
 				{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-					<p class="activity-details estadoActividad  finalizada col-md-4 col-12 d-flex justify-content-center">Finalizada</p>
+					<p tabindex="0" class="activity-details estadoActividad  finalizada col-md-4 col-12 d-flex justify-content-center">Finalizada</p>
 					{% elseif activity.getTickets()==0 %}
-						<p class="activity-details estadoActividad llena col-md-4 col-12 d-flex justify-content-center">Actividad llena</p>
+						<p tabindex="0" class="activity-details estadoActividad llena col-md-4 col-12 d-flex justify-content-center">Actividad llena</p>
 							{% else %}
-								<p class="activity-details estadoActividad disponible col-md-4 col-12 d-flex justify-content-center">Disponible</p>
+								<p tabindex="0" class="activity-details estadoActividad disponible col-md-4 col-12 d-flex justify-content-center">Disponible</p>
 				{% endif %}
 			</div>
 			<div class="row activity-img col-12">
 				{% if activity.getImage() is not null %}
-					<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
+					<img tabindex="0" src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
 					{% else %}
-						<img src="{{ asset('assets/TOURNOW.svg') }}" alt="Mi imagen" >
+						<img tabindex="0" src="{{ asset('assets/TOURNOW.svg') }}" alt="Imagen logo" >
 					</div>
 				{% endif %}
 			</div>
@@ -170,22 +170,22 @@
 		<nav class="nav-secundaria d-flex justify-content-center">
 				<ul class="navbar-nav  d-flex flex-md-row justify-content-center">
 				<li class="nav-item">
-					<a class="nav-link" href="#descripcion">Descripción</a>
+					<a tabindex="0" class="nav-link" href="#descripcion">Descripción</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#disponibilidad">Disponibilidad</a>
+					<a tabindex="0" class="nav-link" href="#disponibilidad">Disponibilidad</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#detalles">Detalles</a>
+					<a tabindex="0" class="nav-link" href="#detalles">Detalles</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#informacion">Información general</a>
+					<a tabindex="0" class="nav-link" href="#informacion">Información general</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#opiniones">Opiniones</a>
+					<a tabindex="0" class="nav-link" href="#opiniones">Opiniones</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#reserva">Reserva</a>
+					<a tabindex="0" class="nav-link" href="#reserva">Reserva</a>
 				</li>
 				</ul>
 		</nav>
@@ -193,72 +193,72 @@
 	<div class="container-activities container col-10 my-5">
 		<section>
 		<div class="titulo-apartados text-left" id="descripcion">
-			<h4>Descripción</h4>
-			<p>{{ activity.description }}</p>
+			<h4 tabindex="0">Descripción</h4>
+			<p tabindex="0">{{ activity.description }}</p>
 		</div>
 		<hr>
 		<div class="titulo-apartados text-left" id="disponibilidad">
-		<h4>Disponibilidad</h4>
+		<h4 tabindex="0">Disponibilidad</h4>
 			<div class="row disponibilidad-tickets">
-			<p class="col-12 col-md-6"><strong>Tickets disponibles:</strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.tickets }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Tickets disponibles:</strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.tickets }}</p>
 			</div>
 		<p></p>
 		</div>
 		<hr>
 		<div class="titulo-apartados text-left" id="detalles">
-		<h4>Detalles</h4>
+		<h4 tabindex="0">Detalles</h4>
 		<div class="detalles-activity">
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Fecha: </strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.date|date('Y-m-d') }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Fecha: </strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.date|date('Y-m-d') }}</p>
 			</div>
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Hora: </strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.date|date('H:i') }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Hora: </strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.date|date('H:i') }}</p>
 			</div>
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Punto de encuentro: </strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.startUbication }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Punto de encuentro: </strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.startUbication }}</p>
 			</div>
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Punto de finalización: </strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.endUbication }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Punto de finalización: </strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.endUbication }}</p>
 			</div>
 			<br>
 			<div class="d-none">
-				<p id="co_start">{{ activity.getStartCoord() }}</p>
-				<p id="co_end">{{ activity.getEndCoord() }}</p>
+				<p tabindex="0" id="co_start">{{ activity.getStartCoord() }}</p>
+				<p tabindex="0" id="co_end">{{ activity.getEndCoord() }}</p>
 			</div>
-			<div class="row mapa" id="map" style="height: 500px; width: 80%"></div>
+			<div tabindex="0" class="row mapa" id="map" style="height: 500px; width: 80%"></div>
 			<br>
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Compañía organizadora: </strong></p>
-			<p class="col-12 col-md-6 text-md-right">{{ activity.companyName }}</p>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Compañía organizadora: </strong></p>
+			<p tabindex="0" class="col-12 col-md-6 text-md-right">{{ activity.companyName }}</p>
 			</div>
 			<div class="row">
-			<p class="col-12 col-md-6"><strong>Página web:</strong></p>
-			<a href="{{activity.companyWebsite}}" class="col-12 col-md-6 text-md-right company-link">{{ activity.companyWebsite }}</a>
+			<p tabindex="0" class="col-12 col-md-6"><strong>Página web:</strong></p>
+			<a tabindex="0" href="{{activity.companyWebsite}}" class="col-12 col-md-6 text-md-right company-link">{{ activity.companyWebsite }}</a>
 			</div>
 		</div>
 		</div>
 		<hr>
 		<div class="titulo-apartados text-left" id="informacion">
-		<h4>Información general</h4>
+		<h4 tabindex="0">Información general</h4>
 		<ul>
-			<li class="letra-pequeña">Pago directo a la empresa organizadora el día de la actividad</li>
-			<li class="letra-pequeña">Cancelación disponible hasta 24 horas antes de la fecha contactando directamente con la empresa organizadora</li>
-			<li class="letra-pequeña">La empresa organizadora se reserva el derecho a cambiar los detalles de la actividad hasta 24 horas antes</p></li>
+			<li tabindex="0" class="letra-pequeña">Pago directo a la empresa organizadora el día de la actividad</li>
+			<li tabindex="0" class="letra-pequeña">Cancelación disponible hasta 24 horas antes de la fecha contactando directamente con la empresa organizadora</li>
+			<li tabindex="0" class="letra-pequeña">La empresa organizadora se reserva el derecho a cambiar los detalles de la actividad hasta 24 horas antes</p></li>
 		</ul>
 		</div>
 		<hr>
 		<div class="titulo-apartados text-left" id="opiniones">
-		<h4>Opiniones</h4>
+		<h4 tabindex="0">Opiniones</h4>
 		{{ render(controller('App\\Controller\\ActivityController::showActivityReviews', { 'id': activity.idActivity })) }} 
 		</div>
 		<hr>
 		<div class="titulo-apartados text-left" id="reserva">
-		<h4>Reserva</h4>
+		<h4 tabindex="0">Reserva</h4>
 		{% if app.user %}
 			{% for flashMessage in app.flashes('joined') %}
 				{{ flashMessage}}
@@ -271,30 +271,30 @@
 					{% endif %}
 				{% endfor %}
 				{% if userJoinedActivity %}
-					<p>Ya estás unido a esta actividad</p>
+					<p tabindex="0">Ya estás unido a esta actividad</p>
 					{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
 						<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
 					{% endif %} #}
 				{% else %}
 					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
 						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
-							<label for="tickets">Número de tickets:</label>
+							<label tabindex="0" for="tickets">Número de tickets:</label>
 							<select id="tickets" name="tickets">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+								<option tabindex="0" value="1">1</option>
+								<option tabindex="0" value="2">2</option>
+								<option tabindex="0" value="3">3</option>
 							</select>
-							<button type="submit">Comprar tickets</button>
+							<button tabindex="0" type="submit">Comprar tickets</button>
 						</form>
 					{% else %}
-						<p>La actividad ha pasado</p>
+						<p tabindex="0">La actividad ha pasado</p>
 						{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
 							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
 						{% endif %} #}
 					{% endif %}
 				{% endif %}
 			{% else %}
-				<p>La actividad está completa</p>
+				<p tabindex="0">La actividad está completa</p>
 			{% endif %}
 			{% endif %}
 

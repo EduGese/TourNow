@@ -8,20 +8,21 @@
     {# {{scores}} #}
 
 	<form action="{{ path('add_activity_review', { 'id': activity.idActivity, 'scores': activity.scores, 'average_score': activity.averageScore }) }}" method="post">
-		<label for="review">Escribe tu reseña aquí:</label>
-		<textarea name="review" id="review"></textarea>
+		<label tabindex="0" for="review">Escribe tu reseña aquí:</label>
+		<textarea tabindex="0" name="review" id="review"></textarea>
 
-		<label for="score">Puntuación:</label>
-		<select id="score" name="score">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+		<label tabindex="0" for="score">Puntuación:</label>
+		<select tabindex="0" id="score" name="score">
+			<option tabindex="0" value="1">1</option>
+			<option tabindex="0" value="2">2</option>
+			<option tabindex="0" value="3">3</option>
+            <option tabindex="0" value="4">4</option>
+            <option tabindex="0" value="5">5</option>
 		</select>
 
 
-		<button type="submit">Enviar</button>
+		<button tabindex="0" type="submit">Enviar</button>
+		<div class="espacio"></div>
 	</form>
 
 {% endblock %}

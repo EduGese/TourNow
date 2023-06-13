@@ -35,7 +35,7 @@
 
 {% block body %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
-	<h1 class="my-4">Tus actividades creadas</h1>
+	<h1 tabindex="0" class="my-4">Tus actividades creadas</h1>
 	<div class="container-activities py-5 col-10 my-5">
     <br>
     {# {% for activity in app.user.getActivities() %} #}
@@ -44,43 +44,43 @@
                 <div class="comentario col-10 d-flex flex-wrap">
                     <div class="comentario-image col-md-4 col-12">
                         {% if activity.getImage() is not null %}
-                            <img src="{{ asset(activity.getImage()) }}" alt="Mi imagen">
+                            <img tabindex="0" src="{{ asset(activity.getImage()) }}" alt="Imagen de actvidad">
 							{% else %}
-						<img src="{{ asset('assets/TOURNOW.svg') }}" alt="Mi imagen" >
+						<img tabindex="0" src="{{ asset('assets/TOURNOW.svg') }}" alt="Imagen por defecto de logo" >
                        {% endif %}
                     </div>
                     <div class="comentario-info col-md-6 col-12">
                         <div class="comentario-row text-left text-md">
-                            <div><strong>{{ activity.getActivityName() }}</strong></div>
+                            <div tabindex="0"><strong>{{ activity.getActivityName() }}</strong></div>
                         </div>
 						<div class="comentario-row  text-left text-md-left">
-                            <div>{{ activity.getCity() }}</div>
+                            <div tabindex="0">{{ activity.getCity() }}</div>
                         </div>
                         <div class="comentario-row  text-left text-md-left">
-                            <div>{{ activity.getDate()|date('Y-m-d H:i:s') }}</div>
+                            <div tabindex="0">{{ activity.getDate()|date('Y-m-d H:i:s') }}</div>
                         </div>
                         <div class="comentario-row  text-left text-md-left">
-                            <div>Tickets disponibles: {{ activity.getTickets() }}</div>
+                            <div tabindex="0">Tickets disponibles: {{ activity.getTickets() }}</div>
                         </div>
                         <div class="comentario-row text-left text-md-left ">
-                            <div>Precio: {{ activity.getPrice() }}€</div>
+                            <div tabindex="0">Precio: {{ activity.getPrice() }}€</div>
                         </div>
                         <div class="comentario-status text-left text-md-left">
                             {% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-                                <strong>Estado: Finalizada</strong>
+                                <strong tabindex="0">Estado: Finalizada</strong>
                             {% elseif activity.getTickets() == 0 %}
-                                <strong>Estado: Llena</strong>
+                                <strong tabindex="0">Estado: Llena</strong>
                             {% else %}
-                                <strong>Estado: Disponible</strong>
+                                <strong tabindex="0">Estado: Disponible</strong>
                             {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="activity-actions boton-opciones my-5">
-                    <a href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
+                    <a tabindex="0" href="{{ path('show_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver actividad</a>
 					{% if activity.getDate()|date('Y-m-d H:i:s')  > localDatetime|date('Y-m-d H:i:s') %}
-                   		<a href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}" class=" boton-detalles btn btn-primary">Editar</a>
-                   		<a href="{{ path('delete_activity', { 'id': activity.getIdActivity() }) }}" class=" boton-detalles btn btn-primary">Eliminar</a>
+                   		<a tabindex="0" href="{{ path('edit_activity',{'id':activity.getIdActivity()}) }}" class=" boton-detalles btn btn-primary">Editar</a>
+                   		<a tabindex="0" href="{{ path('delete_activity', { 'id': activity.getIdActivity() }) }}" class=" boton-detalles btn btn-primary">Eliminar</a>
 					{% endif %}
 				</div>
 		{% endfor %}
