@@ -347,7 +347,7 @@ form select {
   z-index: 1;
   text-align: center;
   color:#E5E5EC;
-  background-color: rgba(52, 58, 64, 0.8);  width: 100%;
+  background-color: #b36e32cc;  width: 100%;
   padding: 1em;
 }
 .card-footer .precio{
