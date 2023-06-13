@@ -36,36 +36,39 @@
 
 
 {% block body %}
-<div class="act_cr">
-	<h2>Menu administradores</h2>
-	<h3>Tus datos de administrador</h3>
-	<table class="table-general">
-		<tr>
-			<th>Nombre</th>
-			<th>Apellido/s</th>
-			<th>Email</th>
-			<th>Telefono</th>
-			<th>Nombre de compañía/organizacion</th>
-			<th>Website</th>
-			<th>DNI</th>
-		</tr>
-		<tr>
-			<td>{{ app.user.username }}</td>
-			<td>{{ app.user.getUserLastname }}</td>
-			<td>{{ app.user.email }}</td>
-			<td>{{ app.user.tel }}</td>
-			<td>{{ app.user.companyname }}</td>
-			<td>{{ app.user.companywebsite }}</td>
-			<td>{{ app.user.dni }}</td>
-			<td><a href="{{ path('edit_admin_details') }}">Edita tus datos</a></td>
-		</tr>
-	</table>
-	<a href="{{path('show_admin_activities')}}">Ver tus actividades creadas</a><br>
-	<a href="{{path('create_activity')}}">Crear nueva actividad</a><br><br>
-	<a href="{{ path('all_activities') }}">Todas las actividades</a><br><br>
-	<a href="{{ path('filter_activities') }}">Buscar actividades</a><br><br>
 
-</div>
+<section class="s-profile col-9 mr-auto ml-auto ">
+	<div class="p">
+		<h2 class="p-title">
+			<div class="punto"></div>Tus datos personales</h2>
+	</div>
+
+	<div class="profile ">
+		<div class="p-data col-lg-12">
+			<h3>Name</h3>
+			<p>{{ app.user.username }}</p>
+			<h3>Apellidos</h3>
+			<p>{{ app.user.getUserLastname }}</p>
+			<h3>Telefono</h3>
+			<p>{{ app.user.tel }}</p>
+			<h3>Email</h3>
+			<p>{{ app.user.email }}</p>
+			<h3>Nombre de Empresa</h3>
+			<p>{{ app.user.companyname }}</p>
+			<h3>Página Web</h3>
+			<p>{{ app.user.companywebsite }}</p>
+			<h3>DNI</h3>
+			<p>{{ app.user.dni }}</p>
+
+
+			<div class="p-btn">
+				<button class="p-button">
+					<a href="{{ path('edit_admin_details') }}">Editar Perfil</a>
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
 
 {# {% block javascripts %}
 		<script src="{{ asset('/scripts/table_filter.js') }}"></script>
