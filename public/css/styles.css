@@ -125,8 +125,8 @@ margin-top: 0.1em;
   font-size:large;
 }
 .navbar-logo  .logo{
-  max-width: 1.7em ;
-  /* min-width: 1.7em; */
+  max-width: 2.1em ;
+   min-width: 1.7em; 
 }
 .navbar{
   background-color: #343A40;
@@ -269,9 +269,9 @@ form select {
 
 /* BODY - ADMINCREATEACTIVITY */
 .mapa{
-  display: inline-block;
+ 
   margin: auto;
-  width: 50%;
+  width: 100%;
 }
 #mapa{
   float:right;
@@ -283,7 +283,7 @@ form select {
   color: #e5edd9;
     bottom: 0;
     width: 100%;
-    margin-top: 5em;
+    margin-top: 3em;
     margin-bottom: 0;
     font-size: smaller;
 }
@@ -758,4 +758,94 @@ color: #343A40;
 .botn-secondary:hover{
   background-color: #B36E32;
   color: wheat;
+}
+/* Crear actividad */
+ .m-ayuda{
+  background-color: whitesmoke;
+    box-shadow: 1px 1px 3px black;
+    padding: 1em;
+    text-align: left;
+    margin-bottom: 4em;
+    font-weight: bold;
+    border-radius: 0.2em;
+    display: inline-block;
+    display: inline-flex;
+}
+.m-ayuda i{
+  margin-right: 0.4em;
+  color: #343A40;
+}
+.a-form {
+  background-color: rgb(235, 227, 216);
+  margin-top: 2em;
+  border-radius: 0.5em;
+  box-shadow:4px 4px 6px  #333;
+  margin-bottom: 3em;
+  padding-bottom: 2em;
+}
+.a-form form div,textarea{
+  display: block;
+  text-align: left;
+  margin-left: 2em;
+  background-color: #343a4004;
+  
+  
+}
+.a-form form input{
+  width: 75%;
+ background-color: #343a4004;
+ border: none;
+  border-bottom: 2px solid #343A40;
+  border-radius: 0px;
+}
+.a-form form textarea{
+  border: none;
+  border-bottom: 2px solid #343A40;
+}
+.a-form form textarea:hover{
+  border: 2px solid #53a93f;
+  border-radius: 0.3em;
+}
+.a-form form input:hover, textarea:hover{
+ border: 2px solid #53a93f;
+ border-radius: 0.3em;
+  }
+.a-form form input:focus{
+box-shadow: 0px 0px 0px;
+
+}
+
+.a-form label{
+  white-space: pre;
+  margin-top: 1em;
+}
+.a-form form textarea{
+  width: 70%;
+  margin-left: 0em;
+}
+.a-form  form h1{
+  color: #343A40;
+  font-weight: bold;
+}
+#map{
+  box-shadow: 4px 4px 6px #333;
+}
+.a-form select{
+  border:2px solid #53a93f;
+}
+.a-form #create_activity_form_date div select{
+  margin-top: 1em;
+}
+.a-btn:hover{
+background-color: #343A40;
+color: white;
+border: none;
+}
+.a-btn{
+ margin-top: 2em;
+  padding: 0.5em;
+  padding-left: 5em;
+  padding-right: 5em;
+  font-weight: bolder;
+  font-size: 1.3em;
 }
