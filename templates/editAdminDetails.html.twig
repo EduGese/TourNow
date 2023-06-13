@@ -2,10 +2,10 @@
 
 {% block body %}
 
-<div>
-   <h2>Edita tus datos </h2>
+<div class=" e-form col-9 mr-auto ml-auto ">
+  
     {{ form_start(admin_edit_form) }}
-    
+     <h2>Edita tus datos </h2>
     <div>
         {{ form_label(admin_edit_form.user_name, 'Nombre de usuario') }}
         {{ form_widget(admin_edit_form.user_name) }}
@@ -40,9 +40,11 @@
         {{ form_label(admin_edit_form.email, 'Email') }}
         {{ form_widget(admin_edit_form.email) }}
     </div>
-    
-    <button type="submit">Guardar cambios</button>
+
+    <div class="p-btn">		
+    <button class="p-button" type="submit">Guardar cambios</button>
     {{ form_end(admin_edit_form) }}
+    </div>
 </div>
     
 {% endblock %}

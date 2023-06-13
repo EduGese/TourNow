@@ -1,6 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-hhhh
+<header class="sn ">
+		<div class=" sobre col-lg-11 mr-auto ml-auto ">
+			<div class=" txt-sn col-lg-12  col-md-12 ">
+				<h1>Sobre Nosotros</h1>
+				<p>En TourNow, nos apasiona brindar experiencias de viaje inolvidables a nuestros clientes. Somos una empresa dedicada a la gestión de tours que se especializa en ofrecer emocionantes aventuras y descubrimientos en destinos de toda España.</p>
+				<p>Nuestra misión es crear momentos memorables y conexiones auténticas a través de viajes extraordinarios. Nos esforzamos por superar las expectativas de nuestros clientes al proporcionarles un servicio excepcional, itinerarios cuidadosamente diseñados y guías turísticos expertos.</p>
+			</div>
+			<div class=" img-sn col-lg-7 col-md-12">
+				<img class="d-block w-100 c-img" src={{asset("assets/TOURNOW.svg")}} alt="Imagen de nuestro logo ">
+			</div>
+		</div>
+</header>
+<section class="container d-flex flex-column">
+	<div class=" try row">
+		<div class=" a-txt col-lg-4 mr-auto ml-auto d-block col-md-9">
+			<div class="">
+				<h1>¿Qué hace que Tournow sea único?</h1>
+				<p>Nos enorgullece ofrecer una experiencia de viaje inigualable y sobrepasar las expectativas de nuestros clientes en cada paso del camino. Nos destacamos por nuestra atención al detalle y nuestro compromiso de brindar un servicio excepcional en cada aspecto de tu viaje.</p>
+			</div>
+		</div>
+		<div class=" a-img col-lg-6 d-block w-100 col-md-12 d-block">
+		<img class="d-block w-100 " src={{asset("images/unic.webp")}} alt="Imagen de nuestro logo ">
+		</div>
+	</div>
+
+
+	<div class=" try row">
+	
+		<div class=" aa-img col-lg-6 d-block w-100 col-md-12 d-block">
+				<img class="d-block w-100 " src={{asset("images/madrid.jpg")}} alt="Imagen de nuestro logo ">
+		</div>
+
+		<div class=" a-txt col-lg-4 mr-auto ml-auto d-block col-md-10">
+			<div class="">
+				<h1>¿Qué ofrecemos?</h1>
+				<p>En TourNow, te ofrecemos una amplia gama de destinos únicos para descubrir en España. Desde las vibrantes calles de Barcelona hasta los encantadores pueblos blancos de Andalucía, cada destino tiene su propia belleza y singularidad.</p>
+			</div>
+		</div>
+	</div>
+</section>
 
 {% endblock %}
