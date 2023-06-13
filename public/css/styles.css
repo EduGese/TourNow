@@ -273,10 +273,11 @@ form button[type="submit"] {
 
 /* FOOTER */
 .footer {
-  background-color: black;
-  padding: 20px;
-  margin-top: auto;
-  height: 50px;
+  background-color: #343A40;
+    bottom: 0;
+    width: 100%;
+    margin-top: 5em;
+    margin-bottom: 0;
 }
 .social-icons {
   list-style: none;
@@ -291,9 +292,13 @@ form button[type="submit"] {
   margin-right: 0;
 }
 .social-icons a {
-  color: #333;
+  color: #7AB800;
   font-size: 20px;
 }
+/* .espacio{
+  height: 8em;
+  clear: both;
+} */
 
 /*ALLACTIVITIES*/
 .img-activity{
