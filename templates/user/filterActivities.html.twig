@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="f-container" style="background-img: {{asset ('images/sevilla.jpg')}}">
+	<div class="f-container  boton-filtro" style="background-img: {{asset ('images/sevilla.jpg')}}">
 
-		<h1>TOURGO</h1>
+		<h1>Buscar actividad</h1>
 		<div class="filter">
 			<div class="f-city">
 				{{ form_start(form) }}
@@ -12,7 +12,7 @@
 				{{ form_widget(form) }}
 			</div>
 		</div>
-		<button class=" botn-secondary " type="submit">Buscar</button>
+		<button class="boton-detalles  btn btn-primary my-4 px-5 " type="submit">Buscar</button>
 		{{ form_end(form) }}
 
 	</div>
@@ -35,10 +35,10 @@
 			{% endif %}
 			{# Iterar sobre las actividades encontradas #}
 			{% set localDatetime = date('now', 'Europe/Madrid') %}
-				<div class="row">
+				<div class="row container-activities">
 			{% for activity in activities %}
 			
-					<div class="card col-lg-5 col-md-5 col-sm-12 d-flex flex-wrap mr-auto ml-auto my-4  px-0 " style="overflow: hidden;">
+					<div class="card  col-lg-5 col-md-5 col-sm-12 d-flex flex-wrap mr-auto ml-auto my-4  px-0 " style="overflow: hidden;">
 						{% if activity.getImage() is not null %}
 							<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
 								<img src="{{ asset(activity.getImage()) }}" alt="Mi imagen" style="height: 15em; object-fit:cover;">
