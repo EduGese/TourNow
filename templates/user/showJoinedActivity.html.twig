@@ -140,17 +140,17 @@
 				<p class="activity-details activity-ciudad col-12  d-md-flex justify-content-md-start text-md-left">{{ activity.city }}</p>
 			</div>
 			<div class="row col-12">
-				<h1 class="activity-details activity-nombre col-md-6 col-12 d-flex justify-content-center">{{activity.activityName}}</h1>
-				<h2 class="activity-details  activity-price col-md-6 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
+				<h1 class="activity-details activity-nombre col-md-8 col-12 d-flex justify-content-center">{{activity.activityName}}</h1>
+				<h2 class="activity-details  activity-price col-md-4 col-12 d-flex justify-content-center">{{activity.price}}€</h2>
 			</div>
 			<div class="row col-12">
-				<p class="activity-details activity-opiniones col-md-6 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
+				<p class="activity-details activity-opiniones col-md-8 col-12 d-flex justify-content-center">{{activity.date|date('Y-m-d')}} </p>
 				{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-					<p class="activity-details estadoActividad  finalizada col-md-6 col-12 d-flex justify-content-center">Finalizada</p>
+					<p class="activity-details estadoActividad  finalizada col-md-4 col-12 d-flex justify-content-center">Finalizada</p>
 					{% elseif activity.getTickets()==0 %}
-						<p class="activity-details estadoActividad llena col-md-6 col-12 d-flex justify-content-center">Actividad llena</p>
+						<p class="activity-details estadoActividad llena col-md-4 col-12 d-flex justify-content-center">Actividad llena</p>
 							{% else %}
-								<p class="activity-details estadoActividad disponible col-md-6 col-12 d-flex justify-content-center">Disponible</p>
+								<p class="activity-details estadoActividad disponible col-md-4 col-12 d-flex justify-content-center">Disponible</p>
 				{% endif %}
 			</div>
 			<div class="row activity-img col-12">
