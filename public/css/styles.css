@@ -207,6 +207,9 @@ img {
   padding: 20px;
   margin-bottom: 20px;
 }
+.activity-img {
+  margin: auto;
+}
 
 .activity-cover {
   width: 300px;
@@ -283,7 +286,6 @@ form select {
   color: #e5edd9;
     bottom: 0;
     width: 100%;
-    margin-top: 3em;
     margin-bottom: 0;
     font-size: smaller;
 }
