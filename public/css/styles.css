@@ -9,10 +9,8 @@ body{
 }
 
 .incuerpo {
-
+  padding: 7em;
   background-size: cover;
-  height: 150%; 
-  width: 100%;
 }
 
 /* PARTE LOGIN MARIAM */
