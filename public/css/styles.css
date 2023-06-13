@@ -5,8 +5,15 @@ body{
   /* background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%); */
   width: 100%; 
   text-align: center;
+
 }
 
+.incuerpo {
+
+  background-size: cover;
+  height: 150%; 
+  width: 100%;
+}
 
 /* PARTE LOGIN MARIAM */
 
