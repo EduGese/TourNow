@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="f-container  boton-filtro" style="background-img: {{asset ('images/sevilla.jpg')}}">
+
+<div class="container-fluid">
+  <!-- Todo tu contenido -->
+<div class="f-container  boton-filtro" style="background-img: {{asset ('images/sevilla.jpg')}}">
 
 		<h1>Buscar actividad</h1>
 		<div class="filter">
@@ -81,4 +84,7 @@
 	{% for flashMesagge in app.flashes('choiceRequest')%}
 		{{flashMesagge}}
 	{% endfor %}
+  
+</div>
+	
 {% endblock %}
