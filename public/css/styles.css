@@ -275,10 +275,16 @@ form select {
 /* FOOTER */
 .footer {
   background-color: #343A40;
+  color: #e5edd9;
     bottom: 0;
     width: 100%;
     margin-top: 5em;
     margin-bottom: 0;
+    font-size: smaller;
+}
+.footer a{
+  color: #e5edd9;
+  text-decoration: none;
 }
 .social-icons {
   list-style: none;
@@ -293,13 +299,13 @@ form select {
   margin-right: 0;
 }
 .social-icons a {
-  color: #7AB800;
+  color: #e5edd9;
   font-size: 20px;
 }
-/* .espacio{
+ .espacio{
   height: 8em;
   clear: both;
-} */
+} 
 
 /*ALLACTIVITIES*/
  .container-activities{
@@ -313,7 +319,7 @@ form select {
 } 
 .container-activities .card {
   border-radius: 0.4em;
-  -webkit-box-shadow: 0px 3px 15px 5px rgba(0,0,0,0.74); 
+  -webkit-box-shadow: 0px 3px 15px 5px rgba(52, 58, 64,0.2); 
   box-shadow: 0px 3px 15px 5px rgba(52, 58, 64,0.2);
 }
 .img-activity{
