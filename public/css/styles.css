@@ -269,9 +269,9 @@ form select {
 
 /* BODY - ADMINCREATEACTIVITY */
 .mapa{
-  display: inline-block;
+ 
   margin: auto;
-  width: 50%;
+  width: 100%;
 }
 #mapa{
   float:right;

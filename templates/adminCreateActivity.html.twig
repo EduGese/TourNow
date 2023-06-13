@@ -21,7 +21,7 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 {% block body %}
 	
 
-	<div class="mapa">
+	<div class=" row">
 
 	{% for flashMessage in app.flashes('fecha_erronea') %}
 		{{ flashMessage}}
@@ -29,8 +29,9 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	{% for flashMessage in app.flashes('nombre_duplicado') %}
 		{{ flashMessage}}
 	{% endfor %}
+	<div class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 		{{ form_start(form) }}
-
+		<h1> Crea una Nueva Actividad</h1>
 		{{ form_row(form.activity_name) }}
 		{{ form_row(form.description) }}
 		{{ form_row(form.tickets) }}
@@ -52,9 +53,13 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 		
 
 	</div>
-	<div class="mapa" id="mapa">
+	<div class="mapa col-lg-5 col-md-12 mr-auto ml-auto" id="mapa">
+	<div class"ayuda" >
+	<h4>Para poner la primera ubicación pincha en el mapa.Vuelve a pinchar para la segunda</h4>
+	</div>
 		<div id="map" style="height: 500px; width: 100%;"></div>
-		<button type="button" id="clear">borrar seleccion</button> 
+		<button type=" a-botn button" id="clear">borrar seleccion</button> 
+	</div>
 	</div>
 	
 	{# {% block javascripts %}
