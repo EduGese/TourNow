@@ -3,7 +3,7 @@
 {# FORMULARIO DE REGISTRO DE USUARIO CLIENTE Creado desde---->   Form/UserRegistrationFormType.php #}
 {% block body %}
 <div class="incuerpo" style="background-image: url(images/648077b6bdcfd.jpg);" >
-<div class=" form form-group col-lg-5 mr-auto ml-auto ">
+<div class=" form form-group col-7 mr-auto ml-auto ">
   <h1 class="titulo">REGÍSTRATE COMO <span class="tipo">USUARIO</span></h1>
     {{ form_start(user_registrationForm) }}
         {{ form_row(user_registrationForm.user_name) }}
@@ -14,7 +14,9 @@
         {{ form_row(user_registrationForm.password) }}
         {# {{ form_row(user_registrationForm.agreeTerms) }} #}
 
-        <button type="submit" class="boton">Registrarse</button>
+<div class="row col-12  d-flex justify-content-center boton-filtro">
+        <button type="submit" class=" boton-detalles btn btn-primary">Registrarse</button>
+</div>
     {{ form_end(user_registrationForm) }}
 </div>
 </div>
