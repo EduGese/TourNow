@@ -49,42 +49,51 @@
 	<br>
 	<section class="container-activities px-0 py-4 my-4 row col-11 d-flex justify-content-center">
 		{% set localDatetime = date('now', 'Europe/Madrid') %}
-		{% for activity in userActivities %}
-			<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
-				{% if activity.getImage() is not null %}
-					<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
-						<img tabindex="0" src="{{ asset(activity.getImage()) }}" alt="Imagen actividad" style="height: 15em; object-fit:cover;">
-					</div>
-				{% else %}
-					<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
-						<img tabindex="0" src="{{ asset('assets/TOURNOW.svg') }}" alt="Imagen logo" style="height: 15em; object-fit:cover;">
-					</div>
-				{% endif %}
-				<div class="card-body mx-0  text-left">
-					<h5 tabindex="0" class="card-title text-uppercase">{{ activity.getActivityName() }}</h5>
-					<p tabindex="0" class="card-text">
-						<strong>{{ activity.getCity() }}</strong>
-						-
-						{{ activity.getDate()|date('Y/m/d H:i') }}h</p>
-				</div>
-				<div class="card-footer mx-0 d-flex align-items-center">
-					<div class="row col-12 mx-0 ">
-						<div class="col mx-0 d-flex justify-content-center align-items-center">
-							<a tabindex="0" href="{{ path('show_joined_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver</a>
+		{% if userActivities is empty %}
+		<p>No te has unido a ninguna actividad todavia, ¿a qué esperas?</p>
+		<div>
+		<button tabindex="0" class="btn btn-primary b_tour"><a  class="car-btn" href="{{path('all_activities')}}">Ver actividades</a></button>
+		</div>
+
+		
+		{% else %}
+			{% for activity in userActivities %}
+				<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
+					{% if activity.getImage() is not null %}
+						<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
+							<img tabindex="0" src="{{ asset(activity.getImage()) }}" alt="Imagen actividad" style="height: 15em; object-fit:cover;">
 						</div>
-						<div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
-							<p tabindex="0" class="text-right precio">{{activity.getPrice()}}€</p>
+					{% else %}
+						<div class="img-activity px-0 mx-0 d-flex justify-content-center align-items-center" style="overflow:hidden;">
+							<img tabindex="0" src="{{ asset('assets/TOURNOW.svg') }}" alt="Imagen logo" style="height: 15em; object-fit:cover;">
 						</div>
-							{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
-							<div class="col  mx-0 d-flex justify-content-center align-items-center">
-								<a tabindex="0" href="{{ path('print_activity_reviewForm', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Review</a>
+					{% endif %}
+					<div class="card-body mx-0  text-left">
+						<h5 tabindex="0" class="card-title text-uppercase">{{ activity.getActivityName() }}</h5>
+						<p tabindex="0" class="card-text">
+							<strong>{{ activity.getCity() }}</strong>
+							-
+							{{ activity.getDate()|date('Y/m/d H:i') }}h</p>
+					</div>
+					<div class="card-footer mx-0 d-flex align-items-center">
+						<div class="row col-12 mx-0 ">
+							<div class="col mx-0 d-flex justify-content-center align-items-center">
+								<a tabindex="0" href="{{ path('show_joined_activity', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Ver</a>
 							</div>
-							{% endif %}
-							
+							<div class="col  mx-0 d-flex justify-content-center align-items-center text-center">
+								<p tabindex="0" class="text-right precio">{{activity.getPrice()}}€</p>
+							</div>
+								{% if activity.getDate()|date('Y-m-d H:i:s')  < localDatetime|date('Y-m-d H:i:s') %}
+								<div class="col  mx-0 d-flex justify-content-center align-items-center">
+									<a tabindex="0" href="{{ path('print_activity_reviewForm', { 'id': activity.idActivity }) }}" class=" boton-detalles btn btn-primary">Review</a>
+								</div>
+								{% endif %}
+								
+						</div>
 					</div>
 				</div>
-			</div>
-				
-		{% endfor %}
+					
+			{% endfor %}
+		{% endif %}
 	</section>
 {% endblock %}
