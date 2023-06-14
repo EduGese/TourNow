@@ -40,23 +40,23 @@
 
 <section class="s-profile col-9 mr-auto ml-auto ">
 	<div class="p">
-		<h2 class="p-title">
+		<h2 tabindex="0" class="p-title">
 			<div class="punto"></div>Tus datos personales</h2>
 	</div>
 <div class="row">
 	<div class="profile ">
 		<div class="p-data col-lg-12 mr-auto ml-auto">
-			<h3>Name</h3>
-			<p>{{ app.user.username }}</p>
-			<h3>Apellidos</h3>
-			<p>{{ app.user.getUserLastname }}</p>
-			<h3>Telefono</h3>
-			<p>{{ app.user.tel }}</p>
-			<h3>Email</h3>
-			<p>{{ app.user.email }}</p>
+			<h3 tabindex="0">Name</h3>
+			<p tabindex="0">{{ app.user.username }}</p>
+			<h3 tabindex="0">Apellidos</h3>
+			<p tabindex="0">{{ app.user.getUserLastname }}</p>
+			<h3 tabindex="0">Telefono</h3>
+			<p tabindex="0">{{ app.user.tel }}</p>
+			<h3 tabindex="0">Email</h3>
+			<p tabindex="0">{{ app.user.email }}</p>
 			<div class="p-btn">
 				<button class="p-button">
-					<a href="{{ path('edit_user_details') }}">Editar Perfil</a>
+					<a tabindex="0" href="{{ path('edit_user_details') }}">Editar Perfil</a>
 				</button>
 			</div>
 		</div>

@@ -9,22 +9,23 @@
 
 	<form  class="c-form col-lg-9 mr-auto ml-auto" action="{{ path('add_activity_review', { 'id': activity.idActivity, 'scores': activity.scores, 'average_score': activity.averageScore }) }}" method="post"> 
 		<div class="form-group">
-			<label id="c-titulo" for="exampleFormControlTextarea1">ESCRIBE TU COMENTARIO AQUÍ</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			<label tabindex="0" id="c-titulo" for="exampleFormControlTextarea1">ESCRIBE TU COMENTARIO AQUÍ</label>
+			<textarea tabindex="0" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 		</div>
 
 		<div class=" c-select form-group2">
-			<label for="exampleFormControlSelect1">Puntuación</label>
-			<select class="form-control" id="score" name="score">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+			<label tabindex="0" for="exampleFormControlSelect1">Puntuación</label>
+			<select class="form-control" tabindex="0" id="score" name="score">
+				<option tabindex="0">1</option>
+				<option tabindex="0">2</option>
+				<option tabindex="0">3</option>
+				<option tabindex="0">4</option>
+				<option tabindex="0">5</option>
 			</select>
 		</div>
 
 
-		<button  class="btn-primary col-lg-4 mr-auto ml-auto"type="submit ">Enviar</button>
+		<button tabindex="0"  class="btn-primary col-lg-4 mr-auto ml-auto"type="submit ">Enviar</button>
+		<div class="espacio"></div>
 	</form>
 {% endblock %}

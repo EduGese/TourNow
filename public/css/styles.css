@@ -5,6 +5,9 @@ body {
   /* background: linear-gradient(0deg, rgba(197,235,135,1) 19%, rgba(255,255,255,1) 100%); */
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
 }
 
@@ -183,6 +186,9 @@ label {
   visibility: visible;
   color: #E5E5EC;
 }
+.dropdown-header{
+  color:#7AB800;
+}
 
 
 /* BODY - ALLACTIVITIESLIST y USERACTIVITYLIST Y userDashboard Y ADMINDASHBOARD */
@@ -318,6 +324,7 @@ form select {
   width: 100%;
   margin-bottom: 0;
   font-size: smaller;
+    margin-top: auto;
 }
 
 .footer a {

@@ -24,7 +24,7 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	<div class=" row">
 
 	
-	<div class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
+	<div tabindex="0" class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 	{% for flashMessage in app.flashes('fecha_erronea') %}
 		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
 	{% endfor %}
@@ -48,20 +48,20 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 
 		{{ form_row(form.company_website, {'value': app.user.companywebsite}) }}
 
-		<button type="submit" class="boton btn a-btn">Guardar</button>
+		<button tabindex="0" type="submit" class="boton btn a-btn">Guardar</button>
 		{{ form_end(form) }}
 
 		
 
 	</div>
-	<div class="mapa col-lg-5 col-md-12 mr-auto ml-auto" id="mapa">
+	<div tabindex="0" class="mapa col-lg-5 col-md-12 mr-auto ml-auto" id="mapa">
 	<div class=" m-ayuda" >
 	<i class="fa-solid fa-exclamation" style=" font-size:36px;"></i>
-	<h4>Para poner la primera ubicación pincha en el mapa.Vuelve a pinchar para la final.</h4>
+	<h4 tabindex="0">Para poner la primera ubicación pincha en el mapa.Vuelve a pinchar para la final.</h4>
 	</div>
-		<div id="map" style="height: 500px; width: 100%;"></div>
+		<div tabindex="0" id="map" style="height: 500px; width: 100%;"></div>
 		<div class="btn a-botn">
-		<button type="  button"  class="boton a-btn"id="clear">Borrar seleccion</button> 
+		<button tabindex="0" type="  button"  class="boton a-btn"id="clear">Borrar seleccion</button> 
 		</div>
 	</div>
 	</div>
