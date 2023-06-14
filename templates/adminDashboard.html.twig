@@ -42,8 +42,9 @@
 		<h2 class="p-title">
 			<div class="punto"></div>Tus datos personales</h2>
 	</div>
+<div class="row">
 
-	<div class="profile ">
+	<div class="profile col-lg-6 col-sm-12">
 		<div class="p-data col-lg-12">
 			<h3>Name</h3>
 			<p>{{ app.user.username }}</p>
@@ -67,6 +68,10 @@
 				</button>
 			</div>
 		</div>
+	</div>
+	<div class=" e-icon col-lg-6 col-sm-12 mr-auto ml-auto" style="display:flex">
+ <img class="d-block icon" src={{asset("assets/web.png")}} alt="Icono de administrador">
+</div>
 	</div>
 </section>
 
