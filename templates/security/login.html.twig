@@ -15,7 +15,7 @@
         </div>
     {% endif %}
 
-<div class=" form form-group col-lg-5 mr-auto ml-auto ">
+<div class=" form form-group col-7 mr-auto ml-auto ">
  
     <h1 class="h3 mb-3 font-weight-bold titulo">INTRODUZCA SUS DATOS</h1>
     <label for="inputEmail">Email</label>
@@ -39,11 +39,11 @@
     #}
  <h4 class="pregunta">¿No tienes cuenta todavía?</h4>
  <div class="enlaces">
-   <a href="{{path('user_register')}}" >Registrarse</a><br><br>
-      <a href="{{path('adm_register')}}">Registrarse como Administrador</a>
+   <a class="enlace" href="{{path('user_register')}}" >Registrarse</a><br><br>
+      <a class="enlace" href="{{path('adm_register')}}">Registrarse como Administrador</a>
  </div>
-<div class="row col-12  d-flex justify-content-center">
-    <button class=" botonl btn  btn-secondary" type="submit">
+<div class="row col-12  d-flex justify-content-center boton-filtro mt-4">
+    <button class=" boton-detalles btn btn-primary" type="submit">
        Iniciar sesión
     </button>
 </div>

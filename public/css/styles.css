@@ -189,6 +189,13 @@ label {
 .dropdown-header{
   color:#7AB800;
 }
+.enlace{
+  color: #7AB800;
+  text-decoration: none;
+}
+.enlace:hover{
+  color: #3A3A40;
+}
 
 
 /* BODY - ALLACTIVITIESLIST y USERACTIVITYLIST Y userDashboard Y ADMINDASHBOARD */
