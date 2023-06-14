@@ -10,7 +10,7 @@
 	<form  class="c-form col-lg-9 mr-auto ml-auto" action="{{ path('add_activity_review', { 'id': activity.idActivity, 'scores': activity.scores, 'average_score': activity.averageScore }) }}" method="post"> 
 		<div class="form-group">
 			<label tabindex="0" id="c-titulo" for="exampleFormControlTextarea1">ESCRIBE TU COMENTARIO AQUÍ</label>
-			<textarea tabindex="0" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			<textarea tabindex="0" class="form-control" id="exampleFormControlTextarea1" rows="3" name="review"></textarea>
 		</div>
 
 		<div class=" c-select form-group2">

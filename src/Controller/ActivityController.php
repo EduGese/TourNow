@@ -294,12 +294,7 @@ class ActivityController extends AbstractController
             $activity->addScore($score);
             $entityManager->flush();
         }
-        // $scoreCounting = $activity->getScores();
-        // $activity->setScores($scoreCounting+1);
-        // $scoreList = $activity->getScoreList();
-        // $totalScore = array_sum($scoreList);
-        // $newAverageScore = $totalScore/$scores;///ERROR -->Division by zero
-        // $activity->setAverageScore($newAverageScore);
+      
 
 
 
@@ -309,10 +304,7 @@ class ActivityController extends AbstractController
         $idActivity = $request->attributes->get('id');
         $activity_repo = $doctrine->getRepository(Activity::class);
         $activity = $activity_repo->find($idActivity);
-        ///
-        $idActivity = $request->attributes->get('id');
-        $activity_repo = $doctrine->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity);
+       
 
         return $this->render('user/showActivity.html.twig', [
             'activity' => $activity
