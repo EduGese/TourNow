@@ -50,12 +50,7 @@
 	<section class="container-activities px-0 py-4 my-4 row col-11 d-flex justify-content-center">
 		{% set localDatetime = date('now', 'Europe/Madrid') %}
 		{% if userActivities is empty %}
-		<p>No te has unido a ninguna actividad todavia, ¿a qué esperas?</p>
-		<div>
-		<button tabindex="0" class="btn btn-primary b_tour"><a  class="car-btn" href="{{path('all_activities')}}">Ver actividades</a></button>
-		</div>
-
-		
+		<p>No te has unido a ninguna actividad todavia</p>
 		{% else %}
 			{% for activity in userActivities %}
 				<div class="card col-lg-3 col-md-5 col-sm-10 d-flex flex-wrap my-4 mx-3  px-0 " style="overflow: hidden;">
