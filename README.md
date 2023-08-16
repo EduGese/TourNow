@@ -40,77 +40,97 @@ La aplicación ofrece una presentación visual atractiva de los tours, ayudando 
 
 ## Tecnologías Utilizadas
 
-#### Symfony 5
+```
+ Symfony 5
 
 Utilizamos Symfony, un framework de desarrollo web de código abierto, para crear la arquitectura robusta y escalable de la aplicación.
 
-#### PHP 8.2
+ PHP 8.2
 
 Utilizamos PHP como lenguaje principal en el backend para implementar la lógica de negocio y gestionar las solicitudes y respuestas HTTP.
 
-#### Doctrine ORM
+ Doctrine ORM
 
 Implementamos el ORM de Doctrine para la gestión eficiente de la base de datos, permitiendo operaciones CRUD de manera sencilla.
 
-#### Twig y HTML
+ Twig y HTML
 
 Utilizamos Twig para la generación dinámica de las vistas HTML, permitiendo una separación efectiva de la lógica de presentación del código PHP.
 
-#### MySQL
+ MySQL
 
 Empleamos MySQL como sistema de gestión de bases de datos relacional para almacenar y recuperar la información necesaria.
 
-#### OpenStreetMap API
+ OpenStreetMap API
 
 Integramos la API de OpenStreetMap para implementar la funcionalidad de vista de mapa y selección de ubicaciones.
+```
 
-## -Colaboración y Herramientas
+## Colaboración y Herramientas
 
 Para el desarrollo colaborativo de este proyecto, utilizamos Git y GitHub como sistema de control de versiones y plataforma de colaboración. Implementamos el flujo Git Flow, con la rama "dev" como principal y ramas derivadas para diferentes funcionalidades.
 
-## -Requisitos, Instalación y Uso
+## Requisitos, Instalación y Ejecución
 
 ### Requisitos
+
 Necesitas tener instalado lo siguiente:
+```
 Symfony CLI 5.4.20 o superior.
+
 Symfony 6.3.0  --> https://symfony.com/doc/current/setup.html
+
 php 8.2.0 --> https://www.php.net/manual/en/install.php
+
 MySQL 8.0.31  -->  https://www.mysql.com/downloads/
+```
+
+### Instalaciones
+```
+ 1/ Crea una carpeta con el nombre que quieras dar al proyecto
 
 
-#### 1/ Crea una carpeta con el nombre que quieras dar al proyecto
-
-
-#### 2/ Clona este repositorio en tu máquina local
+ 2/ Clona este repositorio en tu máquina local
 Desde la raiz del proyecto en la consola ejecuta lo siguiente: git clone git@github.com:EduGese/TourNow.git
 
-#### 3/ Instalar Composer
+ 3/ Instalar Composer
 Asegúrate de tener Composer instalado. Composer es una herramienta esencial para gestionar las dependencias de PHP.
 
 Descarga e instala Composer: https://getcomposer.org/download/
 
-#### 4/ Instalar Dependencias
+ 4/ Instalar Dependencias
 Desde la carpeta raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias del proyecto definidas en composer.json:  composer install
 
-#### 5/ Base de datos 
+ 5/ Base de datos 
+
 Desde cualquier gestor MySql:
+
 Crea una base de datos llamada "ftc_db"
+
 Importa en esa base de datos el archivo .......
+
 En el archivo del proyect  .env copia esto en la linea correspondiente: DATABASE_URL="mysql://user:pass@127.0.0.1:3306/fct_db?serverVersion=8.0.31"
 
-Donde user es el nombre usuario y pass es la contraseña de acceso a la base de datos
+Donde user es el nombre usuario y pass es la contraseña de acceso a la base de datos.
+```
+### Ejecucion
 
+#### Abre tu gestor de base de datos y haz login.
+#### Levantar el servidor local de Symfony:
+```
+ Colócate en la raíz del proyecto (ya sea con la consola de tu SO o con la terminal de VSCode) 
 
+ Ejecuta  --> Symfony server:start
 
-Asegúrate de tener Symfony instalado en tu entorno.
-Configura la base de datos en el archivo "parameters.yml".
-Ejecuta las migraciones para crear las tablas en la base de datos.
-Inicia el servidor local de Symfony.
+ En el navegador pega la siguiente url --> http://localhost:8000/home , esto abrirá la página de inicio. 
 
-## -Contribución
+ Ya puedes disfrutar de TourNow
+```
+
+## Contribución
 
 Este proyecto es de código abierto y las contribuciones son bienvenidas. Si deseas contribuir, realiza un fork del repositorio, crea una rama para tu funcionalidad y luego crea un pull request.
 
-## -Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
