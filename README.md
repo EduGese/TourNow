@@ -40,7 +40,7 @@ La aplicación ofrece una presentación visual atractiva de los tours, ayudando 
 
 ## Tecnologías Utilizadas
 
-#### Symfony 6
+#### Symfony 5
 
 Utilizamos Symfony, un framework de desarrollo web de código abierto, para crear la arquitectura robusta y escalable de la aplicación.
 
@@ -73,9 +73,9 @@ Para el desarrollo colaborativo de este proyecto, utilizamos Git y GitHub como s
 ### Requisitos
 Necesitas tener instalado lo siguiente:
 Symfony CLI 5.4.20 o superior.
-Symfony 6.2.0    
-php 8.2.0
-MySQL 8.0.31
+Symfony 6.3.0  --> https://symfony.com/doc/current/setup.html
+php 8.2.0 --> https://www.php.net/manual/en/install.php
+MySQL 8.0.31  -->  https://www.mysql.com/downloads/
 
 
 #### 1/ Crea una carpeta con el nombre que quieras dar al proyecto
