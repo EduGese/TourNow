@@ -37,6 +37,9 @@
  {% for flashMessage in app.flashes('delete') %}
 				{{ flashMessage}}
 			{% endfor %}
+{% for flashMessage in app.flashes('create') %}
+				{{ flashMessage}}
+			{% endfor %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
 	<h1 tabindex="0" class="my-4">Tus actividades creadas</h1>
 	<div class="container-activities py-5 col-10 my-5">
