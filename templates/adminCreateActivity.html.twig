@@ -1,23 +1,5 @@
 {% extends 'base.html.twig' %}
-{# FORMULARIO DE REGISTRO DE CREACION DE ACTIVIDAD Creado desde---->   Form/CreateActivityFormType.php
 
-
-
-{# Pretendia que esta vista se extendiera de adminDashboard.html.twig para que el formulario apareciera a 
-continuacion de la lista de actividades, pero al hacerlo solo extiende de base.html.twig..No se por que #}
-
-{# {% block stylesheets %}
-	<style>
-		.mapa{
-			display: inline-block;
-			margin: auto;
-			width: 50%;
-		}
-		#mapa{
-			float:right;
-		}
-	</style>
-{% endblock %} #}
 {% block body %}
 	{% for flashMessage in app.flashes('fecha_erronea') %}
 		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
@@ -27,14 +9,13 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	{% endfor %}
 	
 
-	<div class=" row">
+<div class=" row">
 
-	
 
-	<div tabindex="0" class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
-	
+	<div tabindex="0" class=" a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 		{{ form_start(form) }}
-		<h1> Crea una Nueva Actividad</h1>
+		<h1>
+			Crea una Nueva Actividad</h1>
 		{{ form_row(form.activity_name) }}
 		{{ form_row(form.description) }}
 		{{ form_row(form.tickets) }}
@@ -47,30 +28,21 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 		{{ form_row(form.date) }}
 		{{ form_row(form.city) }}
 		{{ form_row(form.company_name, {'value': app.user.companyname}) }}
-
 		{{ form_row(form.company_website, {'value': app.user.companywebsite}) }}
-{{ dump(form_data|default('El objeto form_data no está definido.')) }}
 		<button tabindex="0" type="submit" class="boton btn a-btn">Guardar</button>
 		{{ form_end(form) }}
-
-		
-
 	</div>
+
 	<div tabindex="0" class="mapa col-lg-5 col-md-12 mr-auto ml-auto" id="mapa">
-	<div class=" m-ayuda" >
-	<i class="fa-solid fa-exclamation" style=" font-size:36px;"></i>
-	<h4 tabindex="0">Para poner la primera ubicación pincha en el mapa.Vuelve a pinchar para la final.</h4>
-	</div>
+		<div class=" m-ayuda">
+			<i class="fa-solid fa-exclamation" style=" font-size:36px;"></i>
+			<h4 tabindex="0">Para poner la primera ubicación pincha en el mapa.Vuelve a pinchar para la final.</h4>
+		</div>
 		<div tabindex="0" id="map" style="height: 500px; width: 100%;"></div>
 		<div class="btn a-botn">
-		<button tabindex="0" type="  button"  class="boton a-btn"id="clear">Borrar seleccion</button> 
+			<button tabindex="0" type="  button" class="boton a-btn" id="clear">Borrar seleccion</button>
 		</div>
 	</div>
-	</div>
-	
-	{# {% block javascripts %}
-		<script src="{{ asset('/scripts/mapa.js') }}">
-		</script>	
-	
-	{% endblock %} #}
+</div>
+
 {% endblock %}
