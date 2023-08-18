@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\CreateActivityFormType;
@@ -18,25 +18,10 @@ use App\Service\ActivityService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mailer\Exception;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Psr\Log\LoggerInterface;
-
-
-
-
-
-
 use App\Entity\Activity;
+use Symfony\Component\HttpFoundation\RequestStack;
 
-
-//FUNCIONES A CREAR EN ESTE CONTROLADOR:
-//Voy a usar este controlador para:
-//Crear actividad nueva  SEMIHECHO
-//Editar una actividad creada
-//Eliminar una actividad creada   HECHO
 
 
 class ActivityController extends AbstractController
@@ -46,12 +31,11 @@ class ActivityController extends AbstractController
     private $mailer;
     private $logger;
 
-    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager, MailerInterface $mailer, LoggerInterface $logger)
+    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager, MailerInterface $mailer, LoggerInterface $logger, private RequestStack $requestStack)
     {
         $this->entityManager = $entityManager;
         $this->doctrine = $doctrine;
         $this->logger = $logger;
-
         $this->mailer = $mailer;
     }
 
@@ -61,7 +45,6 @@ class ActivityController extends AbstractController
             $id = $request->attributes->get('id');
             $activityService->deleteActivity($doctrine, $user, $id, $request);
 
-            // Mostrar mensaje de éxito
             $this->addFlash('delete', 'Actividad eliminada con éxito, se han mandado email a los usuarios para advertirles ');
         } catch (NotFoundHttpException $exception) {
             // Mostrar mensaje de error
@@ -76,24 +59,25 @@ class ActivityController extends AbstractController
         $activity = new Activity();
         $form = $this->createForm(CreateActivityFormType::class, $activity);
         $form->handleRequest($request);
+        // $session = $request->getSession();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Establecer el ID del usuario actualmente autenticado
+            // Establece el ID del usuario actualmente autenticado
             $user = $security->getUser();
             $activity->setIdUser($user);
 
-            // Procesar la imagen
+            // Procesa la imagen
             $imageFile = $form->get('image')->getData();
             if ($imageFile) {
                 $newFilename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
 
-                // Mover el archivo a la carpeta src/Img
+                // Mueve el archivo a la carpeta src/Img
                 $imageFile->move(
                     $this->getParameter('kernel.project_dir') . '/public/images',
                     $newFilename
                 );
 
-                // Guardar la ruta en la entidad Activity
+                // Guarda la ruta en la entidad Activity
                 $activity->setImage('images/' . $newFilename);
             }
 
@@ -108,32 +92,31 @@ class ActivityController extends AbstractController
 
             if (in_array($activityName, $activityNames)) {
                 $this->addFlash('nombre_duplicado', 'El nombre de la actividad ya existe, elija otro diferente');
-                return $this->render('adminCreateActivity.html.twig', [
-                    'form' => $form->createView(),
-                ]);
-            }
-
-
-
-
-            if ($fechaIntroducida < $fechaActual) {
-                // Fecha introducida es anterior a la actual
+                if($fechaIntroducida < $fechaActual){
+                    $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
+                }
+                $formData = $request->request->all();
+                        return $this->render('adminCreateActivity.html.twig', [
+                            'form' => $form->createView(),
+                            'form_data' => $formData,
+                        ]);
+            } else if($fechaIntroducida < $fechaActual){
                 $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
-                return $this->render('adminCreateActivity.html.twig', [
-                    'form' => $form->createView(),
-                ]);
+                $formData = $request->request->all();
+                        return $this->render('adminCreateActivity.html.twig', [
+                            'form' => $form->createView(),
+                            'form_data' => $formData,
+                        ]);
+            }else{
+                $this->entityManager->persist($activity);
+                $this->entityManager->flush();
+
+
+                $this->addFlash('create', '¡Actividad creada con éxito!');
+                return $this->redirectToRoute('show_admin_activities');
             }
-
-
-
-            // Guardar la actividad en la base de datos
-            $this->entityManager->persist($activity);
-            $this->entityManager->flush();
-
-            // Redirigir a alguna página de éxito o realizar otras acciones
-            $this->addFlash('create', '¡Actividad creada con éxito!');
-            return $this->redirectToRoute('show_admin_activities');
         }
+       
 
         return $this->render('adminCreateActivity.html.twig', [
             'form' => $form->createView(),
@@ -142,21 +125,21 @@ class ActivityController extends AbstractController
     public function editActivity(Request $request, EntityManagerInterface $entityManager, $id, Security $security, ManagerRegistry $doctrine): Response
     {
 
-        // Obtén la actividad desde la base de datos
+
         $activity = $entityManager->getRepository(Activity::class)->find($id);
-        // Crea el formulario de edición utilizando el formulario de creación reutilizado
+
         $form = $this->createForm(CreateActivityFormType::class, $activity);
         $form->handleRequest($request);
 
-        // Maneja la solicitud de edición
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Valida los datos del formulario y aplica los cambios a la actividad
-            
+
+
             // Comprobamos la fecha introducida
             $fechaIntroducida = $form->get('date')->getData();
             $fechaActual = new \DateTime();
 
-           
+
 
             if ($fechaIntroducida < $fechaActual) {
                 // Fecha introducida es anterior a la actual
@@ -170,11 +153,10 @@ class ActivityController extends AbstractController
 
 
 
-            //flash message
 
             $this->addFlash('edit', '¡Actividad editada con éxito!, se han mandado email a los usuarios para advertirles ');
 
-            //envio de mails//
+            //Envio de mails//
 
 
             //Obtener mails de usuarios registrados en la actividad
@@ -189,7 +171,7 @@ class ActivityController extends AbstractController
             $params = [
                 'activity_id' => $activityId, // ID de la actividad deseada
             ];
-            // Ejecutar la consulta
+
             $statement = $conn->executeQuery($query, $params);
 
             // Obtener los correos electrónicos
@@ -203,7 +185,7 @@ class ActivityController extends AbstractController
             //Mandar mails
             $user = $security->getUser();
             $user_repo = $doctrine->getRepository(User::class);
-            $user_mail = $user_repo->find($user)->getEmail(); //mail del admin 
+            $user_mail = $user_repo->find($user)->getEmail();
 
             $email = (new Email())
                 ->from($user_mail)
@@ -258,21 +240,20 @@ class ActivityController extends AbstractController
     public function addActivityReview(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager, Security $security): response
     {
 
-        $idActivity = $request->attributes->get('id'); //idactivity
-        $scores = $request->attributes->get('scores'); //Cantidad de puntuaciones de la actividad
-        $average_score = $request->attributes->get('average_score'); //Media de puntuacion de la actividad
+        $idActivity = $request->attributes->get('id');
 
-        $score = $request->request->get('score'); //Puntuacion que da el usuario, se recibe desde el formulario
-        $review = $request->request->get('review'); //Review que da el usuario, se recibe desde el formulario
+
+        $score = $request->request->get('score');
+        $review = $request->request->get('review');
 
 
 
         $user = $security->getUser();
         $user_repo = $doctrine->getRepository(User::class);
-        $user_id = $user_repo->find($user)->getId(); //id del usuario 
+        $user_id = $user_repo->find($user)->getId();
 
         $activity_repo = $doctrine->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity); //Actividad que estamos manejando
+        $activity = $activity_repo->find($idActivity);
 
         // Insertar o actualizar en la tabla user_activity
         $conn = $entityManager->getConnection();
@@ -286,26 +267,6 @@ class ActivityController extends AbstractController
             'score' => $score
         ];
         $conn->executeStatement($query, $params);
-        ///////Logica para añadir puntuacion media a tabla activity
-
-        if ($scores == 0) {
-            $activity->setScores(1);
-            $activity->setAverageScore($score);
-            $activity->addScore($score);
-            $entityManager->flush();
-        }
-      
-
-
-
-
-
-        ///Esto sobra:
-        $idActivity = $request->attributes->get('id');
-        $activity_repo = $doctrine->getRepository(Activity::class);
-        $activity = $activity_repo->find($idActivity);
-       
-
         return $this->render('user/showActivity.html.twig', [
             'activity' => $activity
         ]);

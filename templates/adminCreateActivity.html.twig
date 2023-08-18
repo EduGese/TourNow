@@ -19,18 +19,20 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 	</style>
 {% endblock %} #}
 {% block body %}
-	
-
-	<div class=" row">
-
-	
-	<div tabindex="0" class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
 	{% for flashMessage in app.flashes('fecha_erronea') %}
 		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
 	{% endfor %}
 	{% for flashMessage in app.flashes('nombre_duplicado') %}
 		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
 	{% endfor %}
+	
+
+	<div class=" row">
+
+	
+
+	<div tabindex="0" class= " a-form col-lg-5 col-md-12 mr-auto ml-auto ">
+	
 		{{ form_start(form) }}
 		<h1> Crea una Nueva Actividad</h1>
 		{{ form_row(form.activity_name) }}
@@ -47,7 +49,7 @@ continuacion de la lista de actividades, pero al hacerlo solo extiende de base.h
 		{{ form_row(form.company_name, {'value': app.user.companyname}) }}
 
 		{{ form_row(form.company_website, {'value': app.user.companywebsite}) }}
-
+{{ dump(form_data|default('El objeto form_data no está definido.')) }}
 		<button tabindex="0" type="submit" class="boton btn a-btn">Guardar</button>
 		{{ form_end(form) }}
 
