@@ -5,14 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\CreateActivityFormType;
 use App\Entity\User;
-
 use Symfony\Component\Security\Core\Security;
-
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\ActivityService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -85,38 +82,17 @@ class ActivityController extends AbstractController
             $fechaIntroducida = $form->get('date')->getData();
             $fechaActual = new \DateTime();
 
-            $activityRepository = $this->entityManager->getRepository(Activity::class);
-            $activityNames = $activityRepository->findAllActivityNames();
-
-            $activityName = $form->get('activity_name')->getData();
-
-            if (in_array($activityName, $activityNames)) {
-                $this->addFlash('nombre_duplicado', 'El nombre de la actividad ya existe, elija otro diferente');
-                if($fechaIntroducida < $fechaActual){
-                    $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
-                }
-                $formData = $request->request->all();
-                        return $this->render('adminCreateActivity.html.twig', [
-                            'form' => $form->createView(),
-                            'form_data' => $formData,
-                        ]);
-            } else if($fechaIntroducida < $fechaActual){
+            if ($fechaIntroducida < $fechaActual) {
                 $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
-                $formData = $request->request->all();
-                        return $this->render('adminCreateActivity.html.twig', [
-                            'form' => $form->createView(),
-                            'form_data' => $formData,
-                        ]);
-            }else{
-                $this->entityManager->persist($activity);
-                $this->entityManager->flush();
-
-
-                $this->addFlash('create', '¡Actividad creada con éxito!');
-                return $this->redirectToRoute('show_admin_activities');
+                return $this->render('adminCreateActivity.html.twig', [
+                    'form' => $form->createView(),
+                ]);
             }
+            $this->entityManager->persist($activity);
+            $this->entityManager->flush();
+            $this->addFlash('create', '¡Actividad creada con éxito!');
+            return $this->redirectToRoute('show_admin_activities');
         }
-       
 
         return $this->render('adminCreateActivity.html.twig', [
             'form' => $form->createView(),
@@ -131,7 +107,6 @@ class ActivityController extends AbstractController
         $form = $this->createForm(CreateActivityFormType::class, $activity);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
 
 
@@ -139,21 +114,16 @@ class ActivityController extends AbstractController
             $fechaIntroducida = $form->get('date')->getData();
             $fechaActual = new \DateTime();
 
-
-
             if ($fechaIntroducida < $fechaActual) {
-                // Fecha introducida es anterior a la actual
                 $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
+                $formData = $request->request->all();
                 return $this->render('adminCreateActivity.html.twig', [
                     'form' => $form->createView(),
+                    'form_data' => $formData,
                 ]);
             }
-            // Guarda los cambios en la base de datos
-            $entityManager->flush();
-
-
-
-
+            $this->entityManager->persist($activity);
+            $this->entityManager->flush();
             $this->addFlash('edit', '¡Actividad editada con éxito!, se han mandado email a los usuarios para advertirles ');
 
             //Envio de mails//
@@ -165,11 +135,11 @@ class ActivityController extends AbstractController
 
 
             $query = "SELECT u.email FROM user_activity ua
-            INNER JOIN user u ON ua.user_id = u.id_user
-            WHERE ua.activity_id = :activity_id";
+                                INNER JOIN user u ON ua.user_id = u.id_user
+                                WHERE ua.activity_id = :activity_id";
 
             $params = [
-                'activity_id' => $activityId, // ID de la actividad deseada
+                'activity_id' => $activityId,
             ];
 
             $statement = $conn->executeQuery($query, $params);
@@ -198,17 +168,12 @@ class ActivityController extends AbstractController
                 $this->mailer->send($email);
             }
 
-
-
-
             return $this->render('user/showActivity.html.twig', [
                 'activity' => $activity,
                 'id' => $activity->getIdActivity(),
                 'emails' => $emails,
             ]);
         }
-
-
         return $this->render('edit_activity.html.twig', [
             'form' => $form->createView(),
             'activity' => $activity,

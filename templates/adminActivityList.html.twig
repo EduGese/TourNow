@@ -35,10 +35,10 @@
 
 {% block body %}
  {% for flashMessage in app.flashes('delete') %}
-				{{ flashMessage}}
+				<span style="color: green; font-weight: bold;">{{ flashMessage }}</span>
 			{% endfor %}
 {% for flashMessage in app.flashes('create') %}
-				{{ flashMessage}}
+				<span style="color: green; font-weight: bold;">{{ flashMessage }}</span>
 			{% endfor %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
 	<h1 tabindex="0" class="my-4">Tus actividades creadas</h1>

@@ -2,10 +2,11 @@
 
 {% block body %}
 	{% for flashMessage in app.flashes('fecha_erronea') %}
-		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
+		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span>
 	{% endfor %}
-	{% for flashMessage in app.flashes('nombre_duplicado') %}
-		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span
+	
+	{% for flashMessage in app.flashes('error') %}
+		<span style="color: red; font-weight: bold;">{{ flashMessage }}</span>
 	{% endfor %}
 	
 

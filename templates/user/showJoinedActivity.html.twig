@@ -129,7 +129,7 @@
 
 
 	{% for flashMessage in app.flashes('edit') %}
-		{{ flashMessage}}
+		<span style="color: green; font-weight: bold;">{{ flashMessage }}</span>
 	{% endfor %}
 	{% set localDatetime = date('now', 'Europe/Madrid') %}
 
