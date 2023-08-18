@@ -9,9 +9,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Repository\ActivityRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class ActivityService
+class ActivityService extends AbstractController
 {
     private $doctrine;
     private $entityManager;
@@ -72,5 +73,31 @@ class ActivityService
             'username' => $userName,
             'userlastname' => $userLastname
         ];
+    }
+    public function uploadImg($form, $activity){
+        // Procesa la imagen
+        $imageFile = $form->get('image')->getData();
+        if ($imageFile) {
+            $newFilename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+
+            // Mueve el archivo a la carpeta src/Img
+            $imageFile->move(
+                $this->getParameter('kernel.project_dir') . '/public/images',
+                $newFilename
+            );
+
+            // Guarda la ruta en la entidad Activity
+            $activity->setImage('images/' . $newFilename);
+        }
+    }
+    public function checkDate($form){
+            $fechaIntroducida = $form->get('date')->getData();
+            $fechaActual = new \DateTime();
+
+            if ($fechaIntroducida < $fechaActual) {
+                return false;
+            }else{
+                return true;
+            }
     }
 }

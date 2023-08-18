@@ -50,48 +50,34 @@ class ActivityController extends AbstractController
 
         return $this->redirectToRoute('show_admin_activities');
     }
-    public function createActivity(Request $request, Security $security): response
+    public function createActivity(Request $request, Security $security, ActivityService $activityService): response
     {
 
         $activity = new Activity();
         $form = $this->createForm(CreateActivityFormType::class, $activity);
         $form->handleRequest($request);
-        // $session = $request->getSession();
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             // Establece el ID del usuario actualmente autenticado
             $user = $security->getUser();
             $activity->setIdUser($user);
 
             // Procesa la imagen
-            $imageFile = $form->get('image')->getData();
-            if ($imageFile) {
-                $newFilename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+            $activityService->uploadImg($form, $activity);
 
-                // Mueve el archivo a la carpeta src/Img
-                $imageFile->move(
-                    $this->getParameter('kernel.project_dir') . '/public/images',
-                    $newFilename
-                );
-
-                // Guarda la ruta en la entidad Activity
-                $activity->setImage('images/' . $newFilename);
-            }
 
             // Comprobamos la fecha introducida
-            $fechaIntroducida = $form->get('date')->getData();
-            $fechaActual = new \DateTime();
-
-            if ($fechaIntroducida < $fechaActual) {
+            if (!$activityService->checkDate($form)) {
                 $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
                 return $this->render('adminCreateActivity.html.twig', [
                     'form' => $form->createView(),
                 ]);
-            }
-            $this->entityManager->persist($activity);
+            }else{
+                $this->entityManager->persist($activity);
             $this->entityManager->flush();
             $this->addFlash('create', '¡Actividad creada con éxito!');
             return $this->redirectToRoute('show_admin_activities');
+            }
         }
 
         return $this->render('adminCreateActivity.html.twig', [
