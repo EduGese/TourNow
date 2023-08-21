@@ -272,9 +272,6 @@
 				{% endfor %}
 				{% if userJoinedActivity %}
 					<p tabindex="0">Ya estás unido a esta actividad</p>
-					{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-						<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-					{% endif %} #}
 				{% else %}
 					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
 						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
@@ -288,9 +285,6 @@
 						</form>
 					{% else %}
 						<p tabindex="0">La actividad ha pasado</p>
-						{# {% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-						{% endif %} #}
 					{% endif %}
 				{% endif %}
 			{% else %}
@@ -301,133 +295,6 @@
 		</section>
 	</div>
 
-		
-	{# <div class="activity-card">
-		{% if activity.getImage() is not null %}
-			<div class="activity-cover">
-				<img src="{{ asset(activity.getImage()) }}" alt="Portada de la actividad">
-			</div>
-		{% endif %}
-
-		<div class="activity-details">
-			<h2>{{ activity.activityName }}</h2>
-
-			<table>
-				<tr>
-					<td>
-						<strong>Fecha:</strong>
-					</td>
-					<td>{{ activity.date|date('Y-m-d H:i:s') }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Descripción:</strong>
-					</td>
-					<td>{{ activity.description }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Tickets disponibles:</strong>
-					</td>
-					<td>{{ activity.tickets }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Localización inicio:</strong>
-					</td>
-					<td>{{ activity.startUbication }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Localización fin:</strong>
-					</td>
-					<td>{{ activity.endUbication }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Precio/persona:</strong>
-					</td>
-					<td>{{ activity.price }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Ciudad:</strong>
-					</td>
-					<td>{{ activity.city }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Compañía:</strong>
-					</td>
-					<td>{{ activity.companyName }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Coordenadas inicio:</strong>
-					</td>
-					<td id="co_start">{{ activity.getStartCoord() }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Coordenadas fin:</strong>
-					</td>
-					<td id="co_end">{{ activity.getEndCoord() }}</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>Página web:</strong>
-					</td>
-					<td>
-						<a href="">{{ activity.companyWebsite }}</a>
-					</td>
-				</tr>
-			</table>
-			{% if app.user %}
-			{% for flashMessage in app.flashes('joined') %}
-				{{ flashMessage}}
-			{% endfor %}
-			{% if activity.tickets > 0 %}
-				{% set userJoinedActivity = false %}
-				{% for userActivity in app.user.customerActivities %}
-					{% if userActivity == activity %}
-						{% set userJoinedActivity = true %}
-					{% endif %}
-				{% endfor %}
-				{% if userJoinedActivity %}
-					<p>Ya estás unido a esta actividad</p>
-					{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-						<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-					{% endif %}
-				{% else %}
-					{% if activity.getDate()|date('Y-m-d H:i:s')  > "now"|date('Y-m-d H:i:s') %}
-						<form method="POST" action="{{ path('join_activity', {'idActivity': activity.idActivity , 'tickets_number': activity.tickets, 'nameActivity': activity.activityName}) }}">
-							<label for="tickets">Número de tickets:</label>
-							<select id="tickets" name="tickets">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select>
-							<button type="submit">Comprar tickets</button>
-						</form>
-					{% else %}
-						<p>La actividad ha pasado</p>
-						{% if activity.getDate()|date('Y-m-d H:i:s')  < "now"|date('Y-m-d H:i:s') %}
-							<a href="{{ path('show_activity_reviews', { 'id': activity.idActivity }) }}">comentarios</a>
-						{% endif %}
-					{% endif %}
-				{% endif %}
-			{% else %}
-				<p>La actividad está completa</p>
-			{% endif %}
-			{% endif %}
-
-
-			
-
-
-		</div>
-		<div id="map" style="height: 500px; width: 50%"></div>
-	</div> #}
 
 {% endblock %}
 {% block javascripts %}

@@ -13,27 +13,20 @@ use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Service\ActivityService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
-use Psr\Log\LoggerInterface;
 use App\Entity\Activity;
 use Symfony\Component\HttpFoundation\RequestStack;
-
 
 
 class ActivityController extends AbstractController
 {
     private $entityManager;
-    private $doctrine;
-    private $mailer;
-    private $logger;
-
-    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager, MailerInterface $mailer, LoggerInterface $logger, private RequestStack $requestStack)
+    
+   
+    public function __construct( EntityManagerInterface $entityManager, private RequestStack $requestStack)
     {
         $this->entityManager = $entityManager;
-        $this->doctrine = $doctrine;
-        $this->logger = $logger;
-        $this->mailer = $mailer;
+        
+      
     }
 
     public function deleteActivity(Request $request, ActivityService $activityService, ManagerRegistry $doctrine, UserInterface $user, $id): Response
@@ -84,7 +77,7 @@ class ActivityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    public function editActivity(Request $request, EntityManagerInterface $entityManager, $id, Security $security, ManagerRegistry $doctrine): Response
+    public function editActivity(Request $request, EntityManagerInterface $entityManager, $id, Security $security, ManagerRegistry $doctrine, ActivityService $activityService): Response
     {
 
 
@@ -97,15 +90,10 @@ class ActivityController extends AbstractController
 
 
             // Comprobamos la fecha introducida
-            $fechaIntroducida = $form->get('date')->getData();
-            $fechaActual = new \DateTime();
-
-            if ($fechaIntroducida < $fechaActual) {
+            if (!$activityService->checkDate($form)) {
                 $this->addFlash('fecha_erronea', 'La fecha introducida no puede ser anterior a la fecha actual.');
-                $formData = $request->request->all();
                 return $this->render('adminCreateActivity.html.twig', [
                     'form' => $form->createView(),
-                    'form_data' => $formData,
                 ]);
             }
             $this->entityManager->persist($activity);
@@ -113,51 +101,14 @@ class ActivityController extends AbstractController
             $this->addFlash('edit', '¡Actividad editada con éxito!, se han mandado email a los usuarios para advertirles ');
 
             //Envio de mails//
+            $activityService->sendMails($entityManager, $activity, $security, $doctrine);
 
-
-            //Obtener mails de usuarios registrados en la actividad
-            $activityId = $activity->getIdActivity();
-            $conn = $entityManager->getConnection();
-
-
-            $query = "SELECT u.email FROM user_activity ua
-                                INNER JOIN user u ON ua.user_id = u.id_user
-                                WHERE ua.activity_id = :activity_id";
-
-            $params = [
-                'activity_id' => $activityId,
-            ];
-
-            $statement = $conn->executeQuery($query, $params);
-
-            // Obtener los correos electrónicos
-            $emails = $statement->fetchAllAssociative();
-
-            $emailList = [];
-            foreach ($emails as $row) {
-                $emailList[] = $row['email'];
-            }
-
-            //Mandar mails
-            $user = $security->getUser();
-            $user_repo = $doctrine->getRepository(User::class);
-            $user_mail = $user_repo->find($user)->getEmail();
-
-            $email = (new Email())
-                ->from($user_mail)
-                ->priority(Email::PRIORITY_HIGH)
-                ->subject('Una actividad a la que te has unido ha cambiado')
-                ->text('Una actividad a la que te has unido ha cambiado, revisa tu cuenta');
-
-            foreach ($emailList as $recipientEmail) {
-                $email->to($recipientEmail);
-                $this->mailer->send($email);
-            }
+            
+            
 
             return $this->render('user/showActivity.html.twig', [
                 'activity' => $activity,
                 'id' => $activity->getIdActivity(),
-                'emails' => $emails,
             ]);
         }
         return $this->render('edit_activity.html.twig', [

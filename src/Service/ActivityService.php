@@ -6,21 +6,24 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Activity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Repository\ActivityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 
 
 class ActivityService extends AbstractController
 {
     private $doctrine;
     private $entityManager;
+    private $mailer;
 
-    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $entityManager)
+    public function __construct( MailerInterface $mailer, ManagerRegistry $doctrine, EntityManagerInterface $entityManager)
     {
         $this->doctrine = $doctrine;
         $this->entityManager = $entityManager;
+        $this->mailer = $mailer;
     }
     
     
@@ -98,6 +101,46 @@ class ActivityService extends AbstractController
                 return false;
             }else{
                 return true;
+            }
+    }
+    public function sendMails($entityManager, $activity, Security $security, ManagerRegistry $doctrine){
+        //Obtener mails de usuarios registrados en la actividad
+        $activityId = $activity->getIdActivity();
+        $conn = $entityManager->getConnection();
+
+
+            $query = "SELECT u.email FROM user_activity ua
+                                INNER JOIN user u ON ua.user_id = u.id_user
+                                WHERE ua.activity_id = :activity_id";
+
+            $params = [
+                'activity_id' => $activityId,
+            ];
+
+            $statement = $conn->executeQuery($query, $params);
+
+            // Obtener los correos electrónicos
+            $emails = $statement->fetchAllAssociative();
+
+            $emailList = [];
+            foreach ($emails as $row) {
+                $emailList[] = $row['email'];
+            }
+
+            //Mandar mails
+            $user = $security->getUser();
+            $user_repo = $doctrine->getRepository(User::class);
+            $user_mail = $user_repo->find($user)->getEmail();
+
+            $email = (new Email())
+                ->from($user_mail)
+                ->priority(Email::PRIORITY_HIGH)
+                ->subject('Una actividad a la que te has unido ha cambiado')
+                ->text('Una actividad a la que te has unido ha cambiado, revisa tu cuenta');
+
+            foreach ($emailList as $recipientEmail) {
+                $email->to($recipientEmail);
+                $this->mailer->send($email);
             }
     }
 }
