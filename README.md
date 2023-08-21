@@ -107,7 +107,7 @@ Desde cualquier gestor MySql:
 
 Crea una base de datos llamada "ftc_db"
 
-Importa en esa base de datos el archivo .......
+Importa en esa base de datos el archivo fct_db.sql
 
 En el archivo del proyect  .env copia esto en la linea correspondiente: DATABASE_URL="mysql://user:pass@127.0.0.1:3306/fct_db?serverVersion=8.0.31"
 
