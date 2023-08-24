@@ -99,7 +99,7 @@ class CreateActivityFormType extends AbstractType
             ->add('date', DateTimeType::class, [
                 'label' => 'Fecha*',
                 'required' => true,
-                'data' => new \DateTime(), // Establece la fecha por defecto como la actual
+                'data' => new \DateTime(), 
                 'attr' => [
                     'min' => (new \DateTime())->format('Y-m-d H:i:s'),
                 ],
@@ -123,9 +123,6 @@ class CreateActivityFormType extends AbstractType
             ->add('company_website', TextType::class, [
                 'label' => 'Página web',
                 'required' => true,
-                // 'attr' => [
-                //     'readonly' => true,
-                // ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^.+\.(com|es|net)$/i',
