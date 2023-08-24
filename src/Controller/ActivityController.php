@@ -157,7 +157,7 @@ class ActivityController extends AbstractController
         $activity_repo = $doctrine->getRepository(Activity::class);
         $activity = $activity_repo->find($idActivity);
 
-        // Insertar o actualizar en la tabla user_activity
+     
         $conn = $entityManager->getConnection();
         $query = 'INSERT INTO user_activity (user_id, activity_id, review, score)
               VALUES (:user_id, :activity_id, :review, :score)
