@@ -51,7 +51,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-        $userRoles = $token->getRoleNames(); //Se accede a los roles de usr, que esta guardado en $token
+        $userRoles = $token->getRoleNames(); 
 
         switch (true) {
             case in_array('ROLE_ADMIN', $userRoles):
@@ -69,10 +69,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         return new RedirectResponse($this->urlGenerator->generate($route));
     }
 
