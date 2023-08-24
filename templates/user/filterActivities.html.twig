@@ -3,7 +3,6 @@
 {% block body %}
 
 <div class="container-fluid">
-  <!-- Todo tu contenido -->
 <div class="f-container  boton-filtro" style="background-img: {{asset ('images/sevilla.jpg')}}">
 
 		<h1 tabindex="0">Buscar actividad</h1>
@@ -27,8 +26,6 @@
 				<p tabindex="0">No hay actividades con los parametros de búsqueda seleccionados</p>
 			</div>
 		{% else %}
-
-			{# Mostrar los valores de $ciudad y $fecha #}
 			{% if ciudad is defined and ciudad != 'Elige ciudad' %}
 				<p tabindex="0">Ciudad:
 					{{ ciudad }}</p>
@@ -38,7 +35,6 @@
 				<p tabindex="0">Fecha:
 					{{ fecha }}</p>
 			{% endif %}
-			{# Iterar sobre las actividades encontradas #}
 			{% set localDatetime = date('now', 'Europe/Madrid') %}
 				<div class="row container-activities px-0 py-4 my-4 row col-11">
 			{% for activity in activities %}

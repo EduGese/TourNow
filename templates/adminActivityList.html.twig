@@ -45,7 +45,7 @@
 	<div class="container-activities py-5 col-10 my-5">
     <br>
    
-    {# {% for activity in app.user.getActivities() %} #}
+  
 		{% set sortedActivities = app.user.getActivities()|sort((a, b) => a.getDate() <=> b.getDate()) %}
         {% for activity in sortedActivities|reverse %}  
                 <div class="comentario col-10 d-flex flex-wrap">

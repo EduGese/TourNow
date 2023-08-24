@@ -1,6 +1,4 @@
 {% extends 'base.html.twig' %}
-
-{# FORMULARIO DE REGISTRO DE USUARIO CLIENTE Creado desde---->   Form/UserRegistrationFormType.php #}
 {% block body %}
 <div class="incuerpo" style="background-image: url(images/648077b6bdcfd.jpg);" >
 <div class=" form form-group col-7 mr-auto ml-auto ">
@@ -10,10 +8,7 @@
         {{ form_row(user_registrationForm.user_lastname) }}
         {{ form_row(user_registrationForm.tel) }}
         {{ form_row(user_registrationForm.email) }}
-        {# {{ form_row(user_registrationForm.roles) }} #}
         {{ form_row(user_registrationForm.password) }}
-        {# {{ form_row(user_registrationForm.agreeTerms) }} #}
-
 <div class="row col-12  d-flex justify-content-center boton-filtro">
         <button type="submit" class=" boton-detalles btn btn-primary">Registrarse</button>
 </div>
