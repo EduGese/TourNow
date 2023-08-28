@@ -12,10 +12,21 @@ TourNow es una aplicación web que busca revolucionar la forma en que las empres
 ## Características Principales
 
 #### Regístrate y Explora
-Los usuarios pueden registrarse en la plataforma y explorar una amplia gama de tours disponibles en las ciudades seleccionadas.
+Los usuarios pueden registrarse en la plataforma y explorar una amplia gama de tours disponibles en las ciudades seleccionadas. Registros separados para clientes y para empresas:
+Clientes:
+![userRegister](https://github.com/EduGese/TourNow/assets/122921699/d5da9ef9-a289-486d-af7d-84a9fe5a22b2)
+Empresas:
+![adminregister](https://github.com/EduGese/TourNow/assets/122921699/e991a177-e5ae-4271-8863-57d98577b995)
+
+
+
+
 
 #### Detalles de Tours
 Los usuarios pueden ver detalles completos de cada tour, incluyendo ubicaciones, horarios, precios, descripciones y plazas disponibles.
+![detalleAct1](https://github.com/EduGese/TourNow/assets/122921699/38fef4b8-e960-4df9-918e-4a4d86abe491)
+
+![detalleAct2](https://github.com/EduGese/TourNow/assets/122921699/9ddb80fa-1412-4d08-86f4-973f2d99cbc6)
 
 #### Reserva Personalizada
 La aplicación permite a los usuarios personalizar sus reservas según sus preferencias, eligiendo el número de tickets, fechas y opciones específicas.
@@ -71,8 +82,8 @@ Para el desarrollo colaborativo de este proyecto, utilizamos Git y GitHub como s
 
 ### Requisitos
 
-Necesitas tener instalado lo siguiente:
-```
+#### Necesitas tener instalado lo siguiente:
+
 Symfony CLI 5.4.20 o superior.
 
 Symfony 6.3.0  --> https://symfony.com/doc/current/setup.html
@@ -80,25 +91,26 @@ Symfony 6.3.0  --> https://symfony.com/doc/current/setup.html
 php 8.2.0 --> https://www.php.net/manual/en/install.php
 
 MySQL 8.0.31  -->  https://www.mysql.com/downloads/
-```
+
 
 ### Instalaciones
-```
- 1/ Crea una carpeta con el nombre que quieras dar al proyecto
+
+ #### 1/ Crea una carpeta con el nombre que quieras dar al proyecto
 
 
- 2/ Clona este repositorio en tu máquina local
-Desde la raiz del proyecto en la consola ejecuta lo siguiente: git clone git@github.com:EduGese/TourNow.git
+####  2/ Clona este repositorio en tu máquina local
+Desde la raiz del proyecto en la consola ejecuta lo siguiente: 
+````git clone git@github.com:EduGese/TourNow.git````
 
- 3/ Instalar Composer
+ #### 3/ Instalar Composer
 Asegúrate de tener Composer instalado. Composer es una herramienta esencial para gestionar las dependencias de PHP.
 
 Descarga e instala Composer: https://getcomposer.org/download/
 
- 4/ Instalar Dependencias
+ #### 4/ Instalar Dependencias
 Desde la carpeta raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias del proyecto definidas en composer.json:  composer install
 
- 5/ Base de datos 
+ #### 5/ Base de datos 
 
 Desde cualquier gestor MySql:
 
@@ -109,20 +121,21 @@ Importa en esa base de datos el archivo fct_db.sql
 En el archivo del proyect  .env copia esto en la linea correspondiente: DATABASE_URL="mysql://user:pass@127.0.0.1:3306/fct_db?serverVersion=8.0.31"
 
 Donde user es el nombre usuario y pass es la contraseña de acceso a la base de datos.
-```
-### Ejecucion
+
+### Ejecución
 
 #### Abre tu gestor de base de datos y haz login.
 #### Levantar el servidor local de Symfony:
-```
+
  Colócate en la raíz del proyecto (ya sea con la consola de tu SO o con la terminal de VSCode) 
 
- Ejecuta  --> Symfony server:start
+ Ejecuta:
+ ````Symfony server:start````
 
  En el navegador pega la siguiente url --> http://localhost:8000/home , esto abrirá la página de inicio. 
 
  Ya puedes disfrutar de TourNow
-```
+
 
 ## Contribución
 
