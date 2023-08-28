@@ -32,39 +32,36 @@ Las empresas turísticas pueden crear perfiles y descripciones detalladas de sus
 #### Gestión Centralizada
 Las empresas pueden gestionar de manera centralizada sus tours, crear nuevos, actualizar información y realizar un seguimiento de las reservas.
 
-#### Análisis de Datos
-La plataforma recopila datos relevantes sobre las reservas y preferencias de los usuarios, proporcionando información valiosa para la toma de decisiones empresariales.
-
 #### Experiencia Mejorada
 La aplicación ofrece una presentación visual atractiva de los tours, ayudando a las empresas a destacarse en el mercado.
 
 ## Tecnologías Utilizadas
 
-```
- Symfony 5
+
+#### Symfony 5
 
 Utilizamos Symfony, un framework de desarrollo web de código abierto, para crear la arquitectura robusta y escalable de la aplicación.
 
- PHP 8.2
+#### PHP 8.2
 
 Utilizamos PHP como lenguaje principal en el backend para implementar la lógica de negocio y gestionar las solicitudes y respuestas HTTP.
 
- Doctrine ORM
+#### Doctrine ORM
 
 Implementamos el ORM de Doctrine para la gestión eficiente de la base de datos, permitiendo operaciones CRUD de manera sencilla.
 
- Twig y HTML
+#### Twig y HTML
 
 Utilizamos Twig para la generación dinámica de las vistas HTML, permitiendo una separación efectiva de la lógica de presentación del código PHP.
 
- MySQL
+#### MySQL
 
 Empleamos MySQL como sistema de gestión de bases de datos relacional para almacenar y recuperar la información necesaria.
 
- OpenStreetMap API
+#### OpenStreetMap API
 
 Integramos la API de OpenStreetMap para implementar la funcionalidad de vista de mapa y selección de ubicaciones.
-```
+
 
 ## Colaboración y Herramientas
 
