@@ -11,7 +11,7 @@
 
 
 
-## Descripción del Proyecto
+## Descripción
 
 TourNow es una aplicación web que busca revolucionar la forma en que las empresas turísticas promocionan y gestionan sus tours, y cómo los viajeros exploran y reservan actividades turísticas en las ciudades de Madrid, Barcelona y Sevilla. La plataforma brinda a las empresas la oportunidad de crear perfiles, describir en detalle sus tours, especificar fechas, ubicaciones y precios, y exhibir imágenes atractivas para captar la atención de los clientes potenciales. Por otro lado, los usuarios pueden explorar una variedad de actividades, visualizar detalles importantes de cada tour y realizar reservas de manera conveniente y personalizada.
 
