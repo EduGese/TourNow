@@ -2,12 +2,12 @@
 
 
 - [Descripción del Proyecto](#descripción)
-- [Características Principales](#Características Principales)
-- [Tecnologías Utilizadas](#Tecnologías Utilizadas)
-- [Colaboración y Herramientas](#Colaboración y Herramientas)
-- [Requisitos, Instalación y Ejecución](#Requisitos, Instalación y Ejecución)
+- [Características Principales](#Características)
+- [Tecnologías Utilizadas](#Tecnologías)
+- [Colaboración y Herramientas](#Colaboración)
+- [Requisitos, Instalación y Ejecución](#Requisitosn)
 - [Contribución](#Contribución)
-- [Requisitos, Instalación y Ejecución](#Requisitos, Instalación y Ejecución)
+
 
 
 
