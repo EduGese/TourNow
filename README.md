@@ -5,7 +5,7 @@
 - [Características Principales](#Características)
 - [Tecnologías Utilizadas](#Tecnologías)
 - [Colaboración y Herramientas](#Colaboración)
-- [Requisitos, Instalación y Ejecución](#Requisitos,-Instalación-y-Ejecución)
+- [Requisitos, Instalación y Ejecución](#Requisitos)
 - [Contribución](#Contribución)
 
 
@@ -88,7 +88,7 @@ Integramos la API de OpenStreetMap para implementar la funcionalidad de vista de
 
 Para el desarrollo colaborativo de este proyecto, utilizamos Git y GitHub como sistema de control de versiones y plataforma de colaboración. Implementamos el flujo Git Flow, con la rama "dev" como principal y ramas derivadas para diferentes funcionalidades.
 
-## Requisitos, Instalación y Ejecución
+## Requisitos
 
 ### Requisitos
 
