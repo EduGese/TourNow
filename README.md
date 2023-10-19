@@ -5,7 +5,7 @@
 - [Características Principales](#Características)
 - [Tecnologías Utilizadas](#Tecnologías)
 - [Colaboración y Herramientas](#Colaboración)
-- [Requisitos, Instalación y Ejecución](#Requisitosn)
+- [Requisitos, Instalación y Ejecución](#Requisitos,_Instalación_y_Ejecución)
 - [Contribución](#Contribución)
 
 
@@ -19,7 +19,7 @@ TourNow es una aplicación web que busca revolucionar la forma en que las empres
 
 
 
-## Características Principales
+## Características
 
 #### Regístrate y Explora
 Los usuarios pueden registrarse en la plataforma y explorar una amplia gama de tours disponibles en las ciudades seleccionadas. Registros separados para clientes y para empresas:
@@ -56,7 +56,7 @@ Las empresas pueden gestionar de manera centralizada sus tours, crear nuevos, ac
 #### Experiencia Mejorada
 La aplicación ofrece una presentación visual atractiva de los tours, ayudando a las empresas a destacarse en el mercado.
 
-## Tecnologías Utilizadas
+## Tecnologías
 
 
 #### Symfony 5
@@ -84,7 +84,7 @@ Empleamos MySQL como sistema de gestión de bases de datos relacional para almac
 Integramos la API de OpenStreetMap para implementar la funcionalidad de vista de mapa y selección de ubicaciones.
 
 
-## Colaboración y Herramientas
+## Colaboración
 
 Para el desarrollo colaborativo de este proyecto, utilizamos Git y GitHub como sistema de control de versiones y plataforma de colaboración. Implementamos el flujo Git Flow, con la rama "dev" como principal y ramas derivadas para diferentes funcionalidades.
 
