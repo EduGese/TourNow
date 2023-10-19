@@ -143,4 +143,6 @@ Este proyecto es de código abierto y las contribuciones son bienvenidas. Si des
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles:
+
+https://github.com/EduGese/TourNow/blob/dev/LICENSE.md
