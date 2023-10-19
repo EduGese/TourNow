@@ -1,51 +1,14 @@
+# TOURNOW - Plataforma de Reservas de Actividades Turísticas
 
-# TOURNOW  - Plataforma de Reservas de Actividades Turísticas
 
+- [Descripción del Proyecto](#descripción)
+- [Características Principales](#Características Principales)
+- [Tecnologías Utilizadas](#Tecnologías Utilizadas)
+- [Colaboración y Herramientas](#Colaboración y Herramientas)
+- [Requisitos, Instalación y Ejecución](#Requisitos, Instalación y Ejecución)
+- [Contribución](#Contribución)
+- [Requisitos, Instalación y Ejecución](#Requisitos, Instalación y Ejecución)
 
-# TOURNOW - Tourist Activity Booking Platform
-
-## Project Description
-
-- [Description](#description)
-- [Screenshots](#screenshots)
-
-## Key Features
-
-- [Register and Explore](#register-and-explore)
-- [Tour Details](#tour-details)
-- [Customized Booking](#customized-booking)
-- [Reviews and Ratings](#reviews-and-ratings)
-- [Booking Tracking](#booking-tracking)
-- [Business Profiles](#business-profiles)
-- [Centralized Management](#centralized-management)
-- [Enhanced User Experience](#enhanced-user-experience)
-
-## Technologies Used
-
-- [Symfony 5](#symfony-5)
-- [PHP 8.2](#php-8.2)
-- [Doctrine ORM](#doctrine-orm)
-- [Twig and HTML](#twig-and-html)
-- [MySQL](#mysql)
-- [OpenStreetMap API](#openstreetmap-api)
-
-## Collaboration and Tools
-
-- [Collaboration and Tools](#collaboration-and-tools)
-
-## Requirements, Installation, and Execution
-
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Execution](#execution)
-
-## Contribution
-
-- [Contribution](#contribution)
-
-## License
-
-- [License](#license)
 
 
 ## Descripción del Proyecto
