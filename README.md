@@ -5,7 +5,7 @@
 - [Características Principales](#Características)
 - [Tecnologías Utilizadas](#Tecnologías)
 - [Colaboración y Herramientas](#Colaboración)
-- [Requisitos, Instalación y Ejecución](#Requisitos,_Instalación_y_Ejecución)
+- [Requisitos, Instalación y Ejecución](#Requisitos,-Instalación-y-Ejecución)
 - [Contribución](#Contribución)
 
 
