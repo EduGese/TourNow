@@ -7,6 +7,7 @@
 - [Colaboración y Herramientas](#Colaboración)
 - [Requisitos, Instalación y Ejecución](#Requisitos)
 - [Contribución](#Contribución)
+- [Licencia](#Licencia)
 
 
 
