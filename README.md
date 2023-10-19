@@ -1,6 +1,53 @@
 
 # TOURNOW  - Plataforma de Reservas de Actividades Turísticas
 
+
+# TOURNOW - Tourist Activity Booking Platform
+
+## Project Description
+
+- [Description](#description)
+- [Screenshots](#screenshots)
+
+## Key Features
+
+- [Register and Explore](#register-and-explore)
+- [Tour Details](#tour-details)
+- [Customized Booking](#customized-booking)
+- [Reviews and Ratings](#reviews-and-ratings)
+- [Booking Tracking](#booking-tracking)
+- [Business Profiles](#business-profiles)
+- [Centralized Management](#centralized-management)
+- [Enhanced User Experience](#enhanced-user-experience)
+
+## Technologies Used
+
+- [Symfony 5](#symfony-5)
+- [PHP 8.2](#php-8.2)
+- [Doctrine ORM](#doctrine-orm)
+- [Twig and HTML](#twig-and-html)
+- [MySQL](#mysql)
+- [OpenStreetMap API](#openstreetmap-api)
+
+## Collaboration and Tools
+
+- [Collaboration and Tools](#collaboration-and-tools)
+
+## Requirements, Installation, and Execution
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Execution](#execution)
+
+## Contribution
+
+- [Contribution](#contribution)
+
+## License
+
+- [License](#license)
+
+
 ## Descripción del Proyecto
 
 TourNow es una aplicación web que busca revolucionar la forma en que las empresas turísticas promocionan y gestionan sus tours, y cómo los viajeros exploran y reservan actividades turísticas en las ciudades de Madrid, Barcelona y Sevilla. La plataforma brinda a las empresas la oportunidad de crear perfiles, describir en detalle sus tours, especificar fechas, ubicaciones y precios, y exhibir imágenes atractivas para captar la atención de los clientes potenciales. Por otro lado, los usuarios pueden explorar una variedad de actividades, visualizar detalles importantes de cada tour y realizar reservas de manera conveniente y personalizada.
