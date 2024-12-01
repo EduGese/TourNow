@@ -2,10 +2,6 @@
 
 
 {% block body %}
-	{# {{activity.idActivity}}
-	    {{activity.scores}}
-	    {{activity.averageScore}} #}
-	{# {{scores}} #}
 
 	<form  class="c-form col-lg-9 mr-auto ml-auto" action="{{ path('add_activity_review', { 'id': activity.idActivity, 'scores': activity.scores, 'average_score': activity.averageScore }) }}" method="post"> 
 		<div class="form-group">

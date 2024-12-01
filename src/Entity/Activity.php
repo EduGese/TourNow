@@ -17,9 +17,6 @@ class Activity
     #[ORM\Column]
     private ?int $id_activity = null;
 
-    // #[ORM\Column]
-    // private ?int $id_activity = null;
-
     #[ORM\Column(length: 255)]
     private ?string $activity_name = null;
 
@@ -51,7 +48,7 @@ class Activity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $city = null;
 
-    //////////////////////////
+  
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'customerActivities')]
     private $customerUsers;
 
@@ -86,7 +83,7 @@ class Activity
         $this->average_score = '0.0';
     }
     
-    //////////////////////////////////////
+   
 
     public function getIdActivity(): ?int
     {
